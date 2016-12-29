@@ -1,0 +1,13 @@
+// Styling for truth tables and expressions
+
+#expressions {
+  margin: 0 auto;
+}
+.expression {
+  display: inline-block;
+  input[type='text'] {
+    width: 150px;
+    margin: 10px;
+    font-size: 16px;
+  }
+}

@@ -1,3 +1,16 @@
-// Global Sass variables
+// Styling for Truthy variables and variable container
 
-$monospace: 'Oxygen Mono', 'Monaco', monospace;
+#variables {
+  text-align: center;
+}
+.variable {
+  display: inline-block;
+  margin: 10px;
+  input[type='text'] {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 20px;
+  }
+}
