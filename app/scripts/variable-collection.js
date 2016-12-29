@@ -4,12 +4,12 @@ var m = require('mithril');
 var _ = require('underscore');
 var Variable = require('./variable');
 
-function VariableCollection() {
-  this.variables = [
-    new Variable({name: 'p'}),
-    new Variable({name: 'q'})
-  ];
+function VariableCollection(args) {
+  this.variables = args.variables;
 }
+VariableCollection.prototype.getLength = function () {
+  return this.variables.length;
+};
 VariableCollection.prototype.forEach = function (callback) {
   return _.forEach(this.variables, callback);
 };

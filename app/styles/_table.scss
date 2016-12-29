@@ -1,0 +1,25 @@
+// Styling for truth tables and expressions
+
+table {
+  margin: 0 auto;
+  border-spacing: 0;
+  background-color: rgba(#000, 0.25);
+}
+th, td {
+  padding: 10px 14px;
+}
+th.expression {
+  input[type='text'] {
+    width: 150px;
+    font-size: 16px;
+  }
+}
+td.true {
+  background-color: rgba(#6a6, 0.5);
+}
+td.false {
+  background-color: rgba(#c33, 0.5);
+}
+td.und {
+  background-color: #333;
+}
