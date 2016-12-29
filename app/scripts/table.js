@@ -7,28 +7,35 @@ var classNames = require('classnames');
 
 var Table = {};
 
-// Iterate through all possible true/false permutations for the given collection
-// of variables
-Table.forEachPermutation = function (variables, callback) {
-  // The current permitation
-  var permutation = {};
+// Iterate through all possible true/false values for the given collection of
+// variables
+Table.forEachRow = function (variables, callback) {
+  var currentVarValues = {};
   variables.forEach(function (variable) {
-    permutation[variable.name] = false;
+    // Variable values should be initialized to true because they will be
+    // inverted before the callback is called for the first table row, making
+    // the first permutation of variable values all false
+    currentVarValues[variable.name] = true;
   });
-  var elements = [];
-  _.times(Math.pow(2, variables.getLength()), function () {
-    elements.push(callback(permutation));
+  var varCount = variables.getLength();
+  // If n corresponds to the number of variables, then there will always be 2^n
+  // rows in the truth table (excluding the table head, of course)
+  return _.times(Math.pow(2, varCount), function (rowIndex) {
+    variables.forEach(function (variable, varIndex) {
+      // Alternate current variable values as needed
+      if (rowIndex % Math.pow(2, varCount - varIndex - 1) === 0) {
+        currentVarValues[variable.name] = !currentVarValues[variable.name];
+      }
+    });
+    return callback(currentVarValues);
   });
-  return elements;
 };
 
 // Get the string value of the given boolean for display in the truth table
 Table.getBoolStr = function (boolean) {
   if (boolean === true) {
-    // Display T for true
     return 'T';
   } else if (boolean === false) {
-    // Display F for false
     return 'F';
   } else {
     // Display U for null/undefined values
@@ -53,10 +60,10 @@ Table.Component.view = function (ctrl, app) {
       })
     ])
   ),
-  m('tbody', Table.forEachPermutation(app.variables, function (permutation) {
+  m('tbody', Table.forEachRow(app.variables, function (varValues) {
     return m('tr', [
       app.variables.map(function(variable) {
-        var varValue = permutation[variable.name];
+        var varValue = varValues[variable.name];
         return m('td', {
           class: classNames(
             {true: varValue === true},
