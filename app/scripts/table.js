@@ -44,9 +44,22 @@ Table.getBoolStr = function (boolean) {
 
 Table.Component = {};
 
+Table.Component.controller = function () {
+  return {
+    // Update expression model when input value changes
+    updateExpressionString: function (ctrl, app, event) {
+      var expressionInputs = event.currentTarget.getElementsByClassName('expression');
+      var expressionIndex = Array.prototype.indexOf.call(expressionInputs, event.target.parentNode);
+      app.expressions[expressionIndex].string = event.target.value;
+    }
+  };
+};
+
 Table.Component.view = function (ctrl, app) {
   return m('table#truth-table', [
-    m('thead', m('tr', [
+    m('thead', m('tr', {
+      onchange: _.partial(ctrl.updateExpressionString, ctrl, app)
+    }, [
       _.map(app.variables, function (variable) {
         return m('th.variable', variable.name);
       }),
@@ -76,7 +89,7 @@ Table.Component.view = function (ctrl, app) {
           class: classNames(
             {true: exprValue === true},
             {false: exprValue === false},
-            {und: exprValue === undefined}
+            {und: exprValue === null}
           )
         }, Table.getBoolStr(exprValue));
       })

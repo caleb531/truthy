@@ -9,9 +9,13 @@ function Expression(args) {
 
 // Parse and evaluate the expression to either true or false
 Expression.prototype.evaluate = function (varValues) {
-  return ExpressionParser.parse(this.string, {
-    varValues: varValues
-  });
+  try {
+    return ExpressionParser.parse(this.string, {
+      varValues: varValues
+    });
+  } catch (error) {
+    return null;
+  }
 };
 
 module.exports = Expression;
