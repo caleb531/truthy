@@ -17,13 +17,12 @@ Table.forEachRow = function (variables, callback) {
     // the first permutation of variable values all false
     currentVarValues[variable.name] = true;
   });
-  var varCount = variables.getLength();
   // If n corresponds to the number of variables, then there will always be 2^n
   // rows in the truth table (excluding the table head, of course)
-  return _.times(Math.pow(2, varCount), function (rowIndex) {
+  return _.times(Math.pow(2, variables.length), function (rowIndex) {
     variables.forEach(function (variable, varIndex) {
       // Alternate current variable values as needed
-      if (rowIndex % Math.pow(2, varCount - varIndex - 1) === 0) {
+      if (rowIndex % Math.pow(2, variables.length - varIndex - 1) === 0) {
         currentVarValues[variable.name] = !currentVarValues[variable.name];
       }
     });
@@ -48,10 +47,10 @@ Table.Component = {};
 Table.Component.view = function (ctrl, app) {
   return m('table#truth-table', [
     m('thead', m('tr', [
-      app.variables.map(function (variable) {
+      _.map(app.variables, function (variable) {
         return m('th.variable', variable.name);
       }),
-      app.expressions.map(function (expression) {
+      _.map(app.expressions, function (expression) {
         return m('th.expression', m('input', {
           type: 'text',
           value: expression.string
@@ -61,7 +60,7 @@ Table.Component.view = function (ctrl, app) {
   ),
   m('tbody', Table.forEachRow(app.variables, function (varValues) {
     return m('tr', [
-      app.variables.map(function(variable) {
+      _.map(app.variables, function(variable) {
         var varValue = varValues[variable.name];
         return m('td', {
           class: classNames(
@@ -71,7 +70,7 @@ Table.Component.view = function (ctrl, app) {
         },
         Table.getBoolStr(varValue));
       }),
-      app.expressions.map(function(expression) {
+      _.map(app.expressions, function(expression) {
         var exprValue = expression.evaluate(varValues);
         return m('td', {
           class: classNames(
