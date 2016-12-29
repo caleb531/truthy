@@ -1,0 +1,12 @@
+# OS-generated files
+.DS_Store
+
+# Node.js files
+node_modules
+*.log
+
+# Brunch
+public/
+
+# Private environment variables for deployment
+.env
