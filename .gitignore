@@ -5,6 +5,9 @@
 node_modules
 *.log
 
+# PEG.js-generated expression parser
+*.parser.js
+
 # Brunch
 public/
 

@@ -26,6 +26,7 @@
     "autoprefixer": "^6.6.0",
     "brunch": "brunch/brunch#ee73ef0f92add24b46c4478fa3f0b5bc206bbe7d",
     "javascript-brunch": "^2.0.0",
+    "pegjs": "^0.10.0",
     "postcss-brunch": "jacksonrayhamilton/postcss-brunch#27ae06f5275079fb4fe6a24e09daa272141bec94",
     "sass-brunch": "^2.9.0",
     "uglify-js-brunch": "^2.0.1"

@@ -46,7 +46,6 @@ Table.getBoolStr = function (boolean) {
 Table.Component = {};
 
 Table.Component.view = function (ctrl, app) {
-  var exprValue = false;
   return m('table#truth-table', [
     m('thead', m('tr', [
       app.variables.map(function (variable) {
@@ -72,8 +71,8 @@ Table.Component.view = function (ctrl, app) {
         },
         Table.getBoolStr(varValue));
       }),
-      app.expressions.map(function(expressions) {
-        exprValue = !exprValue;
+      app.expressions.map(function(expression) {
+        var exprValue = expression.evaluate(varValues);
         return m('td', {
           class: classNames(
             {true: exprValue === true},
