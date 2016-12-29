@@ -17,11 +17,11 @@ App.Component.controller = function () {
   };
 };
 
-App.Component.view = function () {
+App.Component.view = function (ctrl) {
   return [
     m('h1', 'Truthy'),
-    m(VariableCollection.Component),
-    m(ExpressionCollection.Component),
+    m(VariableCollection.Component, ctrl.app),
+    m(ExpressionCollection.Component, ctrl.app),
   ];
 };
 
