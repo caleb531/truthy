@@ -16,6 +16,7 @@ input[type='text'] {
   border-radius: 3px;
   padding: 4px 8px;
   background-clip: padding-box;
+  text-align: center;
   font-family: $monospace;
   font-size: 16px;
   &:focus {

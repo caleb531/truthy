@@ -58,7 +58,7 @@ Table.Component.controller = function () {
 Table.Component.view = function (ctrl, app) {
   return m('table#truth-table', [
     m('thead', m('tr', {
-      onchange: _.partial(ctrl.updateExpressionString, ctrl, app)
+      oninput: _.partial(ctrl.updateExpressionString, ctrl, app),
     }, [
       _.map(app.variables, function (variable) {
         return m('th.variable', variable.name);
@@ -66,6 +66,7 @@ Table.Component.view = function (ctrl, app) {
       _.map(app.expressions, function (expression) {
         return m('th.expression', m('input', {
           type: 'text',
+          size: Math.max(1, expression.string.length),
           value: expression.string
         }));
       })
