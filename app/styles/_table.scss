@@ -3,17 +3,31 @@
 table {
   margin: 0 auto;
   border-spacing: 0;
-  background-color: rgba(#000, 0.25);
 }
+
+// Alternate row colors for better contrast
+tr:nth-child(odd) {
+  background-color: rgba(#000, 0.2);
+}
+tr:nth-child(even) {
+  background-color: rgba(#000, 0.4);
+}
+
 th, td {
   padding: 10px 14px;
 }
-th.expression {
-  input[type='text'] {
-    width: 150px;
-    font-size: 16px;
+// Set darker background for table head cells
+th {
+  background-color: rgba(#000, 0.25);
+  &.expression {
+    input[type='text'] {
+      width: 150px;
+      font-size: 16px;
+    }
   }
 }
+
+// Highlight styles for various expression values
 td.true {
   background-color: rgba(#6a6, 0.5);
 }
@@ -21,5 +35,5 @@ td.false {
   background-color: rgba(#c33, 0.5);
 }
 td.und {
-  background-color: #333;
+  background-color: rgba(#000, 0.1);
 }
