@@ -2,6 +2,9 @@
   "name": "truthy",
   "version": "3.0.0-alpha.1",
   "description": "Create truth tables without the pain",
+  "scripts": {
+    "generate-parser": "pegjs -o app/scripts/expression.parser.js app/grammars/expression-parser.pegjs"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/caleb531/truthy.git"
