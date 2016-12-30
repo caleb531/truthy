@@ -1,7 +1,9 @@
 // Grammar for Truthy expressions
 
 expr
-  = implication
+  = ws* expr:implication ws* {
+    return expr;
+  }
 
 implication
   = left:xor ws+ '->' ws+ right:implication {
