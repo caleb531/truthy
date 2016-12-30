@@ -58,7 +58,11 @@ subexpr =
 
 varname
   = name:[A-Za-z] {
-    return options.varValues[name];
+    if (name in options.varValues) {
+      return options.varValues[name];
+    } else {
+      error('Variable "' + name + '" is not defined.');
+    }
   }
 
 boolean
