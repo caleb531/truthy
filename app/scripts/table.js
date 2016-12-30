@@ -89,8 +89,7 @@ Table.Component.view = function (ctrl, app) {
         return m('td', {
           class: classNames(
             {true: exprValue === true},
-            {false: exprValue === false},
-            {und: exprValue === null}
+            {false: exprValue === false}
           )
         }, Table.getBoolStr(exprValue));
       })
