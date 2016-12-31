@@ -55,25 +55,25 @@ Table.Component.controller = function () {
       } while (currentElem !== null && currentElem.className === 'expression');
       return expressionIndex;
     },
-    updateExpressionString: function (ctrl, app, event) {
-      var expressionIndex = ctrl.getExpressionIndex(event.target);
-      app.expressions[expressionIndex].string = event.target.value;
+    updateExpressionString: function (ctrl, expressions, event) {
+      var expression = expressions.get(ctrl.getExpressionIndex(event.target));
+      expression.string = event.target.value;
     }
   };
 };
 
-Table.Component.view = function (ctrl, app) {
+Table.Component.view = function (ctrl, variables, expressions) {
   // A cache to store expressions which are known to be invalid (so as to avoid
   // re-evaluating them later)
   var invalidExpressionCache = {};
   return m('table#truth-table', [
     m('thead', m('tr', {
-      oninput: _.partial(ctrl.updateExpressionString, ctrl, app)
+      oninput: _.partial(ctrl.updateExpressionString, ctrl, expressions)
     }, [
-      _.map(app.variables, function (variable) {
+      variables.map(function (variable) {
         return m('th.variable', variable.name);
       }),
-      _.map(app.expressions, function (expression) {
+      expressions.map(function (expression) {
         return m('th.expression', m('div.has-controls', [
           m('div.control.add'),
           m('div.control.remove'),
@@ -90,9 +90,9 @@ Table.Component.view = function (ctrl, app) {
       })
     ])
   ),
-  m('tbody', Table.forEachRow(app.variables, function (varValues) {
+  m('tbody', Table.forEachRow(variables, function (varValues) {
     return m('tr', [
-      _.map(app.variables, function(variable) {
+      variables.map(function(variable) {
         var varValue = varValues[variable.name];
         return m('td', {
           class: classNames(
@@ -102,7 +102,7 @@ Table.Component.view = function (ctrl, app) {
         },
         Table.getBoolStr(varValue));
       }),
-      _.map(app.expressions, function(expression) {
+      expressions.map(function(expression) {
         var exprValue;
         // Don't re-evaluate expression if it is known to be invalid
         if (expression.string in invalidExpressionCache) {

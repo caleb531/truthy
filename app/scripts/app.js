@@ -1,20 +1,20 @@
 'use strict';
 
 var m = require('mithril');
-var Variable = require('./variable');
-var Expression = require('./expression');
+var VariableCollection = require('./variable-collection');
+var ExpressionCollection = require('./expression-collection');
 var Table = require('./table');
 
 function App() {
-  this.variables = [
-    new Variable({name: 'p'}),
-    new Variable({name: 'q'})
-  ];
-  this.expressions = [
-    new Expression({string: 'not p'}),
-    new Expression({string: 'p and q'}),
-    new Expression({string: 'p or q'})
-  ];
+  this.variables = new VariableCollection([
+    {name: 'p'},
+    {name: 'q'}
+  ]);
+  this.expressions = new ExpressionCollection([
+    {string: 'not p'},
+    {string: 'p and q'},
+    {string: 'p or q'}
+  ]);
 }
 
 App.Component = {};
@@ -29,9 +29,9 @@ App.Component.view = function (ctrl) {
   return [
     m('h1', 'Truthy'),
     m('h2', 'Variables'),
-    m(Variable.Component, ctrl.app),
+    m(VariableCollection.Component, ctrl.app.variables),
     m('h2', 'Table'),
-    m(Table.Component, ctrl.app),
+    m(Table.Component, ctrl.app.variables, ctrl.app.expressions),
   ];
 };
 
