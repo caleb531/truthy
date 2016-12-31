@@ -14,7 +14,11 @@ Variable.Component.view = function (ctrl, app) {
     return m('div.variable', m('input', {
       type: 'text',
       value: variable.name,
-      maxlength: 1
+      maxlength: 1,
+      autocapitalize: 'off',
+      autocomplete: 'off',
+      autocorrect: 'off',
+      spellcheck: false
     }));
   }));
 };

@@ -70,7 +70,11 @@ Table.Component.view = function (ctrl, app) {
         return m('th.expression', m('input', {
           type: 'text',
           size: Math.max(1, expression.string.length),
-          value: expression.string
+          value: expression.string,
+          autocapitalize: 'off',
+          autocomplete: 'off',
+          autocorrect: 'off',
+          spellcheck: false
         }));
       })
     ])
