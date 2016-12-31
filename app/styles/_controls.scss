@@ -1,0 +1,31 @@
+// Add/remove controls for individual variables/expresisons
+
+// Any arbitrary container to attach controls to
+.has-controls {
+  position: relative;
+}
+
+.control {
+  position: absolute;
+  $control-size: 16px;
+  top: -$control-size / 2;
+  z-index: 10;
+  width: $control-size;
+  height: $control-size;
+  border: solid 2px rgba(#fff, 0.5);
+  border-radius: 50%;
+  background-color: #000;
+  background-clip: padding-box;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  $control-x: -$control-size / 2;
+  &.add {
+    right: $control-x;
+    background-image: url('../icons/add.svg');
+  }
+  &.remove {
+    left: $control-x;
+    background-image: url('../icons/remove.svg');
+  }
+}

@@ -46,10 +46,17 @@ Table.Component = {};
 
 Table.Component.controller = function () {
   return {
-    // Update expression model when input value changes
+    getExpressionIndex: function (expressionElem) {
+      var currentElem = expressionElem.parentNode.parentNode;
+      var expressionIndex = -1;
+      do {
+        currentElem = currentElem.previousElementSibling;
+        expressionIndex += 1;
+      } while (currentElem !== null && currentElem.className === 'expression');
+      return expressionIndex;
+    },
     updateExpressionString: function (ctrl, app, event) {
-      var expressionInputs = event.currentTarget.getElementsByClassName('expression');
-      var expressionIndex = Array.prototype.indexOf.call(expressionInputs, event.target.parentNode);
+      var expressionIndex = ctrl.getExpressionIndex(event.target);
       app.expressions[expressionIndex].string = event.target.value;
     }
   };
@@ -61,21 +68,25 @@ Table.Component.view = function (ctrl, app) {
   var invalidExpressionCache = {};
   return m('table#truth-table', [
     m('thead', m('tr', {
-      oninput: _.partial(ctrl.updateExpressionString, ctrl, app),
+      oninput: _.partial(ctrl.updateExpressionString, ctrl, app)
     }, [
       _.map(app.variables, function (variable) {
         return m('th.variable', variable.name);
       }),
       _.map(app.expressions, function (expression) {
-        return m('th.expression', m('input', {
-          type: 'text',
-          size: Math.max(1, expression.string.length),
-          value: expression.string,
-          autocapitalize: 'off',
-          autocomplete: 'off',
-          autocorrect: 'off',
-          spellcheck: false
-        }));
+        return m('th.expression', m('div.has-controls', [
+          m('div.control.add'),
+          m('div.control.remove'),
+          m('input', {
+            type: 'text',
+            size: Math.max(1, expression.string.length),
+            value: expression.string,
+            autocapitalize: 'off',
+            autocomplete: 'off',
+            autocorrect: 'off',
+            spellcheck: false
+          })
+        ]));
       })
     ])
   ),

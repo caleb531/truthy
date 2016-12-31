@@ -13,11 +13,12 @@ Variable.Component = {};
 Variable.Component.controller = function () {
   return {
     getVariableIndex: function (variableElem) {
-      var variableInputs = variableElem
-        .parentNode
-        .parentNode
-        .getElementsByClassName('variable');
-      var variableIndex = Array.prototype.indexOf.call(variableInputs, variableElem.parentNode);
+      var currentElem = variableElem.parentNode.parentNode;
+      var variableIndex = -1;
+      do {
+        currentElem = currentElem.previousElementSibling;
+        variableIndex += 1;
+      } while (currentElem !== null && currentElem.className === 'variable');
       return variableIndex;
     },
     updateVariableName: function (ctrl, app, event) {
@@ -39,15 +40,19 @@ Variable.Component.view = function (ctrl, app) {
     onclick: ctrl.focusVariableInput,
     oninput: _.partial(ctrl.updateVariableName, ctrl, app)
   }, _.map(app.variables, function (variable) {
-    return m('div.variable', m('input', {
-      type: 'text',
-      value: variable.name,
-      maxlength: 1,
-      autocapitalize: 'off',
-      autocomplete: 'off',
-      autocorrect: 'off',
-      spellcheck: false
-    }));
+    return m('div.variable', m('div.has-controls', [
+      m('div.control.add'),
+      m('div.control.remove'),
+      m('input', {
+        type: 'text',
+        value: variable.name,
+        maxlength: 1,
+        autocapitalize: 'off',
+        autocomplete: 'off',
+        autocorrect: 'off',
+        spellcheck: false
+      })
+    ]));
   }));
 };
 
