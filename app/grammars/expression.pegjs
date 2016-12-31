@@ -1,64 +1,65 @@
-// Grammar for Truthy expressions
+// Grammar for Truthy boolean expressions
 
-expr
-  = ws* expr:implication ws* {
-    return expr;
+Expression
+  = WS* expression:Implication WS* {
+    return expression;
   }
 
-implication
-  = left:xor ws+ '->' ws+ right:implication {
+Implication
+  = left:OR WS* '->' WS* right:Implication {
     return !left || right;
   }
-  / xor
+  / OR
 
-xor
-  = left:xnor ws+ 'xor' ws+ right:xor {
-    return (left || right) && (!left || !right);
-  }
-  / xnor
-
-xnor
-  = left:or ws+ 'xnor' ws+ right:xnor {
-    return !(left || right) && (!left || !right);
-  }
-  / or
-
-or
-  = left:nor ws+ 'or' ws+ right:or {
+OR
+  = left:AND WS+ 'or'i WS+ right:OR {
     return left || right;
   }
-  / nor
+  / NOR
+  / XOR
+  / XNOR
+  / AND
 
-nor
-  = left:and ws+ 'nor' ws+ right:nor {
+NOR
+  = left:AND WS+ 'nor'i WS+ right:OR {
     return !(left || right);
   }
-  / and
 
-and
-  = left:nand ws+ 'and' ws+ right:and {
+XOR
+  = left:AND WS+ 'xor'i WS+ right:OR {
+    return (left || right) && (!left || !right);
+  }
+
+XNOR
+  = left:AND WS+ 'xnor'i WS+ right:OR {
+    return !((left || right) && (!left || !right));
+  }
+
+AND
+  = left:NOT WS+ 'and'i WS+ right:AND {
     return left && right;
   }
-  / nand
+  / NAND
+  / NOT
 
-nand
-  = left:not ws+ 'nand' ws+ right:nand {
+NAND
+  = left:NOT WS+ 'nand'i WS+ right:AND {
     return !(left && right);
   }
-  / not
+  / NOT
 
-not
-  = 'not' ws+ operand:not {
+NOT
+  = 'not'i WS+ operand:NOT {
     return !operand;
   }
-  / subexpr
+  / SubExpression
 
-subexpr =
-  boolean / varname / '(' expr:expr ')' {
-    return expr;
+SubExpression =
+  Boolean / VariableName / '(' expression:Expression ')' {
+    return expression;
   }
 
-varname
+VariableName
   = name:[A-Za-z] {
     if (name in options.varValues) {
       return options.varValues[name];
@@ -67,10 +68,11 @@ varname
     }
   }
 
-boolean
-  = value:('true' / 'false') {
-    return (value === 'true');
+Boolean
+  = value:('true'i / 'false'i) {
+    return (value.toLowerCase() === 'true');
   }
 
-ws
-  = ' '
+// Whitespace characters (i.e. space, tab, newline)
+WS
+  = [ \t\n]
