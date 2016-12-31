@@ -13,7 +13,8 @@ Variable.Component.view = function (ctrl, app) {
   return m('div#variables', _.map(app.variables, function (variable) {
     return m('div.variable', m('input', {
       type: 'text',
-      value: variable.name
+      value: variable.name,
+      maxlength: 1
     }));
   }));
 };
