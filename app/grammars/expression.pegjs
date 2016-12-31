@@ -1,58 +1,89 @@
 // Grammar for Truthy boolean expressions
 
 Expression
-  = WS* expression:Implication WS* {
+  = WS* expression:operationImplication WS* {
     return expression;
   }
 
-Implication
-  = left:OR WS* '->' WS* right:Implication {
+operationImplication
+  = left:operationOR operatorImplication right:operationImplication {
     return !left || right;
   }
-  / OR
+  / operationOR
 
-OR
-  = left:AND WS+ 'or'i WS+ right:OR {
+operatorImplication
+  = WS* '->' WS*
+
+operationOR
+  = left:operationAND operatorOR right:operationOR {
     return left || right;
   }
-  / NOR
-  / XOR
-  / XNOR
-  / AND
+  / operationNOR
+  / operationXOR
+  / operationXNOR
+  / operationAND
 
-NOR
-  = left:AND WS+ 'nor'i WS+ right:OR {
+operatorOR
+  = WS+ 'or'i WS+
+  / WS* '|' WS*
+
+operationNOR
+  = left:operationAND operatorNOR right:operationOR {
     return !(left || right);
   }
 
-XOR
-  = left:AND WS+ 'xor'i WS+ right:OR {
+operatorNOR
+  = WS+ 'nor'i WS+
+  / WS* '!|' WS*
+
+operationXOR
+  = left:operationAND operatorXOR right:operationOR {
     return (left || right) && (!left || !right);
   }
 
-XNOR
-  = left:AND WS+ 'xnor'i WS+ right:OR {
+operatorXOR
+  = WS+ 'xor'i WS+
+  / WS* '^' WS*
+
+operationXNOR
+  = left:operationAND operatorXNOR right:operationOR {
     return !((left || right) && (!left || !right));
   }
 
-AND
-  = left:NOT WS+ 'and'i WS+ right:AND {
+operatorXNOR
+  = WS+ 'xnor'i WS+
+  / WS* '!^' WS*
+
+operationAND
+  = left:operationNOT operatorAND right:operationAND {
     return left && right;
   }
-  / NAND
-  / NOT
+  / operationNAND
+  / operationNOT
 
-NAND
-  = left:NOT WS+ 'nand'i WS+ right:AND {
+operatorAND
+  = WS+ 'and'i WS+
+  / WS* '&' WS*
+
+operationNAND
+  = left:operationNOT operatorNAND right:operationAND {
     return !(left && right);
   }
-  / NOT
+  / operationNOT
 
-NOT
-  = 'not'i WS+ operand:NOT {
+operatorNAND
+  = WS+ 'nand'i WS+
+  / WS* '!&' WS*
+
+operationNOT
+  = operatorNOT operand:operationNOT {
     return !operand;
   }
   / SubExpression
+
+operatorNOT
+  = 'not'i WS+
+  / '!' WS*
 
 SubExpression =
   Boolean / VariableName / '(' expression:Expression ')' {
