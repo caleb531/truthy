@@ -56,6 +56,9 @@ Table.Component.controller = function () {
 };
 
 Table.Component.view = function (ctrl, app) {
+  // A cache to store expressions which are known to be invalid (so as to avoid
+  // re-evaluating them later)
+  var invalidExpressionCache = {};
   return m('table#truth-table', [
     m('thead', m('tr', {
       oninput: _.partial(ctrl.updateExpressionString, ctrl, app),
@@ -85,7 +88,18 @@ Table.Component.view = function (ctrl, app) {
         Table.getBoolStr(varValue));
       }),
       _.map(app.expressions, function(expression) {
-        var exprValue = expression.evaluate(varValues);
+        var exprValue;
+        // Don't re-evaluate expression if it is known to be invalid
+        if (expression.string in invalidExpressionCache) {
+          exprValue = null;
+        } else {
+          exprValue = expression.evaluate(varValues);
+          if (exprValue === null) {
+            // The value stored with the key in the cache doesn't really matter;
+            // the cache itself functions more as a set than a dictionary
+            invalidExpressionCache[expression.string] = true;
+          }
+        }
         return m('td', {
           class: classNames(
             {true: exprValue === true},
