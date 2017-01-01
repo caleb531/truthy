@@ -1,6 +1,6 @@
 # Truthy
 
-*Copyright 2016, Caleb Evans*  
+*Copyright 2017, Caleb Evans*  
 *Released under the MIT License*
 
 Truth tables have always been tedious and strenuous to create by hand; it's easy
