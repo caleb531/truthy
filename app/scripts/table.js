@@ -52,7 +52,7 @@ Table.Component.controller = function () {
       do {
         currentElem = currentElem.previousElementSibling;
         expressionIndex += 1;
-      } while (currentElem !== null && currentElem.className === 'expression');
+      } while (currentElem !== null && currentElem.classList.contains('expression'));
       return expressionIndex;
     },
     updateExpressionString: function (ctrl, expressions, event) {

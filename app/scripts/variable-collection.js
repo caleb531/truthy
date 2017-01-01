@@ -40,7 +40,7 @@ VariableCollection.Component.controller = function () {
       do {
         currentElem = currentElem.previousElementSibling;
         variableIndex += 1;
-      } while (currentElem !== null && currentElem.className === 'variable');
+      } while (currentElem !== null && currentElem.classList.contains('variable'));
       return variableIndex;
     },
     updateVariableName: function (ctrl, variables, event) {
