@@ -20,6 +20,10 @@ Collection.prototype.insert = function (itemIndex, itemDict) {
   return this.items.splice(itemIndex, 0, new this.SubCollectionItem(itemDict));
 };
 
+Collection.prototype.remove = function (itemIndex) {
+  return this.items.splice(itemIndex, 1);
+};
+
 Collection.prototype.forEach = function (callback) {
   return this.items.forEach(callback);
 };

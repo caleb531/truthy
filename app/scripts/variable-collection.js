@@ -49,14 +49,23 @@ VariableCollection.Component.controller = function () {
         variable.name = event.target.value;
       }
     },
-    // Add variable next to variable whose 'add' control was pressed
     addVariable: function (ctrl, variables, event) {
-      if (event.target.className.indexOf('add') !== -1) {
-        var variableIndex = ctrl.getVariableIndex(event.target);
-        var variable = variables.get(variableIndex);
-        variables.insert(variableIndex + 1, {
-          name: variables.getNextVariableName(variable)
-        });
+      var variableIndex = ctrl.getVariableIndex(event.target);
+      var variable = variables.get(variableIndex);
+      variables.insert(variableIndex + 1, {
+        name: variables.getNextVariableName(variable)
+      });
+    },
+    removeVariable: function (ctrl, variables, event) {
+      variables.remove(ctrl.getVariableIndex(event.target));
+    },
+    handleClick: function (ctrl, variables, event) {
+      if (event.target.classList.contains('control')) {
+        if (event.target.classList.contains('add')) {
+          ctrl.addVariable(ctrl, variables, event);
+        } else if (event.target.classList.contains('remove')) {
+          ctrl.removeVariable(ctrl, variables, event);
+        }
       }
     }
   };
@@ -64,7 +73,7 @@ VariableCollection.Component.controller = function () {
 
 VariableCollection.Component.view = function (ctrl, variables) {
   return m('div#variables', {
-    onclick: _.partial(ctrl.addVariable, ctrl, variables),
+    onclick: _.partial(ctrl.handleClick, ctrl, variables),
     oninput: _.partial(ctrl.updateVariableName, ctrl, variables)
   }, variables.map(function (variable) {
     return m('div.variable', m('div.has-controls', [
