@@ -1,14 +1,11 @@
 // Styling for truth tables and expressions
 
-$table-border: solid 1px rgba(#000, 0.5);
+$table-border: solid 1px #222;
 table {
   margin: 0 auto;
   border: $table-border;
   border-spacing: 0;
   border-collapse: collapse;
-}
-thead th {
-  border-bottom: $table-border;
 }
 
 // Alternate row colors for better contrast
@@ -24,6 +21,7 @@ th, td {
 }
 // Set darker background for table head cells
 th {
+  border-bottom: $table-border;
   background-color: rgba(#000, 0.25);
   &.expression {
     input[type='text'] {
