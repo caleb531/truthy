@@ -76,7 +76,7 @@ Table.Component.controller = function () {
     removeExpression: function (ctrl, expressions, event) {
       expressions.remove(ctrl.getExpressionIndex(event.target));
     },
-    handleClick: function (ctrl, expressions, event) {
+    handleControls: function (ctrl, expressions, event) {
       if (event.target.classList.contains('control-add')) {
         ctrl.addExpression(ctrl, expressions, event);
       } else if (event.target.classList.contains('control-remove')) {
@@ -92,7 +92,7 @@ Table.Component.view = function (ctrl, variables, expressions) {
   var invalidExpressionCache = {};
   return m('table#truth-table', [
     m('thead', m('tr', {
-      onclick: _.partial(ctrl.handleClick, ctrl, expressions),
+      onclick: _.partial(ctrl.handleControls, ctrl, expressions),
       oninput: _.partial(ctrl.updateExpressionString, ctrl, expressions)
     }, [
       variables.map(function (variable) {

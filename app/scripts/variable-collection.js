@@ -59,7 +59,7 @@ VariableCollection.Component.controller = function () {
     removeVariable: function (ctrl, variables, event) {
       variables.remove(ctrl.getVariableIndex(event.target));
     },
-    handleClick: function (ctrl, variables, event) {
+    handleControls: function (ctrl, variables, event) {
       if (event.target.classList.contains('control-add')) {
         ctrl.addVariable(ctrl, variables, event);
       } else if (event.target.classList.contains('control-remove')) {
@@ -71,7 +71,7 @@ VariableCollection.Component.controller = function () {
 
 VariableCollection.Component.view = function (ctrl, variables) {
   return m('div#variables', {
-    onclick: _.partial(ctrl.handleClick, ctrl, variables),
+    onclick: _.partial(ctrl.handleControls, ctrl, variables),
     oninput: _.partial(ctrl.updateVariableName, ctrl, variables)
   }, variables.map(function (variable) {
     return m('div.variable', m('div.has-controls', [
