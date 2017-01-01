@@ -58,6 +58,32 @@ Table.Component.controller = function () {
     updateExpressionString: function (ctrl, expressions, event) {
       var expression = expressions.get(ctrl.getExpressionIndex(event.target));
       expression.string = event.target.value;
+    },
+    addExpression: function (ctrl, expressions, event) {
+      var expressionIndex = ctrl.getExpressionIndex(event.target);
+      var expression = expressions.get(expressionIndex);
+      expressions.insert(expressionIndex + 1, {
+        string: expression.string
+      });
+      // Redraw the view to ensire the new expression element exists
+      m.redraw();
+      event.target
+        .parentNode
+        .parentNode
+        .nextElementSibling
+        .querySelector('input').focus();
+    },
+    removeExpression: function (ctrl, expressions, event) {
+      expressions.remove(ctrl.getExpressionIndex(event.target));
+    },
+    handleClick: function (ctrl, expressions, event) {
+      if (event.target.classList.contains('control')) {
+        if (event.target.classList.contains('add')) {
+          ctrl.addExpression(ctrl, expressions, event);
+        } else if (event.target.classList.contains('remove')) {
+          ctrl.removeExpression(ctrl, expressions, event);
+        }
+      }
     }
   };
 };
@@ -68,6 +94,7 @@ Table.Component.view = function (ctrl, variables, expressions) {
   var invalidExpressionCache = {};
   return m('table#truth-table', [
     m('thead', m('tr', {
+      onclick: _.partial(ctrl.handleClick, ctrl, expressions),
       oninput: _.partial(ctrl.updateExpressionString, ctrl, expressions)
     }, [
       variables.map(function (variable) {
