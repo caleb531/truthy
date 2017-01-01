@@ -10,6 +10,26 @@ function VariableCollection(variableDicts) {
 }
 VariableCollection.prototype = Object.create(Collection.prototype);
 
+// Get the next available variable name for a new variable (to insert next to
+// the given variable)
+VariableCollection.prototype.getNextVariableName = function (variable) {
+  // Create a list of variable names already in use
+  var variableCharCodes = this.map(function (variable) {
+    return variable.name.charCodeAt(0);
+  });
+  // Look for the next letter that isn't already in use
+  var nextVarCharCode = variable.name.charCodeAt(0);
+  do {
+    nextVarCharCode += 1;
+    // Wrap variable name around alphabet if necessary (e.g. 'z' wraps around to
+    // 'z')
+    if (nextVarCharCode === 91 || nextVarCharCode === 123) {
+      nextVarCharCode = nextVarCharCode - 26;
+    }
+  } while (variableCharCodes.indexOf(nextVarCharCode) !== -1);
+  return String.fromCharCode(nextVarCharCode);
+};
+
 VariableCollection.Component = {};
 
 VariableCollection.Component.controller = function () {
@@ -29,32 +49,13 @@ VariableCollection.Component.controller = function () {
         variable.name = event.target.value;
       }
     },
-    // Get the next available variable name for a new variable (to insert next
-    // to the given variable)
-    getNextVariableName: function (variables, variable) {
-      // Create a list of variable names already in use
-      var variableCharCodes = variables.map(function (variable) {
-        return variable.name.charCodeAt(0);
-      });
-      // Look for the next letter that isn't already in use
-      var nextVarCharCode = variable.name.charCodeAt(0);
-      do {
-        nextVarCharCode += 1;
-      } while (variableCharCodes.indexOf(nextVarCharCode) !== -1);
-      // Wrap variable name around alphabet if necessary (e.g. 'z' wraps around
-      // to 'z')
-      if (nextVarCharCode === 91 || nextVarCharCode === 123) {
-        nextVarCharCode = nextVarCharCode - 26;
-      }
-      return String.fromCharCode(nextVarCharCode);
-    },
     // Add variable next to variable whose 'add' control was pressed
     addVariable: function (ctrl, variables, event) {
       if (event.target.className.indexOf('add') !== -1) {
         var variableIndex = ctrl.getVariableIndex(event.target);
         var variable = variables.get(variableIndex);
         variables.insert(variableIndex + 1, {
-          name: ctrl.getNextVariableName(variables, variable)
+          name: variables.getNextVariableName(variable)
         });
       }
     }
