@@ -1,87 +1,87 @@
 // Grammar for Truthy boolean expressions
 
 Expression
-  = WS* expression:operationImplication WS* {
+  = WS* expression:OperationImplication WS* {
     return expression;
   }
 
-operationImplication
-  = left:operationOR operatorImplication right:operationImplication {
+OperationImplication
+  = left:OperationOR OperatorImplication right:OperationImplication {
     return !left || right;
   }
-  / operationOR
+  / OperationOR
 
-operatorImplication
+OperatorImplication
   = WS* '->' WS*
 
-operationOR
-  = left:operationAND operatorOR right:operationOR {
+OperationOR
+  = left:OperationAND OperatorOR right:OperationOR {
     return left || right;
   }
-  / operationNOR
-  / operationXOR
-  / operationXNOR
-  / operationAND
+  / OperationNOR
+  / OperationXOR
+  / OperationXNOR
+  / OperationAND
 
-operatorOR
+OperatorOR
   = WS+ 'or'i WS+
   / WS* '|' WS*
 
-operationNOR
-  = left:operationAND operatorNOR right:operationOR {
+OperationNOR
+  = left:OperationAND OperatorNOR right:OperationOR {
     return !(left || right);
   }
 
-operatorNOR
+OperatorNOR
   = WS+ 'nor'i WS+
   / WS* '!|' WS*
 
-operationXOR
-  = left:operationAND operatorXOR right:operationOR {
+OperationXOR
+  = left:OperationAND OperatorXOR right:OperationOR {
     return (left || right) && (!left || !right);
   }
 
-operatorXOR
+OperatorXOR
   = WS+ 'xor'i WS+
   / WS* '^' WS*
 
-operationXNOR
-  = left:operationAND operatorXNOR right:operationOR {
+OperationXNOR
+  = left:OperationAND OperatorXNOR right:OperationOR {
     return !((left || right) && (!left || !right));
   }
 
-operatorXNOR
+OperatorXNOR
   = WS+ 'xnor'i WS+
   / WS* '!^' WS*
 
-operationAND
-  = left:operationNOT operatorAND right:operationAND {
+OperationAND
+  = left:OperationNOT OperatorAND right:OperationAND {
     return left && right;
   }
-  / operationNAND
-  / operationNOT
+  / OperationNAND
+  / OperationNOT
 
-operatorAND
+OperatorAND
   = WS+ 'and'i WS+
   / WS* '&' WS*
 
-operationNAND
-  = left:operationNOT operatorNAND right:operationAND {
+OperationNAND
+  = left:OperationNOT OperatorNAND right:OperationAND {
     return !(left && right);
   }
-  / operationNOT
+  / OperationNOT
 
-operatorNAND
+OperatorNAND
   = WS+ 'nand'i WS+
   / WS* '!&' WS*
 
-operationNOT
-  = operatorNOT operand:operationNOT {
+OperationNOT
+  = OperatorNOT operand:OperationNOT {
     return !operand;
   }
   / SubExpression
 
-operatorNOT
+OperatorNOT
   = 'not'i WS+
   / '!' WS*
 
