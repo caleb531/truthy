@@ -5,4 +5,10 @@ function Variable(args) {
 }
 Variable.validNamePattern = /^[A-Za-z]$/;
 
+Variable.prototype.serialize = function () {
+  return {
+    name: this.name
+  };
+};
+
 module.exports = Variable;
