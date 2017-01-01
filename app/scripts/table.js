@@ -37,8 +37,7 @@ Table.getBoolStr = function (boolean) {
   } else if (boolean === false) {
     return 'F';
   } else {
-    // Display U for null/undefined values
-    return 'U';
+    return '?';
   }
 };
 
