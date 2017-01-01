@@ -22,7 +22,7 @@ th, td {
 // Set darker background for table head cells
 th {
   border-bottom: $table-border;
-  background-color: rgba(#000, 0.25);
+  background-color: rgba(#000, 0.4);
   &.expression {
     input[type='text'] {
       font-size: 16px;
