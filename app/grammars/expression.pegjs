@@ -1,20 +1,20 @@
 // Grammar for Truthy boolean expressions
 
-Expression
+Expression 'Boolean Expression'
   = WS* expression:OperationImplication WS* {
     return expression;
   }
 
-OperationImplication
+OperationImplication 'Implication Operation'
   = left:OperationOR OperatorImplication right:OperationImplication {
     return !left || right;
   }
   / OperationOR
 
-OperatorImplication
+OperatorImplication 'Implication Operator'
   = WS* '->' WS*
 
-OperationOR
+OperationOR 'OR Operation'
   = left:OperationAND OperatorOR right:OperationOR {
     return left || right;
   }
@@ -23,74 +23,74 @@ OperationOR
   / OperationXNOR
   / OperationAND
 
-OperatorOR
+OperatorOR 'OR Operator'
   = WS+ 'or'i WS+
   / WS* '|' WS*
 
-OperationNOR
+OperationNOR 'NOR Operation'
   = left:OperationAND OperatorNOR right:OperationOR {
     return !(left || right);
   }
 
-OperatorNOR
+OperatorNOR 'NOR Operator'
   = WS+ 'nor'i WS+
   / WS* '!|' WS*
 
-OperationXOR
+OperationXOR 'XOR Operation'
   = left:OperationAND OperatorXOR right:OperationOR {
     return (left || right) && (!left || !right);
   }
 
-OperatorXOR
+OperatorXOR 'XOR Operator'
   = WS+ 'xor'i WS+
   / WS* '^' WS*
 
-OperationXNOR
+OperationXNOR 'XNOR Operation'
   = left:OperationAND OperatorXNOR right:OperationOR {
     return !((left || right) && (!left || !right));
   }
 
-OperatorXNOR
+OperatorXNOR 'XNOR Operator'
   = WS+ 'xnor'i WS+
   / WS* '!^' WS*
 
-OperationAND
+OperationAND 'AND Operation'
   = left:OperationNOT OperatorAND right:OperationAND {
     return left && right;
   }
   / OperationNAND
   / OperationNOT
 
-OperatorAND
+OperatorAND 'AND Operator'
   = WS+ 'and'i WS+
   / WS* '&' WS*
 
-OperationNAND
+OperationNAND 'NAND Operation'
   = left:OperationNOT OperatorNAND right:OperationAND {
     return !(left && right);
   }
   / OperationNOT
 
-OperatorNAND
+OperatorNAND 'NAND Operator'
   = WS+ 'nand'i WS+
   / WS* '!&' WS*
 
-OperationNOT
+OperationNOT 'NOT Operation'
   = OperatorNOT operand:OperationNOT {
     return !operand;
   }
   / SubExpression
 
-OperatorNOT
+OperatorNOT 'NOT Operator'
   = 'not'i WS+
   / '!' WS*
 
-SubExpression =
-  Boolean / VariableName / '(' expression:Expression ')' {
+SubExpression 'Sub-Expression'
+  = Boolean / VariableName / '(' expression:Expression ')' {
     return expression;
   }
 
-VariableName
+VariableName 'Variable Name'
   = name:[A-Za-z] {
     if (name in options.varValues) {
       return options.varValues[name];
@@ -99,11 +99,10 @@ VariableName
     }
   }
 
-Boolean
+Boolean 'Boolean Value'
   = value:('true'i / 'false'i) {
     return (value.toLowerCase() === 'true');
   }
 
-// Whitespace characters (i.e. space, tab, newline)
-WS
+WS 'Whitespace Character'
   = [ \t\n]
