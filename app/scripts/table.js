@@ -55,14 +55,15 @@ Table.Component.controller = function () {
       } while (currentElem !== null && currentElem.classList.contains('expression'));
       return expressionIndex;
     },
-    updateExpressionString: function (ctrl, expressions, event) {
-      var expression = expressions.get(ctrl.getExpressionIndex(event.target));
+    updateExpressionString: function (ctrl, app, event) {
+      var expression = app.expressions.get(ctrl.getExpressionIndex(event.target));
       expression.string = event.target.value;
+      app.save();
     },
-    addExpression: function (ctrl, expressions, event) {
+    addExpression: function (ctrl, app, event) {
       var expressionIndex = ctrl.getExpressionIndex(event.target);
-      var expression = expressions.get(expressionIndex);
-      expressions.insert(expressionIndex + 1, {
+      var expression = app.expressions.get(expressionIndex);
+      app.expressions.insert(expressionIndex + 1, {
         string: expression.string
       });
       // Redraw the view to ensire the new expression element exists
@@ -72,36 +73,41 @@ Table.Component.controller = function () {
         .parentNode
         .nextElementSibling
         .querySelector('input').focus();
+      app.save();
     },
-    removeExpression: function (ctrl, expressions, event) {
-      expressions.remove(ctrl.getExpressionIndex(event.target));
+    removeExpression: function (ctrl, app, event) {
+      app.expressions.remove(ctrl.getExpressionIndex(event.target));
+      app.save();
     },
-    handleControls: function (ctrl, expressions, event) {
+    handleControls: function (ctrl, app, event) {
       if (event.target.classList.contains('control-add')) {
-        ctrl.addExpression(ctrl, expressions, event);
+        ctrl.addExpression(ctrl, app, event);
       } else if (event.target.classList.contains('control-remove')) {
-        ctrl.removeExpression(ctrl, expressions, event);
+        ctrl.removeExpression(ctrl, app, event);
       }
     }
   };
 };
 
-Table.Component.view = function (ctrl, variables, expressions) {
+Table.Component.view = function (ctrl, app) {
+  var nonEmptyVariables = app.variables.filter(function (variable) {
+    return variable.name !== '';
+  });
   // A cache to store expressions which are known to be invalid (so as to avoid
   // re-evaluating them later)
   var invalidExpressionCache = {};
   return m('table#truth-table', [
     m('thead', m('tr', {
-      onclick: _.partial(ctrl.handleControls, ctrl, expressions),
-      oninput: _.partial(ctrl.updateExpressionString, ctrl, expressions)
+      onclick: _.partial(ctrl.handleControls, ctrl, app),
+      oninput: _.partial(ctrl.updateExpressionString, ctrl, app)
     }, [
-      variables.map(function (variable) {
+      nonEmptyVariables.map(function (variable) {
         return m('th.variable', variable.name);
       }),
-      expressions.map(function (expression) {
+      app.expressions.map(function (expression) {
         return m('th.expression', m('div.has-controls', [
           m('div.control.control-add'),
-          expressions.length > 1 ? m('div.control.control-remove') : null,
+          app.expressions.length > 1 ? m('div.control.control-remove') : null,
           m('input', {
             type: 'text',
             size: Math.max(1, expression.string.length),
@@ -115,9 +121,9 @@ Table.Component.view = function (ctrl, variables, expressions) {
       })
     ])
   ),
-  m('tbody', Table.forEachRow(variables, function (varValues) {
+  m('tbody', Table.forEachRow(nonEmptyVariables, function (varValues) {
     return m('tr', [
-      variables.map(function(variable) {
+      nonEmptyVariables.map(function(variable) {
         var varValue = varValues[variable.name];
         return m('td', {
           class: classNames(
@@ -127,7 +133,7 @@ Table.Component.view = function (ctrl, variables, expressions) {
         },
         Table.getBoolStr(varValue));
       }),
-      expressions.map(function(expression) {
+      app.expressions.map(function(expression) {
         var exprValue;
         // Don't re-evaluate expression if it is known to be invalid
         if (expression.string in invalidExpressionCache) {

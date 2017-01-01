@@ -1,6 +1,7 @@
 'use strict';
 
 var m = require('mithril');
+var _ = require('underscore');
 var VariableCollection = require('./variable-collection');
 var ExpressionCollection = require('./expression-collection');
 var Table = require('./table');
@@ -37,11 +38,32 @@ App.prototype.serialize = function () {
   };
 };
 
+// App persistence
+
+// The key to use for storing the app data in localStorage
+App.storageKey = 'truthy-v3';
+// The time in milliseconds to wait before saving data to localStorage (since
+// the last call to app.save())
+App.persistenceDelay = 500;
+
+App.prototype.save = _.debounce(function () {
+  localStorage.setItem(App.storageKey, JSON.stringify(this.serialize()));
+}, App.persistenceDelay);
+
+App.restore = function () {
+  var appStr = localStorage.getItem(App.storageKey);
+  if (appStr !== null) {
+    return new App(JSON.parse(appStr));
+  } else {
+    return new App();
+  }
+};
+
 App.Component = {};
 
 App.Component.controller = function () {
   return {
-    app: new App()
+    app: App.restore()
   };
 };
 
@@ -49,11 +71,9 @@ App.Component.view = function (ctrl) {
   return [
     m('h1', 'Truthy'),
     m('h2', 'Variables'),
-    m(VariableCollection.Component, ctrl.app.variables),
+    m(VariableCollection.Component, ctrl.app),
     m('h2', 'Table'),
-    m(Table.Component, ctrl.app.variables.filter(function (variable) {
-      return variable.name !== '';
-    }), ctrl.app.expressions),
+    m(Table.Component, ctrl.app),
   ];
 };
 

@@ -51,40 +51,43 @@ VariableCollection.Component.controller = function () {
       } while (currentElem !== null && currentElem.classList.contains('variable'));
       return variableIndex;
     },
-    updateVariableName: function (ctrl, variables, event) {
+    updateVariableName: function (ctrl, app, event) {
       if (Variable.validNamePattern.test(event.target.value) || event.target.value === '') {
-        var variable = variables.get(ctrl.getVariableIndex(event.target));
+        var variable = app.variables.get(ctrl.getVariableIndex(event.target));
         variable.name = event.target.value;
+        app.save();
       }
     },
-    addVariable: function (ctrl, variables, event) {
+    addVariable: function (ctrl, app, event) {
       var variableIndex = ctrl.getVariableIndex(event.target);
-      var variable = variables.get(variableIndex);
-      variables.insert(variableIndex + 1, {
-        name: variables.getNextVariableName(variable)
+      var variable = app.variables.get(variableIndex);
+      app.variables.insert(variableIndex + 1, {
+        name: app.variables.getNextVariableName(variable)
       });
+      app.save();
     },
-    removeVariable: function (ctrl, variables, event) {
-      variables.remove(ctrl.getVariableIndex(event.target));
+    removeVariable: function (ctrl, app, event) {
+      app.variables.remove(ctrl.getVariableIndex(event.target));
+      app.save();
     },
-    handleControls: function (ctrl, variables, event) {
+    handleControls: function (ctrl, app, event) {
       if (event.target.classList.contains('control-add')) {
-        ctrl.addVariable(ctrl, variables, event);
+        ctrl.addVariable(ctrl, app, event);
       } else if (event.target.classList.contains('control-remove')) {
-        ctrl.removeVariable(ctrl, variables, event);
+        ctrl.removeVariable(ctrl, app, event);
       }
     }
   };
 };
 
-VariableCollection.Component.view = function (ctrl, variables) {
+VariableCollection.Component.view = function (ctrl, app) {
   return m('div#variables', {
-    onclick: _.partial(ctrl.handleControls, ctrl, variables),
-    oninput: _.partial(ctrl.updateVariableName, ctrl, variables)
-  }, variables.map(function (variable) {
+    onclick: _.partial(ctrl.handleControls, ctrl, app),
+    oninput: _.partial(ctrl.updateVariableName, ctrl, app)
+  }, app.variables.map(function (variable) {
     return m('div.variable', m('div.has-controls', [
       m('div.control.control-add'),
-      variables.length > 1 ? m('div.control.control-remove') : null,
+      app.variables.length > 1 ? m('div.control.control-remove') : null,
       m('input', {
         type: 'text',
         value: variable.name,
