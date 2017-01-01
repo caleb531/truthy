@@ -20,11 +20,11 @@
   background-repeat: no-repeat;
   background-position: 50% 50%;
   $control-x: -$control-size / 2;
-  &.add {
+  &-add {
     right: $control-x;
     background-image: url('../icons/add.svg');
   }
-  &.remove {
+  &-remove {
     left: $control-x;
     background-image: url('../icons/remove.svg');
   }

@@ -77,12 +77,10 @@ Table.Component.controller = function () {
       expressions.remove(ctrl.getExpressionIndex(event.target));
     },
     handleClick: function (ctrl, expressions, event) {
-      if (event.target.classList.contains('control')) {
-        if (event.target.classList.contains('add')) {
-          ctrl.addExpression(ctrl, expressions, event);
-        } else if (event.target.classList.contains('remove')) {
-          ctrl.removeExpression(ctrl, expressions, event);
-        }
+      if (event.target.classList.contains('control-add')) {
+        ctrl.addExpression(ctrl, expressions, event);
+      } else if (event.target.classList.contains('control-remove')) {
+        ctrl.removeExpression(ctrl, expressions, event);
       }
     }
   };
@@ -102,8 +100,8 @@ Table.Component.view = function (ctrl, variables, expressions) {
       }),
       expressions.map(function (expression) {
         return m('th.expression', m('div.has-controls', [
-          m('div.control.add'),
-          m('div.control.remove'),
+          m('div.control.control-add'),
+          m('div.control.control-remove'),
           m('input', {
             type: 'text',
             size: Math.max(1, expression.string.length),

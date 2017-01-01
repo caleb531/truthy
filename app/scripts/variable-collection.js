@@ -60,12 +60,10 @@ VariableCollection.Component.controller = function () {
       variables.remove(ctrl.getVariableIndex(event.target));
     },
     handleClick: function (ctrl, variables, event) {
-      if (event.target.classList.contains('control')) {
-        if (event.target.classList.contains('add')) {
-          ctrl.addVariable(ctrl, variables, event);
-        } else if (event.target.classList.contains('remove')) {
-          ctrl.removeVariable(ctrl, variables, event);
-        }
+      if (event.target.classList.contains('control-add')) {
+        ctrl.addVariable(ctrl, variables, event);
+      } else if (event.target.classList.contains('control-remove')) {
+        ctrl.removeVariable(ctrl, variables, event);
       }
     }
   };
@@ -77,8 +75,8 @@ VariableCollection.Component.view = function (ctrl, variables) {
     oninput: _.partial(ctrl.updateVariableName, ctrl, variables)
   }, variables.map(function (variable) {
     return m('div.variable', m('div.has-controls', [
-      m('div.control.add'),
-      m('div.control.remove'),
+      m('div.control.control-add'),
+      m('div.control.control-remove'),
       m('input', {
         type: 'text',
         value: variable.name,
