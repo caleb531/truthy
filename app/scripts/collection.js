@@ -24,6 +24,10 @@ Collection.prototype.forEach = function (callback) {
   return this.items.forEach(callback);
 };
 
+Collection.prototype.filter = function (callback) {
+  return this.items.filter(callback);
+};
+
 Collection.prototype.map = function (callback) {
   return this.items.map(callback);
 };

@@ -31,7 +31,9 @@ App.Component.view = function (ctrl) {
     m('h2', 'Variables'),
     m(VariableCollection.Component, ctrl.app.variables),
     m('h2', 'Table'),
-    m(Table.Component, ctrl.app.variables, ctrl.app.expressions),
+    m(Table.Component, ctrl.app.variables.filter(function (variable) {
+      return variable.name !== '';
+    }), ctrl.app.expressions),
   ];
 };
 

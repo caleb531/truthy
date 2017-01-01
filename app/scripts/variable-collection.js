@@ -24,7 +24,7 @@ VariableCollection.Component.controller = function () {
       return variableIndex;
     },
     updateVariableName: function (ctrl, variables, event) {
-      if (Variable.validNamePattern.test(event.target.value)) {
+      if (Variable.validNamePattern.test(event.target.value) || event.target.value === '') {
         var variable = variables.get(ctrl.getVariableIndex(event.target));
         variable.name = event.target.value;
       }
@@ -48,21 +48,14 @@ VariableCollection.Component.controller = function () {
       }
       return String.fromCharCode(nextVarCharCode);
     },
-    // Add variable next to variable whose add control was pressed
+    // Add variable next to variable whose 'add' control was pressed
     addVariable: function (ctrl, variables, event) {
-      var variableIndex = ctrl.getVariableIndex(event.target);
-      var variable = variables.get(variableIndex);
-      variables.insert(variableIndex + 1, {
-        name: ctrl.getNextVariableName(variables, variable)
-      });
-    },
-    handleClick: function (ctrl, app, event) {
-      if (event.target.nodeName === 'INPUT') {
-        // Focus variable input if input is clicked
-        event.target.select();
-      } else if (event.target.className.indexOf('add') !== -1) {
-        // Add variable if 'add' control is clicked
-        ctrl.addVariable(ctrl, app, event);
+      if (event.target.className.indexOf('add') !== -1) {
+        var variableIndex = ctrl.getVariableIndex(event.target);
+        var variable = variables.get(variableIndex);
+        variables.insert(variableIndex + 1, {
+          name: ctrl.getNextVariableName(variables, variable)
+        });
       }
     }
   };
@@ -70,7 +63,7 @@ VariableCollection.Component.controller = function () {
 
 VariableCollection.Component.view = function (ctrl, variables) {
   return m('div#variables', {
-    onclick: _.partial(ctrl.handleClick, ctrl, variables),
+    onclick: _.partial(ctrl.addVariable, ctrl, variables),
     oninput: _.partial(ctrl.updateVariableName, ctrl, variables)
   }, variables.map(function (variable) {
     return m('div.variable', m('div.has-controls', [
