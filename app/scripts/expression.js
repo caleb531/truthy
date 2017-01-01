@@ -18,4 +18,10 @@ Expression.prototype.evaluate = function (varValues) {
   }
 };
 
+Expression.prototype.serialize = function () {
+  return {
+    string: this.string
+  };
+};
+
 module.exports = Expression;

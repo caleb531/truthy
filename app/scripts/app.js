@@ -5,17 +5,37 @@ var VariableCollection = require('./variable-collection');
 var ExpressionCollection = require('./expression-collection');
 var Table = require('./table');
 
-function App() {
-  this.variables = new VariableCollection([
-    {name: 'p'},
-    {name: 'q'}
-  ]);
-  this.expressions = new ExpressionCollection([
-    {string: 'not p'},
-    {string: 'p and q'},
-    {string: 'p or q'}
-  ]);
+function App(args) {
+  if (args && args.variables) {
+    this.variables = new VariableCollection(args.variables);
+  } else {
+    this.variables = new VariableCollection({
+      items: [
+        {name: 'p'},
+        {name: 'q'}
+      ]
+    });
+  }
+  if (args && args.expressions) {
+    this.expressions = new ExpressionCollection(args.expressions);
+  } else {
+    this.expressions = new ExpressionCollection({
+      items: [
+        {string: 'not p'},
+        {string: 'p and q'},
+        {string: 'p or q'}
+      ]
+    });
+  }
 }
+
+// Serialize the current app state so it can be stored locally
+App.prototype.serialize = function () {
+  return {
+    variables: this.variables.serialize(),
+    expressions: this.expressions.serialize()
+  };
+};
 
 App.Component = {};
 

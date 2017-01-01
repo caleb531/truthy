@@ -5,10 +5,18 @@ var _ = require('underscore');
 var Collection = require('./collection');
 var Variable = require('./variable');
 
-function VariableCollection(variableDicts) {
-  Collection.call(this, Variable, variableDicts);
+function VariableCollection(args) {
+  Collection.call(this, Variable, args.items);
 }
 VariableCollection.prototype = Object.create(Collection.prototype);
+
+VariableCollection.prototype.serialize = function () {
+  return {
+    items: this.items.map(function (variable) {
+      return variable.serialize();
+    })
+  };
+};
 
 // Get the next available variable name for a new variable (to insert next to
 // the given variable)
