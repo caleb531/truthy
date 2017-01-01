@@ -34,7 +34,6 @@ OperationNOR 'NOR Operation'
 
 OperatorNOR 'NOR Operator'
   = WS+ 'nor'i WS+
-  / WS* '!|' WS*
 
 OperationXOR 'XOR Operation'
   = left:OperationAND OperatorXOR right:OperationOR {
@@ -52,7 +51,6 @@ OperationXNOR 'XNOR Operation'
 
 OperatorXNOR 'XNOR Operator'
   = WS+ 'xnor'i WS+
-  / WS* '!^' WS*
 
 OperationAND 'AND Operation'
   = left:OperationNOT OperatorAND right:OperationAND {
@@ -73,7 +71,6 @@ OperationNAND 'NAND Operation'
 
 OperatorNAND 'NAND Operator'
   = WS+ 'nand'i WS+
-  / WS* '!&' WS*
 
 OperationNOT 'NOT Operation'
   = OperatorNOT operand:OperationNOT {
