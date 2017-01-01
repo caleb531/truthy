@@ -101,7 +101,7 @@ Table.Component.view = function (ctrl, variables, expressions) {
       expressions.map(function (expression) {
         return m('th.expression', m('div.has-controls', [
           m('div.control.control-add'),
-          m('div.control.control-remove'),
+          expressions.length > 1 ? m('div.control.control-remove') : null,
           m('input', {
             type: 'text',
             size: Math.max(1, expression.string.length),

@@ -76,7 +76,7 @@ VariableCollection.Component.view = function (ctrl, variables) {
   }, variables.map(function (variable) {
     return m('div.variable', m('div.has-controls', [
       m('div.control.control-add'),
-      m('div.control.control-remove'),
+      variables.length > 1 ? m('div.control.control-remove') : null,
       m('input', {
         type: 'text',
         value: variable.name,
