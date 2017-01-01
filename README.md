@@ -21,3 +21,44 @@ largely by [Mithril](http://mithril.js.org/) (instead of jQuery and Backbone). I
 ultimately aim for the app to be modern, clean, and efficient. The project is in
 its very early stages of development, but I have made the repository public for
 anyone's interest.
+
+## Run the project locally
+
+### 1. Install global dependencies
+
+The project requires Node.js and Brunch, so make sure you have both.
+
+```bash
+brew install node
+```
+
+```bash
+npm install -g brunch
+```
+
+### 2. Install project dependencies
+
+From the cloned project directory, run:
+
+```bash
+npm install
+```
+
+### 3. Generate parser
+
+To generate the application's expression parser from the project grammar file,
+run:
+
+```bash
+npm run generate-parser
+```
+
+### 4. Serve app locally
+
+To serve the app locally, run:
+
+```bash
+brunch watch --server
+```
+
+When run, the app will be accessible at `http://localhost:3333`.
