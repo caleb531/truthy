@@ -1,9 +1,43 @@
-// The reference for operatinos supported by Truthy
+// The reference for app features and operations
+
+$reference-fade-duration: 300ms;
+$reference-fade-easing: ease-in-out;
+
+#reference {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: z-index $reference-fade-duration $reference-fade-easing;
+  &.reference-open {
+    z-index: 100;
+    transition: none;
+  }
+}
+
+// The dark overlay which can be clicked to dismiss the reference sidebar
+#reference-close-overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  cursor: default;
+  transition: background-color $reference-fade-duration $reference-fade-easing;
+  .reference-open & {
+    background-color: rgba(#000, 0.5);
+  }
+}
+
 #reference-sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 10;
   height: 100%;
   border-right: solid 1px #fff;
   box-sizing: border-box;
@@ -14,19 +48,19 @@
   text-align: left;
   overflow-y: auto;
   transform: translateX(-100%);
-  transition: transform 300ms ease-in-out;
+  transition: transform $reference-fade-duration $reference-fade-easing;
   h2 {
     text-align: center;
   }
   h3 {
     font-size: 18px;
   }
-  &.reference-open {
+  .reference-open & {
     transform: translateX(0);
   }
 }
 
-.reference-close-link {
+#reference-close-link {
   position: absolute;
   $link-position: 6px;
   top: $link-position;

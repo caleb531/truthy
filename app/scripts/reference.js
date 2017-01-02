@@ -48,22 +48,25 @@ Reference.features = [
 Reference.Component = {};
 
 Reference.Component.view = function () {
-  return m('div#reference-sidebar', {
+  return m('div#reference', {
     class: classNames({'reference-open': location.hash === '#reference'})
   }, [
-    m('a[href=#].reference-close-link', {onclick: m.redraw}, m('img', {
-      src: 'icons/close.svg',
-      alt: 'Close'
-    })),
-    m('h2', 'App Reference'),
-    Reference.features.map(function (feature) {
-      return m('div.feature', [
-        m('h3', feature.name),
-        feature.examples.map(function (example) {
-          return m('pre.feature-example', example);
-        })
-      ]);
-    })
+    m('a#reference-close-overlay[href=#]', {onclick: m.redraw}),
+    m('#reference-sidebar', [
+      m('a[href=#]#reference-close-link', {onclick: m.redraw}, m('img', {
+        src: 'icons/close.svg',
+        alt: 'Close'
+      })),
+      m('h2', 'App Reference'),
+      Reference.features.map(function (feature) {
+        return m('div.feature', [
+          m('h3', feature.name),
+          feature.examples.map(function (example) {
+            return m('pre.feature-example', example);
+          })
+        ]);
+      })
+    ])
   ]);
 };
 

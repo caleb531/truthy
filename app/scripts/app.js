@@ -71,6 +71,9 @@ App.Component.controller = function () {
 App.Component.view = function (ctrl) {
   return [
     m('span#reference-link.nav-link.nav-link-left',
+      // Add link to view app reference; we must manually trigger a Mithril
+      // redraw when the link is clicked (otherwise, it won't notice that the
+      // page hash has changed)
       m('a[href=#reference]', {onclick: m.redraw}, 'App Reference')
     ),
     m('span#personal-site-link.nav-link.nav-link-right', [
