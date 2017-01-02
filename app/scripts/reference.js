@@ -7,7 +7,7 @@ var classNames = require('classnames');
 var Reference = {};
 
 // Reference data for all operations supported by Truthy
-Reference.operations = [
+Reference.features = [
   {
     name: 'NOT',
     examples: ['not p', '!p']
@@ -19,6 +19,10 @@ Reference.operations = [
   {
     name: 'OR',
     examples: ['p or q', 'p | q']
+  },
+  {
+    name: 'Parentheses',
+    examples: ['(p & q) | (p & r)']
   },
   {
     name: 'XOR',
@@ -49,7 +53,7 @@ Reference.Component.controller = function () {
     // View the pressed example on the app truth table
     viewExample: function (ctrl, app, event) {
       // If example is clicked, add it to expression list
-      if (event.target.classList.contains('operation-example')) {
+      if (event.target.classList.contains('feature-example')) {
         app.expressions.add({
           string: event.target.textContent
         });
@@ -71,11 +75,11 @@ Reference.Component.view = function (ctrl, app) {
       alt: 'Close'
     })),
     m('h2', 'Truthy Reference'),
-    Reference.operations.map(function (operation) {
-      return m('div.operation', [
-        m('h3', operation.name),
-        operation.examples.map(function (example) {
-          return m('pre.operation-example', example);
+    Reference.features.map(function (feature) {
+      return m('div.feature', [
+        m('h3', feature.name),
+        feature.examples.map(function (example) {
+          return m('pre.feature-example', example);
         })
       ]);
     })
