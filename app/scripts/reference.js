@@ -1,7 +1,6 @@
 'use strict';
 
 var m = require('mithril');
-var _ = require('underscore');
 var classNames = require('classnames');
 
 var Reference = {};
@@ -48,27 +47,9 @@ Reference.features = [
 
 Reference.Component = {};
 
-Reference.Component.controller = function () {
-  return {
-    // View the pressed example on the app truth table
-    viewExample: function (ctrl, app, event) {
-      // If example is clicked, add it to expression list
-      if (event.target.classList.contains('feature-example')) {
-        app.expressions.add({
-          string: event.target.textContent
-        });
-        app.save();
-        // Close reference sidebar
-        location.hash = '#';
-      }
-    }
-  };
-};
-
-Reference.Component.view = function (ctrl, app) {
+Reference.Component.view = function () {
   return m('div#reference-sidebar', {
-    class: classNames({'reference-open': location.hash === '#reference'}),
-    onclick: _.partial(ctrl.viewExample, ctrl, app)
+    class: classNames({'reference-open': location.hash === '#reference'})
   }, [
     m('a[href=#].reference-close-link', {onclick: m.redraw}, m('img', {
       src: 'icons/close.svg',
