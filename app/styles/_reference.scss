@@ -1,0 +1,72 @@
+// The reference for app features and operations
+
+$reference-fade-duration: 300ms;
+$reference-fade-easing: ease-in-out;
+
+#reference {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: transparent;
+  // Transition z-index when closing drawer so z-index only changes once face
+  // transition has finished
+  transition-property: z-index, background-color;
+  transition-duration: $reference-fade-duration;
+  transition-timing-function: $reference-fade-easing;
+  &.reference-is-open {
+    z-index: 100;
+    // Change z-index instantly when opening the drawer
+    transition-property: background-color;
+    background-color: rgba(#000, 0.5);
+  }
+}
+
+#reference-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 100%;
+  border-right: solid 1px #fff;
+  box-sizing: border-box;
+  padding: 0 20px;
+  padding-bottom: 20px;
+  background-color: #222;
+  box-shadow: 2px 0 5px 1px rgba(#000, 0.25);
+  text-align: left;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform $reference-fade-duration $reference-fade-easing;
+  .reference-is-open & {
+    transform: translateX(0);
+  }
+  h2 {
+    text-align: center;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  // Close button in top-left corner
+  .reference-toggle {
+    position: absolute;
+    $link-position: 6px;
+    top: $link-position;
+    left: $link-position;
+    $link-size: 14px;
+    width: $link-size;
+    width: $link-size;
+  }
+}
+
+pre.feature-example {
+  display: inline-block;
+  margin: 0 8px;
+  border: solid 1px rgba(#fff, 0.5);
+  border-radius: 3px;
+  padding: 4px 8px;
+  background-color: rgba(#000, 0.25);
+  font-family: $monospace;
+}

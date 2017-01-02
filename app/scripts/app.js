@@ -2,6 +2,7 @@
 
 var m = require('mithril');
 var _ = require('underscore');
+var Reference = require('./reference');
 var VariableCollection = require('./variable-collection');
 var ExpressionCollection = require('./expression-collection');
 var Table = require('./table');
@@ -63,18 +64,38 @@ App.Component = {};
 
 App.Component.controller = function () {
   return {
-    app: App.restore()
+    app: App.restore(),
+    referenceIsOpen: false,
+    // Toggle reference sidebar between open/closed state whenever a designated
+    // toggle control has been clicked
+    toggleReference: function (ctrl, event) {
+      if (event.target.classList.contains('reference-toggle')) {
+        ctrl.referenceIsOpen = !ctrl.referenceIsOpen;
+        event.preventDefault();
+      }
+    }
   };
 };
 
 App.Component.view = function (ctrl) {
-  return [
+  return m('div#app', {onclick: _.partial(ctrl.toggleReference, ctrl)}, [
+    m('span#reference-link.nav-link.nav-link-left',
+      m('a[href=#].reference-toggle', 'App Reference')
+    ),
+    m('span#personal-site-link.nav-link.nav-link-right', [
+      'by ', m('a[href=https://calebevans.me/]', 'Caleb Evans')
+    ]),
     m('h1', 'Truthy'),
+    m(Reference.Component, ctrl.referenceIsOpen),
     m('h2', 'Variables'),
     m(VariableCollection.Component, ctrl.app),
     m('h2', 'Table'),
     m('div.scrollable-container', m(Table.Component, ctrl.app)),
-  ];
+    m('p', [
+      'Like Truthy? ',
+      m('a[href=https://github.com/caleb531/truthy]', 'Star it on GitHub!')
+    ])
+  ]);
 };
 
 
