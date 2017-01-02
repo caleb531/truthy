@@ -45,4 +45,5 @@ input[type='text'] {
 // horizontally scrollable
 .scrollable-container {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
