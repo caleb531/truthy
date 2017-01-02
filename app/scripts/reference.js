@@ -44,7 +44,7 @@ Reference.operations = [
 Reference.Component = {};
 
 Reference.Component.view = function () {
-  return m('div#reference', {
+  return m('div#reference-sidebar', {
     class: classNames({'reference-open': location.hash === '#reference'})
   }, [
     m('a[href=#].reference-close-link', {onclick: m.redraw}, m('img', {
