@@ -51,6 +51,7 @@ OperationXNOR 'XNOR Operation'
 
 OperatorXNOR 'XNOR Operator'
   = WS+ 'xnor'i WS+
+  / WS* '<->' WS*
 
 OperationAND 'AND Operation'
   = left:OperationNOT OperatorAND right:OperationAND {
