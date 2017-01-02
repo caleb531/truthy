@@ -3,9 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  $width: 320px;
   z-index: 100;
-  width: $width;
   height: 100%;
   border-right: solid 1px #fff;
   box-sizing: border-box;
@@ -15,7 +13,7 @@
   box-shadow: 2px 0 5px 1px rgba(#000, 0.25);
   text-align: left;
   overflow-y: auto;
-  transform: translateX(-$width);
+  transform: translateX(-100%);
   transition: transform 300ms ease-in-out;
   h2 {
     text-align: center;
