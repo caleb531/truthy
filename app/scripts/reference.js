@@ -53,6 +53,7 @@ Reference.Component.controller = function () {
         app.expressions.add({
           string: event.target.textContent
         });
+        app.save();
         // Close reference sidebar
         location.hash = '#';
       }
