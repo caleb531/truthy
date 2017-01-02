@@ -71,7 +71,7 @@ App.Component.controller = function () {
 App.Component.view = function (ctrl) {
   return [
     m('span#reference-link.nav-link.nav-link-left',
-      m('a[href=#reference]', {onclick: m.redraw}, 'Truthy Reference')
+      m('a[href=#reference]', {onclick: m.redraw}, 'App Reference')
     ),
     m('span#personal-site-link.nav-link.nav-link-right', [
       'by ', m('a[href=https://calebevans.me/]', 'Caleb Evans')

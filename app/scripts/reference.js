@@ -55,7 +55,7 @@ Reference.Component.view = function () {
       src: 'icons/close.svg',
       alt: 'Close'
     })),
-    m('h2', 'Truthy Reference'),
+    m('h2', 'App Reference'),
     Reference.features.map(function (feature) {
       return m('div.feature', [
         m('h3', feature.name),
