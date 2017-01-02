@@ -42,6 +42,9 @@ run:
 npm run generate-parser
 ```
 
+Please note that you must regenerate the expression parser (as above) every time
+you make a change to the grammar (`app/grammars/expression.pegjs`).
+
 ### 4. Serve app locally
 
 To serve the app locally, run:
