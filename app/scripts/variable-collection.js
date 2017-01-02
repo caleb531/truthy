@@ -64,6 +64,12 @@ VariableCollection.Component.controller = function () {
       app.variables.insert(variableIndex + 1, {
         name: app.variables.getNextVariableName(variable)
       });
+      m.redraw();
+      event.target
+        .parentNode
+        .parentNode
+        .nextElementSibling
+        .querySelector('input').focus();
       app.save();
     },
     removeVariable: function (ctrl, app, event) {
