@@ -4,37 +4,28 @@ $reference-fade-duration: 300ms;
 $reference-fade-easing: ease-in-out;
 
 #reference {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
-  transition: z-index $reference-fade-duration $reference-fade-easing;
-  &.reference-open {
-    z-index: 100;
-    transition: none;
-  }
-}
-
-// The dark overlay which can be clicked to dismiss the reference sidebar
-#reference-close-overlay {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background-color: transparent;
-  cursor: default;
-  transition: background-color $reference-fade-duration $reference-fade-easing;
-  .reference-open & {
+  // Transition z-index when closing drawer so z-index only changes once face
+  // transition has finished
+  transition-property: z-index, background-color;
+  transition-duration: $reference-fade-duration;
+  transition-timing-function: $reference-fade-easing;
+  &.reference-is-open {
+    z-index: 100;
+    // Change z-index instantly when opening the drawer
+    transition-property: background-color;
     background-color: rgba(#000, 0.5);
   }
 }
 
 #reference-sidebar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
@@ -49,24 +40,22 @@ $reference-fade-easing: ease-in-out;
   overflow-y: auto;
   transform: translateX(-100%);
   transition: transform $reference-fade-duration $reference-fade-easing;
+  .reference-is-open & {
+    transform: translateX(0);
+  }
   h2 {
     text-align: center;
   }
   h3 {
     font-size: 18px;
   }
-  .reference-open & {
-    transform: translateX(0);
-  }
-}
-
-#reference-close-link {
-  position: absolute;
-  $link-position: 6px;
-  top: $link-position;
-  left: $link-position;
-  $link-size: 14px;
-  img {
+  // Close button in top-left corner
+  .reference-toggle {
+    position: absolute;
+    $link-position: 6px;
+    top: $link-position;
+    left: $link-position;
+    $link-size: 14px;
     width: $link-size;
     width: $link-size;
   }

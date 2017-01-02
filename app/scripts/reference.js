@@ -47,16 +47,17 @@ Reference.features = [
 
 Reference.Component = {};
 
-Reference.Component.view = function () {
+Reference.Component.view = function (ctrl, referenceIsOpen) {
   return m('div#reference', {
-    class: classNames({'reference-open': location.hash === '#reference'})
-  }, [
-    m('a#reference-close-overlay[href=#]', {onclick: m.redraw}),
-    m('#reference-sidebar', [
-      m('a[href=#]#reference-close-link', {onclick: m.redraw}, m('img', {
+    class: classNames(
+      'reference-toggle',
+      {'reference-is-open': referenceIsOpen}
+    )
+  }, m('#reference-sidebar', [
+      m('img.reference-toggle', {
         src: 'icons/close.svg',
         alt: 'Close'
-      })),
+      }),
       m('h2', 'App Reference'),
       Reference.features.map(function (feature) {
         return m('div.feature', [
@@ -67,7 +68,7 @@ Reference.Component.view = function () {
         ]);
       })
     ])
-  ]);
+  );
 };
 
 module.exports = Reference;
