@@ -77,7 +77,7 @@ App.Component.view = function (ctrl) {
       'by ', m('a[href=https://calebevans.me/]', 'Caleb Evans')
     ]),
     m('h1', 'Truthy'),
-    m(Reference.Component),
+    m(Reference.Component, ctrl.app),
     m('h2', 'Variables'),
     m(VariableCollection.Component, ctrl.app),
     m('h2', 'Table'),

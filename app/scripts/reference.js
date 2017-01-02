@@ -1,6 +1,7 @@
 'use strict';
 
 var m = require('mithril');
+var _ = require('underscore');
 var classNames = require('classnames');
 
 var Reference = {};
@@ -9,43 +10,60 @@ var Reference = {};
 Reference.operations = [
   {
     name: 'NOT',
-    syntaxes: ['not p', '!p']
+    examples: ['not p', '!p']
   },
   {
     name: 'AND',
-    syntaxes: ['p and q', 'p & q']
+    examples: ['p and q', 'p & q']
   },
   {
     name: 'OR',
-    syntaxes: ['p or q', 'p | q']
+    examples: ['p or q', 'p | q']
   },
   {
     name: 'XOR',
-    syntaxes: ['p xor q', 'p ^ q']
+    examples: ['p xor q', 'p ^ q']
   },
   {
     name: 'NOR',
-    syntaxes: ['p nor q']
+    examples: ['p nor q']
   },
   {
     name: 'NAND',
-    syntaxes: ['p nand q']
+    examples: ['p nand q']
   },
   {
     name: 'Implication',
-    syntaxes: ['p -> q']
+    examples: ['p -> q']
   },
   {
     name: 'Double-Implication (XNOR)',
-    syntaxes: ['p <-> q', 'p xnor q']
+    examples: ['p <-> q', 'p xnor q']
   }
 ];
 
 Reference.Component = {};
 
-Reference.Component.view = function () {
+Reference.Component.controller = function () {
+  return {
+    // View the pressed example on the app truth table
+    viewExample: function (ctrl, app, event) {
+      // If example is clicked, add it to expression list
+      if (event.target.classList.contains('operation-example')) {
+        app.expressions.add({
+          string: event.target.textContent
+        });
+        // Close reference sidebar
+        location.hash = '#';
+      }
+    }
+  };
+};
+
+Reference.Component.view = function (ctrl, app) {
   return m('div#reference-sidebar', {
-    class: classNames({'reference-open': location.hash === '#reference'})
+    class: classNames({'reference-open': location.hash === '#reference'}),
+    onclick: _.partial(ctrl.viewExample, ctrl, app)
   }, [
     m('a[href=#].reference-close-link', {onclick: m.redraw}, m('img', {
       src: 'icons/close.svg',
@@ -55,8 +73,8 @@ Reference.Component.view = function () {
     Reference.operations.map(function (operation) {
       return m('div.operation', [
         m('h3', operation.name),
-        operation.syntaxes.map(function (syntax) {
-          return m('pre.operation-syntax', syntax);
+        operation.examples.map(function (example) {
+          return m('pre.operation-example', example);
         })
       ]);
     })

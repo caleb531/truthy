@@ -15,6 +15,11 @@ Collection.prototype.get = function (itemIndex) {
   return this.items[itemIndex];
 };
 
+// Push the given collection item dictionary to the end of the collection
+Collection.prototype.add = function (itemDict) {
+  return this.items.push(new this.SubCollectionItem(itemDict));
+};
+
 // Insert the given collection item dictionary at the given index
 Collection.prototype.insert = function (itemIndex, itemDict) {
   return this.items.splice(itemIndex, 0, new this.SubCollectionItem(itemDict));
