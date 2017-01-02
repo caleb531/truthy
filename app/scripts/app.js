@@ -2,6 +2,7 @@
 
 var m = require('mithril');
 var _ = require('underscore');
+var Reference = require('./reference');
 var VariableCollection = require('./variable-collection');
 var ExpressionCollection = require('./expression-collection');
 var Table = require('./table');
@@ -69,11 +70,22 @@ App.Component.controller = function () {
 
 App.Component.view = function (ctrl) {
   return [
+    m('span#reference-link.nav-link.nav-link-left',
+      m('a[href=#reference]', {onclick: m.redraw}, 'Truthy Reference')
+    ),
+    m('span#personal-site-link.nav-link.nav-link-right', [
+      'by ', m('a[href=https://calebevans.me/]', 'Caleb Evans')
+    ]),
     m('h1', 'Truthy'),
+    m(Reference.Component),
     m('h2', 'Variables'),
     m(VariableCollection.Component, ctrl.app),
     m('h2', 'Table'),
     m('div.scrollable-container', m(Table.Component, ctrl.app)),
+    m('p', [
+      'Like Truthy? ',
+      m('a[href=https://github.com/caleb531/truthy]', 'Star it on GitHub!')
+    ])
   ];
 };
 

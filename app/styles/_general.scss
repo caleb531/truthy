@@ -3,21 +3,30 @@ body {
   padding: 0;
   background-color: #474;
   text-align: center;
-  font-family: $monospace;
+  font-family: $sans-serif;
+  font-weight: 300;
   color: #fff;
 }
 #app {
   text-align: center;
 }
+h1, h2, h3 {
+  font-weight: 400;
+}
 a {
   color: #cf0;
 }
-
-#personal-site-link {
+.nav-link {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 6px;
   font-size: 14px;
+  $position-x: 8px;
+  &-left {
+    left: $position-x;
+  }
+  &-right {
+    right: $position-x;
+  }
   a {
     text-decoration: none;
   }
