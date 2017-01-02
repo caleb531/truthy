@@ -40,3 +40,9 @@ input[type='text'] {
     box-shadow: 0 0 5px 1px #f96;
   }
 }
+
+// A general-purpose container that fits to the viewport width but is
+// horizontally scrollable
+.scrollable-container {
+  overflow-x: auto;
+}

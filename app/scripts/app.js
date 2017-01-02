@@ -73,7 +73,7 @@ App.Component.view = function (ctrl) {
     m('h2', 'Variables'),
     m(VariableCollection.Component, ctrl.app),
     m('h2', 'Table'),
-    m(Table.Component, ctrl.app),
+    m('div.scrollable-container', m(Table.Component, ctrl.app)),
   ];
 };
 
