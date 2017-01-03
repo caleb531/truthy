@@ -27,6 +27,16 @@ describe('expression', function () {
     });
   }
 
+  describe('single variable name', function () {
+    testExprs({
+      exprStrings: ['p'],
+      testCases: [
+        {varValues: {p: false}, output: false},
+        {varValues: {p: true}, output: true}
+      ]
+    });
+  });
+
   describe('NOT operation', function () {
     testExprs({
       exprStrings: ['not p', 'not  p', 'NoT p', '!p', '!  p'],
