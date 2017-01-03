@@ -12,32 +12,41 @@ describe('expression', function () {
     expect(expression).to.have.property('string', ' p and q ');
   });
 
-  function testExprs(args) {
-    // Generate a test for each supplied expression
-    args.exprStrings.forEach(function (exprString) {
-      var expression = new Expression({string: exprString});
-      it('should evaluate `' + exprString + '`', function () {
-        // Test each expression against the given permutations of variable
-        // values and the expected outputs
-        args.testCases.forEach(function (testCase) {
-          var actualOutput = expression.evaluate(testCase.varValues);
-          expect(actualOutput).to.equal(testCase.output);
-        });
+  function testExpr(args) {
+    var expression = new Expression({string: args.exprString});
+    it(args.description, function () {
+      // Test each expression against the given permutations of variable
+      // values and the expected outputs
+      args.testCases.forEach(function (testCase) {
+        var actualOutput = expression.evaluate(testCase.varValues);
+        expect(actualOutput).to.equal(testCase.output);
       });
     });
   }
 
-  describe('single variable name', function () {
-    testExprs({
-      exprStrings: ['p'],
+  function testExprs(args) {
+    // Generate a test for each supplied expression
+    args.exprStrings.forEach(function (exprString) {
+      testExpr({
+        exprString: exprString,
+        description: 'should evaluate `' + exprString + '`',
+        testCases: args.testCases
+      });
+    });
+  }
+
+  describe('variable name', function () {
+    testExpr({
+      exprString: 'p',
+      description: 'should evaluate a single variable name',
       testCases: [
         {varValues: {p: false}, output: false},
         {varValues: {p: true}, output: true}
       ]
     });
-    // Variable names should be case-sensitive
-    testExprs({
-      exprStrings: ['P'],
+    testExpr({
+      exprString: 'P',
+      description: 'should be case-sensitive',
       testCases: [
         {varValues: {p: false}, output: null},
         {varValues: {p: true}, output: null}
