@@ -12,188 +12,249 @@ describe('expression', function () {
     expect(expression).to.have.property('string', ' p and q ');
   });
 
-  function testExpr(args) {
-    var expression = new Expression({string: args.exprString});
-    it(args.description, function () {
-      // Test each expression against the given permutations of variable
-      // values and the expected outputs
-      args.testCases.forEach(function (testCase) {
-        var actualOutput = expression.evaluate(testCase.varValues);
-        expect(actualOutput).to.equal(testCase.output);
-      });
-    });
-  }
-
-  function testExprs(args) {
-    // Generate a test for each supplied expression
-    args.exprStrings.forEach(function (exprString) {
-      testExpr({
-        exprString: exprString,
-        description: 'should evaluate `' + exprString + '`',
-        testCases: args.testCases
-      });
+  function testExpr(expressionString, testCases) {
+    var expression = new Expression({string: expressionString});
+    // Test each expression against the given permutations of variable
+    // values and the expected outputs
+    testCases.forEach(function (testCase) {
+      var actualOutput = expression.evaluate(testCase.varValues);
+      expect(actualOutput).to.equal(testCase.output);
     });
   }
 
   describe('variable name', function () {
-    testExpr({
-      exprString: 'p',
-      description: 'should evaluate a single variable name',
-      testCases: [
+    it('should evaluate', function () {
+      testExpr('p', [
         {varValues: {p: false}, output: false},
         {varValues: {p: true}, output: true}
-      ]
+      ]);
     });
-    testExpr({
-      exprString: 'P',
-      description: 'should be case-sensitive',
-      testCases: [
+    it('should be case-sensitive', function () {
+      testExpr('P', [
         {varValues: {p: false}, output: null},
         {varValues: {p: true}, output: null}
-      ]
+      ]);
     });
   });
 
   describe('boolean value', function () {
-    testExprs({
-      exprStrings: ['false', 'FaLsE'],
-      testCases: [
+    describe('false', function () {
+      var testCases = [
         {varValues: {p: false}, output: false},
         {varValues: {p: true}, output: false}
-      ]
+      ];
+      it('should evaluate', function () {
+        testExpr('false', testCases);
+      });
+      it('should be case-insensitive', function () {
+        testExpr('FaLsE', testCases);
+      });
     });
-    testExprs({
-      exprStrings: ['true', 'tRuE'],
-      testCases: [
+    describe('true', function () {
+      var testCases = [
         {varValues: {p: false}, output: true},
         {varValues: {p: true}, output: true}
-      ]
+      ];
+      it('should evaluate', function () {
+        testExpr('true', testCases);
+      });
+      it('should be case-insensitive', function () {
+        testExpr('tRuE', testCases);
+      });
     });
   });
 
   describe('NOT operation', function () {
-    testExprs({
-      exprStrings: ['not p', 'not  p', 'NoT p', '!p', '!  p'],
-      testCases: [
-        {varValues: {p: false}, output: true},
-        {varValues: {p: true}, output: false}
-      ]
+    var testCases = [
+      {varValues: {p: false}, output: true},
+      {varValues: {p: true}, output: false}
+    ];
+    it('should evaluate named operator', function () {
+      testExpr('not p', testCases);
     });
-    testExpr({
-      exprString: '!a',
-      description: 'should not coerce nonexistent variable name',
-      testCases: [
+    it('should ignore whitespace around named operator', function () {
+      testExpr('not  p', testCases);
+    });
+    it('should ignore named operator case', function () {
+      testExpr('NoT p', testCases);
+    });
+    it('should evaluate shorthand operator', function () {
+      testExpr('!p', testCases);
+    });
+    it('should ignore whitespace around shorthand operator', function () {
+      testExpr('!  p', testCases);
+    });
+    it('should not coerce nonexistent variable name', function () {
+      testExpr('!a', [
         {varValues: {p: false}, output: null},
         {varValues: {p: true}, output: null}
-      ]
+      ]);
     });
   });
 
   describe('AND operation', function () {
-    testExprs({
-      exprStrings: ['p and q', 'p  and   q', 'p AnD q', 'p&q', 'p  &  q'],
-      testCases: [
-        {varValues: {p: false, q: false}, output: false},
-        {varValues: {p: false, q: true}, output: false},
-        {varValues: {p: true, q: false}, output: false},
-        {varValues: {p: true, q: true}, output: true},
-      ]
+    var testCases = [
+      {varValues: {p: false, q: false}, output: false},
+      {varValues: {p: false, q: true}, output: false},
+      {varValues: {p: true, q: false}, output: false},
+      {varValues: {p: true, q: true}, output: true}
+    ];
+    it('should evaluate named operator', function () {
+      testExpr('p and q', testCases);
+    });
+    it('should ignore whitespace around named operator', function () {
+      testExpr('p  and  q', testCases);
+    });
+    it('should ignore named operator case', function () {
+      testExpr('p AnD q', testCases);
+    });
+    it('should evaluate shorthand operator', function () {
+      testExpr('p&q', testCases);
+    });
+    it('should ignore whitespace around shorthand operator', function () {
+      testExpr('p  &  q', testCases);
     });
   });
 
   describe('NAND operation', function () {
-    testExprs({
-      exprStrings: ['p nand q', 'p  nand   q', 'p nAnD q'],
-      testCases: [
-        {varValues: {p: false, q: false}, output: true},
-        {varValues: {p: false, q: true}, output: true},
-        {varValues: {p: true, q: false}, output: true},
-        {varValues: {p: true, q: true}, output: false},
-      ]
+    var testCases = [
+      {varValues: {p: false, q: false}, output: true},
+      {varValues: {p: false, q: true}, output: true},
+      {varValues: {p: true, q: false}, output: true},
+      {varValues: {p: true, q: true}, output: false}
+    ];
+    it('should evaluate operator', function () {
+      testExpr('p nand q', testCases);
+    });
+    it('should ignore whitespace around operator', function () {
+      testExpr('p  nand  q', testCases);
+    });
+    it('should ignore operator case', function () {
+      testExpr('p NanD q', testCases);
     });
   });
 
   describe('OR operation', function () {
-    testExprs({
-      exprStrings: ['p or q', 'p  or   q', 'p oR q', 'p|q', 'p  |  q'],
-      testCases: [
-        {varValues: {p: false, q: false}, output: false},
-        {varValues: {p: false, q: true}, output: true},
-        {varValues: {p: true, q: false}, output: true},
-        {varValues: {p: true, q: true}, output: true},
-      ]
+    var testCases = [
+      {varValues: {p: false, q: false}, output: false},
+      {varValues: {p: false, q: true}, output: true},
+      {varValues: {p: true, q: false}, output: true},
+      {varValues: {p: true, q: true}, output: true}
+    ];
+    it('should evaluate named operator', function () {
+      testExpr('p or q', testCases);
+    });
+    it('should ignore whitespace around named operator', function () {
+      testExpr('p  or  q', testCases);
+    });
+    it('should ignore named operator case', function () {
+      testExpr('p oR q', testCases);
+    });
+    it('should evaluate shorthand operator', function () {
+      testExpr('p|q', testCases);
+    });
+    it('should ignore whitespace around shorthand operator', function () {
+      testExpr('p  |  q', testCases);
     });
   });
 
   describe('NOR operation', function () {
-    testExprs({
-      exprStrings: ['p nor q', 'p  nor   q', 'p NoR q'],
-      testCases: [
-        {varValues: {p: false, q: false}, output: true},
-        {varValues: {p: false, q: true}, output: false},
-        {varValues: {p: true, q: false}, output: false},
-        {varValues: {p: true, q: true}, output: false},
-      ]
+    var testCases = [
+      {varValues: {p: false, q: false}, output: true},
+      {varValues: {p: false, q: true}, output: false},
+      {varValues: {p: true, q: false}, output: false},
+      {varValues: {p: true, q: true}, output: false}
+    ];
+    it('should evaluate operator', function () {
+      testExpr('p nor q', testCases);
+    });
+    it('should ignore whitespace around operator', function () {
+      testExpr('p  nor  q', testCases);
+    });
+    it('should ignore operator case', function () {
+      testExpr('p NoR q', testCases);
     });
   });
 
   describe('XOR operation', function () {
-    testExprs({
-      exprStrings: ['p xor q', 'p  xor   q', 'p XoR q', 'p^q', 'p  ^  q'],
-      testCases: [
-        {varValues: {p: false, q: false}, output: false},
-        {varValues: {p: false, q: true}, output: true},
-        {varValues: {p: true, q: false}, output: true},
-        {varValues: {p: true, q: true}, output: false},
-      ]
+    var testCases = [
+      {varValues: {p: false, q: false}, output: false},
+      {varValues: {p: false, q: true}, output: true},
+      {varValues: {p: true, q: false}, output: true},
+      {varValues: {p: true, q: true}, output: false}
+    ];
+    it('should evaluate named operator', function () {
+      testExpr('p xor q', testCases);
+    });
+    it('should ignore whitespace around named operator', function () {
+      testExpr('p  xor  q', testCases);
+    });
+    it('should ignore named operator case', function () {
+      testExpr('p xOr q', testCases);
+    });
+    it('should evaluate shorthand operator', function () {
+      testExpr('p^q', testCases);
+    });
+    it('should ignore whitespace around shorthand operator', function () {
+      testExpr('p  ^  q', testCases);
     });
   });
 
   describe('implication operation', function () {
-    testExprs({
-      exprStrings: ['p -> q', 'p  ->   q'],
-      testCases: [
-        {varValues: {p: false, q: false}, output: true},
-        {varValues: {p: false, q: true}, output: true},
-        {varValues: {p: true, q: false}, output: false},
-        {varValues: {p: true, q: true}, output: true},
-      ]
+    var testCases = [
+      {varValues: {p: false, q: false}, output: true},
+      {varValues: {p: false, q: true}, output: true},
+      {varValues: {p: true, q: false}, output: false},
+      {varValues: {p: true, q: true}, output: true}
+    ];
+    it('should evaluate operator', function () {
+      testExpr('p->q', testCases);
+    });
+    it('should ignore whitespace around operator', function () {
+      testExpr('p  ->  q', testCases);
     });
   });
 
   describe('double-implication (XNOR) operation', function () {
-    testExprs({
-      exprStrings: ['p <-> q', 'p  <->  q', 'p xnor q', 'p  xnor  q', 'p xNoR q'],
-      testCases: [
-        {varValues: {p: false, q: false}, output: true},
-        {varValues: {p: false, q: true}, output: false},
-        {varValues: {p: true, q: false}, output: false},
-        {varValues: {p: true, q: true}, output: true},
-      ]
+    var testCases = [
+      {varValues: {p: false, q: false}, output: true},
+      {varValues: {p: false, q: true}, output: false},
+      {varValues: {p: true, q: false}, output: false},
+      {varValues: {p: true, q: true}, output: true}
+    ];
+    it('should evaluate shorthand operator', function () {
+      testExpr('p<->q', testCases);
+    });
+    it('should ignore whitespace around shorthand operator', function () {
+      testExpr('p  <->  q', testCases);
+    });
+    it('should evaluate named operator', function () {
+      testExpr('p xnor q', testCases);
+    });
+    it('should ignore whitespace around named operator', function () {
+      testExpr('p  xnor  q', testCases);
+    });
+    it('should ignore named operator case', function () {
+      testExpr('p xNoR q', testCases);
     });
   });
 
-  describe('parenthesized expression', function () {
-    testExprs({
-      exprStrings: ['p & (p | !q)'],
-      testCases: [
-        {varValues: {p: false, q: false}, output: false},
-        {varValues: {p: false, q: true}, output: false},
-        {varValues: {p: true, q: false}, output: true},
-        {varValues: {p: true, q: true}, output: true},
-      ]
-    });
+  it('should respect parentheses', function () {
+    testExpr('p & (p | !q)', [
+      {varValues: {p: false, q: false}, output: false},
+      {varValues: {p: false, q: true}, output: false},
+      {varValues: {p: true, q: false}, output: true},
+      {varValues: {p: true, q: true}, output: true}
+    ]);
   });
 
-  testExpr({
-    exprString: '  p and q  ',
-    description: 'should ignore leading/trailing whitespace',
-    testCases: [
-        {varValues: {p: false, q: false}, output: false},
-        {varValues: {p: false, q: true}, output: false},
-        {varValues: {p: true, q: false}, output: false},
-        {varValues: {p: true, q: true}, output: true},
-    ]
+  it('should ignore leading/trailing whitespace', function () {
+    testExpr('  p & q  ', [
+      {varValues: {p: false, q: false}, output: false},
+      {varValues: {p: false, q: true}, output: false},
+      {varValues: {p: true, q: false}, output: false},
+      {varValues: {p: true, q: true}, output: true}
+    ]);
   });
 
 });
