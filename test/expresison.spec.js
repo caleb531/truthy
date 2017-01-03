@@ -61,4 +61,16 @@ describe('expression', function () {
     });
   });
 
+  describe('OR operation', function () {
+    testExprs({
+      exprStrings: ['p or q', 'p  or   q', 'p oR q', 'p|q', 'p  |  q'],
+      testCases: [
+        {varValues: {p: false, q: false}, output: false},
+        {varValues: {p: false, q: true}, output: true},
+        {varValues: {p: true, q: false}, output: true},
+        {varValues: {p: true, q: true}, output: true},
+      ]
+    });
+  });
+
 });
