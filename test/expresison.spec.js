@@ -177,4 +177,15 @@ describe('expression', function () {
     });
   });
 
+  testExpr({
+    exprString: '  p and q  ',
+    description: 'should ignore leading/trailing whitespace',
+    testCases: [
+        {varValues: {p: false, q: false}, output: false},
+        {varValues: {p: false, q: true}, output: false},
+        {varValues: {p: true, q: false}, output: false},
+        {varValues: {p: true, q: true}, output: true},
+    ]
+  });
+
 });
