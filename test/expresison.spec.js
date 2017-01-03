@@ -85,4 +85,16 @@ describe('expression', function () {
     });
   });
 
+  describe('XOR operation', function () {
+    testExprs({
+      exprStrings: ['p xor q', 'p  xor   q', 'p XoR q', 'p^q', 'p  ^  q'],
+      testCases: [
+        {varValues: {p: false, q: false}, output: false},
+        {varValues: {p: false, q: true}, output: true},
+        {varValues: {p: true, q: false}, output: true},
+        {varValues: {p: true, q: true}, output: false},
+      ]
+    });
+  });
+
 });
