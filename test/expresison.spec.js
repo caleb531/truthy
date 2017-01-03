@@ -49,4 +49,16 @@ describe('expression', function () {
     });
   });
 
+  describe('NAND operation', function () {
+    testExprs({
+      exprStrings: ['p nand q', 'p  nand   q', 'p nAnD q'],
+      testCases: [
+        {varValues: {p: false, q: false}, output: true},
+        {varValues: {p: false, q: true}, output: true},
+        {varValues: {p: true, q: false}, output: true},
+        {varValues: {p: true, q: true}, output: false},
+      ]
+    });
+  });
+
 });
