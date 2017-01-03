@@ -9,10 +9,20 @@ OperationImplication 'Implication Operation'
   = left:OperationOR OperatorImplication right:OperationImplication {
     return !left || right;
   }
+  / OperationXNOR
   / OperationOR
 
 OperatorImplication 'Implication Operator'
   = WS* '->' WS*
+
+OperationXNOR 'XNOR (Double-Implication) Operation'
+  = left:OperationOR OperatorXNOR right:OperationImplication {
+    return !((left || right) && (!left || !right));
+  }
+
+OperatorXNOR 'XNOR (Double-Implication) Operator'
+  = WS+ 'xnor'i WS+
+  / WS* '<->' WS*
 
 OperationOR 'OR Operation'
   = left:OperationAND OperatorOR right:OperationOR {
@@ -20,7 +30,6 @@ OperationOR 'OR Operation'
   }
   / OperationNOR
   / OperationXOR
-  / OperationXNOR
   / OperationAND
 
 OperatorOR 'OR Operator'
@@ -43,15 +52,6 @@ OperationXOR 'XOR Operation'
 OperatorXOR 'XOR Operator'
   = WS+ 'xor'i WS+
   / WS* '^' WS*
-
-OperationXNOR 'XNOR Operation'
-  = left:OperationAND OperatorXNOR right:OperationOR {
-    return !((left || right) && (!left || !right));
-  }
-
-OperatorXNOR 'XNOR Operator'
-  = WS+ 'xnor'i WS+
-  / WS* '<->' WS*
 
 OperationAND 'AND Operation'
   = left:OperationNOT OperatorAND right:OperationAND {
