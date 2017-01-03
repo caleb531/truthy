@@ -73,4 +73,16 @@ describe('expression', function () {
     });
   });
 
+  describe('NOR operation', function () {
+    testExprs({
+      exprStrings: ['p nor q', 'p  nor   q', 'p NoR q'],
+      testCases: [
+        {varValues: {p: false, q: false}, output: true},
+        {varValues: {p: false, q: true}, output: false},
+        {varValues: {p: true, q: false}, output: false},
+        {varValues: {p: true, q: true}, output: false},
+      ]
+    });
+  });
+
 });
