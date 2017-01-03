@@ -97,4 +97,16 @@ describe('expression', function () {
     });
   });
 
+  describe('implication operation', function () {
+    testExprs({
+      exprStrings: ['p -> q', 'p  ->   q'],
+      testCases: [
+        {varValues: {p: false, q: false}, output: true},
+        {varValues: {p: false, q: true}, output: true},
+        {varValues: {p: true, q: false}, output: false},
+        {varValues: {p: true, q: true}, output: true},
+      ]
+    });
+  });
+
 });
