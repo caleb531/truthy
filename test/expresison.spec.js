@@ -35,6 +35,14 @@ describe('expression', function () {
         {varValues: {p: true}, output: true}
       ]
     });
+    // Variable names should be case-sensitive
+    testExprs({
+      exprStrings: ['P'],
+      testCases: [
+        {varValues: {p: false}, output: null},
+        {varValues: {p: true}, output: null}
+      ]
+    });
   });
 
   describe('boolean value', function () {
