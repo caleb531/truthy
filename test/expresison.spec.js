@@ -1,6 +1,8 @@
 'use strict';
 
-var expect = require('chai').expect;
+var chai = require('chai');
+var expect = chai.expect;
+var Assertion = chai.Assertion;
 var Expression = require('../app/scripts/expression');
 
 describe('expression', function () {
@@ -12,25 +14,27 @@ describe('expression', function () {
     expect(expression).to.have.property('string', ' p and q ');
   });
 
-  function testExpr(expressionString, testCases) {
-    var expression = new Expression({string: expressionString});
-    // Test each expression against the given permutations of variable
-    // values and the expected outputs
+  // Expect some expression string to evaluate to some set of values given some
+  // set of inputs
+  Assertion.addMethod('evaluateTo', function (testCases) {
+    var expression = new Expression({string: this._obj});
+    // Test each expression against the given permutations of variable values
+    // and the expected outputs
     testCases.forEach(function (testCase) {
       var actualOutput = expression.evaluate(testCase.varValues);
       expect(actualOutput).to.equal(testCase.output);
     });
-  }
+  });
 
   describe('variable name', function () {
     it('should evaluate', function () {
-      testExpr('p', [
+      expect('p').to.evaluateTo([
         {varValues: {p: false}, output: false},
         {varValues: {p: true}, output: true}
       ]);
     });
     it('should be case-sensitive', function () {
-      testExpr('P', [
+      expect('P').to.evaluateTo([
         {varValues: {p: false}, output: null},
         {varValues: {p: true}, output: null}
       ]);
@@ -44,10 +48,10 @@ describe('expression', function () {
         {varValues: {p: true}, output: false}
       ];
       it('should evaluate', function () {
-        testExpr('false', testCases);
+        expect('false').to.evaluateTo(testCases);
       });
       it('should be case-insensitive', function () {
-        testExpr('FaLsE', testCases);
+        expect('FaLsE').to.evaluateTo(testCases);
       });
     });
     describe('true', function () {
@@ -56,10 +60,10 @@ describe('expression', function () {
         {varValues: {p: true}, output: true}
       ];
       it('should evaluate', function () {
-        testExpr('true', testCases);
+        expect('true').to.evaluateTo(testCases);
       });
       it('should be case-insensitive', function () {
-        testExpr('tRuE', testCases);
+        expect('tRuE').to.evaluateTo(testCases);
       });
     });
   });
@@ -70,22 +74,22 @@ describe('expression', function () {
       {varValues: {p: true}, output: false}
     ];
     it('should evaluate named operator', function () {
-      testExpr('not p', testCases);
+      expect('not p').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around named operator', function () {
-      testExpr('not  p', testCases);
+      expect('not  p').to.evaluateTo(testCases);
     });
     it('should ignore named operator case', function () {
-      testExpr('NoT p', testCases);
+      expect('NoT p').to.evaluateTo(testCases);
     });
     it('should evaluate shorthand operator', function () {
-      testExpr('!p', testCases);
+      expect('!p').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around shorthand operator', function () {
-      testExpr('!  p', testCases);
+      expect('!  p').to.evaluateTo(testCases);
     });
     it('should not coerce nonexistent variable name', function () {
-      testExpr('!a', [
+      expect('!a').to.evaluateTo([
         {varValues: {p: false}, output: null},
         {varValues: {p: true}, output: null}
       ]);
@@ -100,19 +104,19 @@ describe('expression', function () {
       {varValues: {p: true, q: true}, output: true}
     ];
     it('should evaluate named operator', function () {
-      testExpr('p and q', testCases);
+      expect('p and q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around named operator', function () {
-      testExpr('p  and  q', testCases);
+      expect('p  and  q').to.evaluateTo(testCases);
     });
     it('should ignore named operator case', function () {
-      testExpr('p AnD q', testCases);
+      expect('p AnD q').to.evaluateTo(testCases);
     });
     it('should evaluate shorthand operator', function () {
-      testExpr('p&q', testCases);
+      expect('p&q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around shorthand operator', function () {
-      testExpr('p  &  q', testCases);
+      expect('p  &  q').to.evaluateTo(testCases);
     });
   });
 
@@ -124,13 +128,13 @@ describe('expression', function () {
       {varValues: {p: true, q: true}, output: false}
     ];
     it('should evaluate operator', function () {
-      testExpr('p nand q', testCases);
+      expect('p nand q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around operator', function () {
-      testExpr('p  nand  q', testCases);
+      expect('p  nand  q').to.evaluateTo(testCases);
     });
     it('should ignore operator case', function () {
-      testExpr('p NanD q', testCases);
+      expect('p NanD q').to.evaluateTo(testCases);
     });
   });
 
@@ -142,19 +146,19 @@ describe('expression', function () {
       {varValues: {p: true, q: true}, output: true}
     ];
     it('should evaluate named operator', function () {
-      testExpr('p or q', testCases);
+      expect('p or q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around named operator', function () {
-      testExpr('p  or  q', testCases);
+      expect('p  or  q').to.evaluateTo(testCases);
     });
     it('should ignore named operator case', function () {
-      testExpr('p oR q', testCases);
+      expect('p oR q').to.evaluateTo(testCases);
     });
     it('should evaluate shorthand operator', function () {
-      testExpr('p|q', testCases);
+      expect('p|q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around shorthand operator', function () {
-      testExpr('p  |  q', testCases);
+      expect('p  |  q').to.evaluateTo(testCases);
     });
   });
 
@@ -166,13 +170,13 @@ describe('expression', function () {
       {varValues: {p: true, q: true}, output: false}
     ];
     it('should evaluate operator', function () {
-      testExpr('p nor q', testCases);
+      expect('p nor q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around operator', function () {
-      testExpr('p  nor  q', testCases);
+      expect('p  nor  q').to.evaluateTo(testCases);
     });
     it('should ignore operator case', function () {
-      testExpr('p NoR q', testCases);
+      expect('p NoR q').to.evaluateTo(testCases);
     });
   });
 
@@ -184,19 +188,19 @@ describe('expression', function () {
       {varValues: {p: true, q: true}, output: false}
     ];
     it('should evaluate named operator', function () {
-      testExpr('p xor q', testCases);
+      expect('p xor q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around named operator', function () {
-      testExpr('p  xor  q', testCases);
+      expect('p  xor  q').to.evaluateTo(testCases);
     });
     it('should ignore named operator case', function () {
-      testExpr('p xOr q', testCases);
+      expect('p xOr q').to.evaluateTo(testCases);
     });
     it('should evaluate shorthand operator', function () {
-      testExpr('p^q', testCases);
+      expect('p^q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around shorthand operator', function () {
-      testExpr('p  ^  q', testCases);
+      expect('p  ^  q').to.evaluateTo(testCases);
     });
   });
 
@@ -208,10 +212,10 @@ describe('expression', function () {
       {varValues: {p: true, q: true}, output: true}
     ];
     it('should evaluate operator', function () {
-      testExpr('p->q', testCases);
+      expect('p->q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around operator', function () {
-      testExpr('p  ->  q', testCases);
+      expect('p  ->  q').to.evaluateTo(testCases);
     });
   });
 
@@ -223,24 +227,24 @@ describe('expression', function () {
       {varValues: {p: true, q: true}, output: true}
     ];
     it('should evaluate shorthand operator', function () {
-      testExpr('p<->q', testCases);
+      expect('p<->q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around shorthand operator', function () {
-      testExpr('p  <->  q', testCases);
+      expect('p  <->  q').to.evaluateTo(testCases);
     });
     it('should evaluate named operator', function () {
-      testExpr('p xnor q', testCases);
+      expect('p xnor q').to.evaluateTo(testCases);
     });
     it('should ignore whitespace around named operator', function () {
-      testExpr('p  xnor  q', testCases);
+      expect('p  xnor  q').to.evaluateTo(testCases);
     });
     it('should ignore named operator case', function () {
-      testExpr('p xNoR q', testCases);
+      expect('p xNoR q').to.evaluateTo(testCases);
     });
   });
 
   it('should respect parentheses', function () {
-    testExpr('p & (p | !q)', [
+    expect('p & (p | !q)').to.evaluateTo([
       {varValues: {p: false, q: false}, output: false},
       {varValues: {p: false, q: true}, output: false},
       {varValues: {p: true, q: false}, output: true},
@@ -249,7 +253,7 @@ describe('expression', function () {
   });
 
   it('should ignore leading/trailing whitespace', function () {
-    testExpr('  p & q  ', [
+    expect('  p & q  ').to.evaluateTo([
       {varValues: {p: false, q: false}, output: false},
       {varValues: {p: false, q: true}, output: false},
       {varValues: {p: true, q: false}, output: false},
@@ -258,7 +262,7 @@ describe('expression', function () {
   });
 
   it('should count tabs/newlines as ignored whitespace', function () {
-    testExpr('\n p \t & \n q \t', [
+    expect('\n p \t & \n q \t').to.evaluateTo([
       {varValues: {p: false, q: false}, output: false},
       {varValues: {p: false, q: true}, output: false},
       {varValues: {p: true, q: false}, output: false},
