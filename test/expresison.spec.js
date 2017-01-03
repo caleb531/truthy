@@ -37,4 +37,16 @@ describe('expression', function () {
     });
   });
 
+  describe('AND operation', function () {
+    testExprs({
+      exprStrings: ['p and q', 'p  and   q', 'p AnD q', 'p&q', 'p  &  q'],
+      testCases: [
+        {varValues: {p: false, q: false}, output: false},
+        {varValues: {p: false, q: true}, output: false},
+        {varValues: {p: true, q: false}, output: false},
+        {varValues: {p: true, q: true}, output: true},
+      ]
+    });
+  });
+
 });
