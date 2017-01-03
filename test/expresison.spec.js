@@ -109,4 +109,16 @@ describe('expression', function () {
     });
   });
 
+  describe('double-implication (XNOR) operation', function () {
+    testExprs({
+      exprStrings: ['p <-> q', 'p  <->  q', 'p xnor q', 'p  xnor  q', 'p xNoR q'],
+      testCases: [
+        {varValues: {p: false, q: false}, output: true},
+        {varValues: {p: false, q: true}, output: false},
+        {varValues: {p: true, q: false}, output: false},
+        {varValues: {p: true, q: true}, output: true},
+      ]
+    });
+  });
+
 });
