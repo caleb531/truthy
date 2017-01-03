@@ -257,4 +257,13 @@ describe('expression', function () {
     ]);
   });
 
+  it('should count tabs/newlines as ignored whitespace', function () {
+    testExpr('\n p \t & \n q \t', [
+      {varValues: {p: false, q: false}, output: false},
+      {varValues: {p: false, q: true}, output: false},
+      {varValues: {p: true, q: false}, output: false},
+      {varValues: {p: true, q: true}, output: true}
+    ]);
+  });
+
 });
