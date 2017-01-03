@@ -79,6 +79,14 @@ describe('expression', function () {
         {varValues: {p: true}, output: false}
       ]
     });
+    testExpr({
+      exprString: '!a',
+      description: 'should not coerce nonexistent variable name',
+      testCases: [
+        {varValues: {p: false}, output: null},
+        {varValues: {p: true}, output: null}
+      ]
+    });
   });
 
   describe('AND operation', function () {
