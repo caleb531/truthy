@@ -66,11 +66,14 @@ App.Component.controller = function () {
   return {
     app: App.restore(),
     referenceIsOpen: false,
-    // Toggle reference sidebar between open/closed state whenever a designated
-    // toggle control has been clicked
+    // Toggle reference sidebar between open/closed state according to the
+    // control clicked
     toggleReference: function (ctrl, event) {
-      if (event.target.classList.contains('reference-toggle')) {
-        ctrl.referenceIsOpen = !ctrl.referenceIsOpen;
+      if (event.target.classList.contains('reference-open-control')) {
+        ctrl.referenceIsOpen = true;
+        event.preventDefault();
+      } else if (event.target.classList.contains('reference-close-control')) {
+        ctrl.referenceIsOpen = false;
         event.preventDefault();
       }
     }
@@ -80,7 +83,7 @@ App.Component.controller = function () {
 App.Component.view = function (ctrl) {
   return m('div#app', {onclick: _.partial(ctrl.toggleReference, ctrl)}, [
     m('span#reference-link.nav-link.nav-link-left',
-      m('a[href=#].reference-toggle', 'App Reference')
+      m('a[href=#].reference-open-control', 'App Reference')
     ),
     m('span#personal-site-link.nav-link.nav-link-right', [
       'by ', m('a[href=https://calebevans.me/]', 'Caleb Evans')

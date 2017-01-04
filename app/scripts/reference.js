@@ -50,11 +50,11 @@ Reference.Component = {};
 Reference.Component.view = function (ctrl, referenceIsOpen) {
   return m('div#reference', {
     class: classNames(
-      'reference-toggle',
+      'reference-close-control',
       {'reference-is-open': referenceIsOpen}
     )
   }, m('#reference-sidebar', [
-      m('img.reference-toggle', {
+      m('img.reference-close-control', {
         src: 'icons/close.svg',
         alt: 'Close'
       }),
