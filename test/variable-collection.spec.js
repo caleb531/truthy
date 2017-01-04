@@ -20,4 +20,13 @@ describe('variable collection', function () {
     });
   });
 
+  it('should serialize to a JSON object', function () {
+    var variables = new VariableCollection({
+      items: [{name: 'u'},{name: 'v'}]
+    });
+    expect(variables.serialize()).to.deep.equal({
+      items: [{name: 'u'},{name: 'v'}]
+    });
+  });
+
 });
