@@ -15,6 +15,15 @@ describe('expression', function () {
     expect(expression).to.have.property('string', ' p and q ');
   });
 
+  it('should serialize to a JSON object', function () {
+    var expression = new Expression({
+      string: 'p xor q'
+    });
+    expect(expression.serialize()).to.deep.equal({
+      string: 'p xor q'
+    });
+  });
+
   // Expect some expression string to evaluate to some set of values given some
   // set of inputs
   Assertion.addMethod('evaluateTo', function (testCases) {
