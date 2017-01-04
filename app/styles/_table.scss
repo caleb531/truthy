@@ -9,11 +9,16 @@ table {
 }
 
 // Alternate row colors for better contrast
-tr:nth-child(odd) {
-  background-color: rgba(#000, 0.2);
-}
-tr:nth-child(even) {
-  background-color: rgba(#000, 0.4);
+tr {
+  &:nth-child(odd) {
+    background-color: rgba(#000, 0.2);
+  }
+  &:nth-child(even) {
+    background-color: rgba(#000, 0.4);
+  }
+  tbody &:hover {
+    background-color: rgba(#fff, 0.1);
+  }
 }
 
 th, td {
