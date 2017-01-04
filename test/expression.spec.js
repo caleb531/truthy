@@ -8,7 +8,7 @@ var Expression = require('../app/scripts/expression');
 
 describe('expression', function () {
 
-  it('should initialize expression with unmodified input string', function () {
+  it('should initialize with unmodified input string', function () {
     var expression = new Expression({
       string: ' p and q '
     });
