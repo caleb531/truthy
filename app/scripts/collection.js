@@ -1,12 +1,11 @@
 'use strict';
 
 // A general container for any ordered sequence of items
-function Collection(SubCollectionItem, itemDicts) {
-  var collection = this;
+function Collection(args) {
   // A reference to the constructor for the sub-collection's item type
-  collection.SubCollectionItem = SubCollectionItem;
-  collection.items = itemDicts.map(function (itemDict) {
-    return new SubCollectionItem(itemDict);
+  this.SubCollectionItem = args.SubCollectionItem;
+  this.items = args.items.map(function (item) {
+    return new args.SubCollectionItem(item);
   });
 }
 
@@ -14,10 +13,10 @@ Collection.prototype.get = function (itemIndex) {
   return this.items[itemIndex];
 };
 
-Collection.prototype.insert = function (itemIndex, itemDict) {
+Collection.prototype.insert = function (itemIndex, item) {
   // This method will automatically convert the given property map into the
   // correct item type for the sub-collection instance
-  return this.items.splice(itemIndex, 0, new this.SubCollectionItem(itemDict));
+  return this.items.splice(itemIndex, 0, new this.SubCollectionItem(item));
 };
 
 Collection.prototype.remove = function (itemIndex) {

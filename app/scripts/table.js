@@ -4,31 +4,9 @@
 var m = require('mithril');
 var _ = require('underscore');
 var classNames = require('classnames');
+var VariableCollection = require('./variable-collection');
 
 var Table = {};
-
-// Iterate through all possible true/false values for the given collection of
-// variables
-Table.forEachRow = function (variables, callback) {
-  var currentVarValues = {};
-  variables.forEach(function (variable) {
-    // Variable values should be initialized to true because they will be
-    // inverted before the callback is called for the first table row, making
-    // the first permutation of variable values all false
-    currentVarValues[variable.name] = true;
-  });
-  // If n corresponds to the number of variables, then there will always be 2^n
-  // rows in the truth table (excluding the table head, of course)
-  return _.times(Math.pow(2, variables.length), function (rowIndex) {
-    variables.forEach(function (variable, varIndex) {
-      // Alternate current variable values as needed
-      if (rowIndex % Math.pow(2, variables.length - varIndex - 1) === 0) {
-        currentVarValues[variable.name] = !currentVarValues[variable.name];
-      }
-    });
-    return callback(currentVarValues);
-  });
-};
 
 // Get the string value of the given boolean for display in the truth table
 Table.getBoolStr = function (boolean) {
@@ -91,8 +69,10 @@ Table.Component.controller = function () {
 };
 
 Table.Component.view = function (ctrl, app) {
-  var nonEmptyVariables = app.variables.filter(function (variable) {
-    return variable.name !== '';
+  var nonEmptyVariables = new VariableCollection({
+    items: app.variables.filter(function (variable) {
+      return variable.name !== '';
+    })
   });
   // A cache to store expressions which are known to be invalid (so as to avoid
   // re-evaluating them later)
@@ -122,7 +102,7 @@ Table.Component.view = function (ctrl, app) {
       })
     ])
   ),
-  m('tbody', Table.forEachRow(nonEmptyVariables, function (varValues) {
+  m('tbody', nonEmptyVariables.mapPermutations(function (varValues) {
     return m('tr', [
       nonEmptyVariables.map(function(variable) {
         var varValue = varValues[variable.name];
