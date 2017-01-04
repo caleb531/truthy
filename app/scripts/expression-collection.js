@@ -4,7 +4,10 @@ var Collection = require('./collection');
 var Expression = require('./expression');
 
 function ExpressionCollection(args) {
-  Collection.call(this, Expression, args.items);
+  Collection.call(this, {
+    SubCollectionItem: Expression,
+    items: args.items
+  });
 }
 ExpressionCollection.prototype = Object.create(Collection.prototype);
 

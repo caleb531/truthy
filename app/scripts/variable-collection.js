@@ -6,7 +6,10 @@ var Collection = require('./collection');
 var Variable = require('./variable');
 
 function VariableCollection(args) {
-  Collection.call(this, Variable, args.items);
+  Collection.call(this, {
+    SubCollectionItem: Variable,
+    items: args.items
+  });
 }
 VariableCollection.prototype = Object.create(Collection.prototype);
 
