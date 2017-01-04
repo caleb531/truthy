@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('underscore');
 var chai = require('chai');
 var expect = chai.expect;
 var Assertion = chai.Assertion;
@@ -17,12 +18,26 @@ describe('expression', function () {
   // Expect some expression string to evaluate to some set of values given some
   // set of inputs
   Assertion.addMethod('evaluateTo', function (testCases) {
-    var expression = new Expression({string: this._obj});
+    var assertion = this;
+    var expression = new Expression({string: assertion._obj});
     // Test each expression against the given permutations of variable values
     // and the expected outputs
     testCases.forEach(function (testCase) {
       var actualOutput = expression.evaluate(testCase.varValues);
-      expect(actualOutput).to.equal(testCase.output);
+      // String of current variable values for display in fail message
+      var varValuesStr = _.map(testCase.varValues, function (value, varName) {
+        return varName + ' is ' + value;
+      }).join(' and ');
+      assertion.assert(
+        // Condition
+        actualOutput === testCase.output,
+        // Message to show if affirmative assertion (to.*) test fails
+        'expected #{this} to evaluate to #{exp} but got #{act} (when ' + varValuesStr + ')',
+        // Message to show if negative assertion (not.to.*) test fails
+        'expected #{this} not to evaluate to #{act}',
+        testCase.output,
+        actualOutput
+      );
     });
   });
 
