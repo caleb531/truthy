@@ -69,12 +69,16 @@ App.Component.controller = function () {
     // Toggle reference sidebar between open/closed state according to the
     // control clicked
     toggleReference: function (ctrl, event) {
-      if (event.target.classList.contains('reference-open-control')) {
+      if (event.target.classList.contains('reference-open-control') && !ctrl.referenceIsOpen) {
         ctrl.referenceIsOpen = true;
         event.preventDefault();
-      } else if (event.target.classList.contains('reference-close-control')) {
+      } else if (event.target.classList.contains('reference-close-control') && ctrl.referenceIsOpen) {
         ctrl.referenceIsOpen = false;
         event.preventDefault();
+      } else {
+        // Stop unnecessary redraws on click, since the click event is bound to
+        // the entire #app container
+        m.redraw.strategy('none');
       }
     }
   };
