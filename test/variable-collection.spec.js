@@ -46,4 +46,22 @@ describe('variable collection', function () {
     expect(actualPermutations[3]).to.deep.equal(expectedPermutations[3]);
   });
 
+  describe('getNextVariableName', function () {
+
+    var variables = new VariableCollection({
+      items: [{name: 'q'}, {name: 's'}, {name: 'z'}, {name: 'a'}]
+    });
+
+    it('should find names in-between existing variables', function() {
+      expect(variables.getNextVariableName(variables.items[0])).to.equal('r');
+    });
+    it('should find next available name without wrapping', function() {
+      expect(variables.getNextVariableName(variables.items[1])).to.equal('t');
+    });
+    it('should wrap around to next available name as needed', function() {
+      expect(variables.getNextVariableName(variables.items[2])).to.equal('b');
+    });
+
+  });
+
 });
