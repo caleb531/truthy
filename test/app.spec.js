@@ -29,4 +29,13 @@ describe('app', function () {
     expect(app.expressions.items[1]).to.have.property('string', 'a nand b');
   });
 
+  it('should serialize to JSON object', function () {
+    var appJSON = {
+      variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
+      expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
+    };
+    var app = new App(appJSON);
+    expect(app.serialize()).to.deep.equal(appJSON);
+  });
+
 });
