@@ -102,7 +102,7 @@ Table.Component.view = function (ctrl, app) {
       })
     ])
   ),
-  m('tbody', nonEmptyVariables.forEachPermutation(function (varValues) {
+  m('tbody', nonEmptyVariables.mapPermutations(function (varValues) {
     return m('tr', [
       nonEmptyVariables.map(function(variable) {
         var varValue = varValues[variable.name];

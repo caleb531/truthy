@@ -21,9 +21,9 @@ VariableCollection.prototype.serialize = function () {
   };
 };
 
-// Iterate through all possible permutations of true/false values for this
-// collection of variables
-VariableCollection.prototype.forEachPermutation = function (callback) {
+// Transform all possible permutations of true/false values for this collection
+// of variables using the provided callback
+VariableCollection.prototype.mapPermutations = function (callback) {
   var variables = this;
   // An object where each key is a variable name and each value is a boolean
   // representing the current value of that variable
