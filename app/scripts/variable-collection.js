@@ -28,17 +28,15 @@ VariableCollection.prototype.mapPermutations = function (callback) {
   // An object where each key is a variable name and each value is a boolean
   // representing the current value of that variable
   var currentVarValues = _.object(variables.map(function (variable) {
-    // Variable values should be initialized to true because they will be
-    // inverted before the callback is called for the permutation, making the
-    // first permutation of variable values all false
-    return [variable.name, true];
+    // Initialize all variable values to false
+    return [variable.name, false];
   }));
   // If n corresponds to the number of variables, then there will always be 2^n
   // permutations to generate
   return _.times(Math.pow(2, variables.length), function (rowIndex) {
     variables.forEach(function (variable, varIndex) {
-      // Alternate current variable values as needed
-      if (rowIndex % Math.pow(2, variables.length - varIndex - 1) === 0) {
+      // Alternate variable values as needed (but not on the first permutation)
+      if (rowIndex % Math.pow(2, variables.length - varIndex - 1) === 0 && rowIndex !== 0) {
         currentVarValues[variable.name] = !currentVarValues[variable.name];
       }
     });
