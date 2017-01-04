@@ -30,12 +30,12 @@ describe('app', function () {
   });
 
   it('should serialize to JSON object', function () {
-    var appJSON = {
+    var serializedApp = {
       variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
       expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
     };
-    var app = new App(appJSON);
-    expect(app.serialize()).to.deep.equal(appJSON);
+    var app = new App(serializedApp);
+    expect(app.serialize()).to.deep.equal(serializedApp);
   });
 
 });

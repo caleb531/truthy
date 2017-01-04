@@ -16,12 +16,9 @@ describe('expression', function () {
   });
 
   it('should serialize to a JSON object', function () {
-    var expression = new Expression({
-      string: 'p xor q'
-    });
-    expect(expression.serialize()).to.deep.equal({
-      string: 'p xor q'
-    });
+    var serializedExpression = {string: 'p xor q'};
+    var expression = new Expression(serializedExpression);
+    expect(expression.serialize()).to.deep.equal(serializedExpression);
   });
 
   // Expect some expression string to evaluate to some set of values given some

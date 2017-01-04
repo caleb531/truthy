@@ -19,12 +19,9 @@ describe('variable collection', function () {
   });
 
   it('should serialize to a JSON object', function () {
-    var variables = new VariableCollection({
-      items: [{name: 'u'}, {name: 'v'}]
-    });
-    expect(variables.serialize()).to.deep.equal({
-      items: [{name: 'u'}, {name: 'v'}]
-    });
+    var serializedVariables = {items: [{name: 'u'}, {name: 'v'}]};
+    var variables = new VariableCollection(serializedVariables);
+    expect(variables.serialize()).to.deep.equal(serializedVariables);
   });
 
   it('should map variable permutations', function () {

@@ -13,12 +13,9 @@ describe('variable', function () {
   });
 
   it('should serialize to a JSON object', function () {
-    var variable = new Variable({
-      name: 'h'
-    });
-    expect(variable.serialize()).to.deep.equal({
-      name: 'h'
-    });
+    var serializedVariable = {name: 'h'};
+    var variable = new Variable(serializedVariable);
+    expect(variable.serialize()).to.deep.equal(serializedVariable);
   });
 
 });

@@ -18,12 +18,9 @@ describe('expression collection', function () {
   });
 
   it('should serialize to a JSON object', function () {
-    var expressions = new ExpressionCollection({
-      items: [{string: 'a xor b'}, {string: 's nand t'}]
-    });
-    expect(expressions.serialize()).to.deep.equal({
-      items: [{string: 'a xor b'}, {string: 's nand t'}]
-    });
+    var serializedExpressions = {items: [{string: '!a'}, {string: 's or t'}]};
+    var expressions = new ExpressionCollection(serializedExpressions);
+    expect(expressions.serialize()).to.deep.equal(serializedExpressions);
   });
 
 });
