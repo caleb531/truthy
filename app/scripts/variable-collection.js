@@ -18,6 +18,30 @@ VariableCollection.prototype.serialize = function () {
   };
 };
 
+// Iterate through all possible permutations of true/false values for this
+// collection of variables
+VariableCollection.prototype.forEachPermutation = function (callback) {
+  var variables = this;
+  var currentVarValues = {};
+  variables.forEach(function (variable) {
+    // Variable values should be initialized to true because they will be
+    // inverted before the callback is called for the permutation, making the
+    // first permutation of variable values all false
+    currentVarValues[variable.name] = true;
+  });
+  // If n corresponds to the number of variables, then there will always be 2^n
+  // permutations to generate
+  return _.times(Math.pow(2, variables.length), function (rowIndex) {
+    variables.forEach(function (variable, varIndex) {
+      // Alternate current variable values as needed
+      if (rowIndex % Math.pow(2, variables.length - varIndex - 1) === 0) {
+        currentVarValues[variable.name] = !currentVarValues[variable.name];
+      }
+    });
+    return callback(currentVarValues);
+  });
+};
+
 // Get the next available variable name for a new variable (to insert next to
 // the given variable)
 VariableCollection.prototype.getNextVariableName = function (variable) {
