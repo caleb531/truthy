@@ -8,10 +8,7 @@ describe('variable collection', function () {
 
   it('should initialize with list of variables', function () {
     var variables = new VariableCollection({
-      items: [
-        {name: 'u'},
-        {name: 'v'},
-      ]
+      items: [{name: 'u'}, {name: 'v'}]
     });
     expect(variables).to.have.property('items');
     expect(variables.items).to.have.length(2);
@@ -22,10 +19,10 @@ describe('variable collection', function () {
 
   it('should serialize to a JSON object', function () {
     var variables = new VariableCollection({
-      items: [{name: 'u'},{name: 'v'}]
+      items: [{name: 'u'}, {name: 'v'}]
     });
     expect(variables.serialize()).to.deep.equal({
-      items: [{name: 'u'},{name: 'v'}]
+      items: [{name: 'u'}, {name: 'v'}]
     });
   });
 
