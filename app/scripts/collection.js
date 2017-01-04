@@ -1,22 +1,22 @@
 'use strict';
 
-// A general container for any type of collection
+// A general container for any ordered sequence of items
 function Collection(SubCollectionItem, itemDicts) {
   var collection = this;
-  // A reference to the sub-collection's item constructor
+  // A reference to the constructor for the sub-collection's item type
   collection.SubCollectionItem = SubCollectionItem;
   collection.items = itemDicts.map(function (itemDict) {
     return new SubCollectionItem(itemDict);
   });
 }
 
-// Retrieve the collection item at the given index
 Collection.prototype.get = function (itemIndex) {
   return this.items[itemIndex];
 };
 
-// Insert the given collection item dictionary at the given index
 Collection.prototype.insert = function (itemIndex, itemDict) {
+  // This method will automatically convert the given property map into the
+  // correct item type for the sub-collection instance
   return this.items.splice(itemIndex, 0, new this.SubCollectionItem(itemDict));
 };
 
