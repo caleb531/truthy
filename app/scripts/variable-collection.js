@@ -106,6 +106,8 @@ VariableCollection.Component.controller = function () {
         ctrl.addVariable(ctrl, app, event);
       } else if (event.target.classList.contains('control-remove')) {
         ctrl.removeVariable(ctrl, app, event);
+      } else {
+        m.redraw.strategy('none');
       }
     }
   };

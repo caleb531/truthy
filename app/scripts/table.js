@@ -61,6 +61,8 @@ Table.Component.controller = function () {
         ctrl.addExpression(ctrl, app, event);
       } else if (event.target.classList.contains('control-remove')) {
         ctrl.removeExpression(ctrl, app, event);
+      } else {
+        m.redraw.strategy('none');
       }
     }
   };
