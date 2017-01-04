@@ -25,17 +25,19 @@ describe('expression', function () {
     testCases.forEach(function (testCase) {
       var actualOutput = expression.evaluate(testCase.varValues);
       // String of current variable values for display in fail message
-      var varValuesStr = _.map(testCase.varValues, function (value, varName) {
-        return varName + ' is ' + value;
+      var varValuesStr = _.map(testCase.varValues, function (varValue, varName) {
+        return varName + ' is ' + varValue;
       }).join(' and ');
       assertion.assert(
-        // Condition
+        // Condition to assert
         actualOutput === testCase.output,
-        // Message to show if affirmative assertion (to.*) test fails
+        // Message to output if affirmative assertion (to.*) fails
         'expected #{this} to evaluate to #{exp} but got #{act} (when ' + varValuesStr + ')',
-        // Message to show if negative assertion (not.to.*) test fails
-        'expected #{this} not to evaluate to #{act}',
+        // Message to output if negative assertion (not.to.*) fails
+        'expected #{this} not to evaluate to #{exp} (when ' + varValuesStr + ')',
+        // Expected value
         testCase.output,
+        // Actual value
         actualOutput
       );
     });
