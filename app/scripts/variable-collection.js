@@ -13,14 +13,6 @@ function VariableCollection(args) {
 }
 VariableCollection.prototype = Object.create(Collection.prototype);
 
-VariableCollection.prototype.serialize = function () {
-  return {
-    items: this.items.map(function (variable) {
-      return variable.serialize();
-    })
-  };
-};
-
 // Transform all possible permutations of true/false values for this collection
 // of variables using the provided callback
 VariableCollection.prototype.mapPermutations = function (callback) {

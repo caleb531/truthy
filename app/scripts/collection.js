@@ -48,4 +48,12 @@ Object.defineProperty(Collection.prototype, 'length', {
   }
 });
 
+Collection.prototype.serialize = function () {
+  return {
+    items: this.items.map(function (item) {
+      return item.serialize();
+    })
+  };
+};
+
 module.exports = Collection;

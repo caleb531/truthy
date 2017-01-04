@@ -11,12 +11,4 @@ function ExpressionCollection(args) {
 }
 ExpressionCollection.prototype = Object.create(Collection.prototype);
 
-ExpressionCollection.prototype.serialize = function () {
-  return {
-    items: this.items.map(function (expression) {
-      return expression.serialize();
-    })
-  };
-};
-
 module.exports = ExpressionCollection;

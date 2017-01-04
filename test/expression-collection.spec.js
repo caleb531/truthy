@@ -17,10 +17,4 @@ describe('expression collection', function () {
     });
   });
 
-  it('should serialize to a JSON object', function () {
-    var serializedExpressions = {items: [{string: '!a'}, {string: 's or t'}]};
-    var expressions = new ExpressionCollection(serializedExpressions);
-    expect(expressions.serialize()).to.deep.equal(serializedExpressions);
-  });
-
 });
