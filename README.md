@@ -3,6 +3,8 @@
 *Copyright 2017, Caleb Evans*  
 *Released under the MIT License*
 
+[![Build Status](https://travis-ci.org/caleb531/truthy.svg?branch=master)](https://travis-ci.org/caleb531/truthy)
+
 Truth tables have always been tedious and strenuous to create by hand; it's easy
 for your mind to lose track and for your hand to fatigue. Truthy is a web app
 designed to reduce this manual labor by automatically generating the truth
