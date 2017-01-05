@@ -10,6 +10,12 @@ module.exports = function (config) {
     frameworks: ['mocha'],
     preprocessors: {
       '**/*.js': ['sourcemap']
+    },
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
     }
   });
 };
