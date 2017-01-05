@@ -5,7 +5,7 @@
 module.exports = function (config) {
   config.set({
     basePath: 'public',
-    browsers: ['Chrome'],
+    browsers: [process.env.TRAVIS ? 'Chrome_travis_ci' : 'Chrome'],
     files: ['scripts/modules.js', 'scripts/test.js'],
     frameworks: ['mocha'],
     preprocessors: {
