@@ -9,5 +9,8 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 install:
   - npm install
+before_script:
+  - ./node_modules/brunch/bin/brunch build
+  - npm run generate-parser
 script:
   - node_modules/karma/bin/karma start karma.conf.js --single-run
