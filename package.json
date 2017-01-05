@@ -1,6 +1,6 @@
 {
   "name": "truthy",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0",
   "description": "Create truth tables without the pain",
   "scripts": {
     "generate-parser": "pegjs --cache --output app/scripts/expression.parser.js app/grammars/expression.pegjs",
