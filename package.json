@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "Create truth tables without the pain",
   "scripts": {
-    "generate-parser": "pegjs --cache --output app/scripts/expression.parser.js app/grammars/expression.pegjs",
+    "generate-parser": "pegjs --cache --output app/scripts/models/expression.parser.js app/grammars/expression.pegjs",
     "test": "karma start"
   },
   "repository": {

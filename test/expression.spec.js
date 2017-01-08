@@ -4,7 +4,7 @@ var _ = require('underscore');
 var chai = require('chai');
 var expect = chai.expect;
 var Assertion = chai.Assertion;
-var Expression = require('../app/scripts/expression');
+var Expression = require('../app/scripts/models/expression');
 
 describe('expression', function () {
 

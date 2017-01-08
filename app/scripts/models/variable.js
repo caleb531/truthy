@@ -3,7 +3,6 @@
 function Variable(args) {
   this.name = args.name;
 }
-Variable.validNamePattern = /^[A-Za-z]$/;
 
 Variable.prototype.serialize = function () {
   return {

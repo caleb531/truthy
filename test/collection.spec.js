@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var Collection = require('../app/scripts/collection');
+var Collection = require('../app/scripts/models/collection');
 
 describe('collection', function () {
 

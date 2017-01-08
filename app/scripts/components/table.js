@@ -4,25 +4,22 @@
 var m = require('mithril');
 var _ = require('underscore');
 var classNames = require('classnames');
-var VariableCollection = require('./variable-collection');
+var VariableCollection = require('../models/variable-collection');
 
-var Table = {};
+var TableComponent = {};
 
-// Get the string value of the given boolean for display in the truth table
-Table.getBoolStr = function (boolean) {
-  if (boolean === true) {
-    return 'T';
-  } else if (boolean === false) {
-    return 'F';
-  } else {
-    return '?';
-  }
-};
-
-Table.Component = {};
-
-Table.Component.controller = function () {
+TableComponent.controller = function () {
   return {
+    // Get the string value of the given boolean for display in the truth table
+    getBoolStr: function (boolean) {
+      if (boolean === true) {
+        return 'T';
+      } else if (boolean === false) {
+        return 'F';
+      } else {
+        return '?';
+      }
+    },
     getExpressionIndex: function (expressionElem) {
       var currentElem = expressionElem.parentNode.parentNode;
       var expressionIndex = -1;
@@ -68,7 +65,7 @@ Table.Component.controller = function () {
   };
 };
 
-Table.Component.view = function (ctrl, app) {
+TableComponent.view = function (ctrl, app) {
   var nonEmptyVariables = new VariableCollection({
     items: app.variables.filter(function (variable) {
       return variable.name !== '';
@@ -112,7 +109,7 @@ Table.Component.view = function (ctrl, app) {
             {false: varValue === false}
           )
         },
-        Table.getBoolStr(varValue));
+        ctrl.getBoolStr(varValue));
       }),
       app.expressions.map(function(expression) {
         var exprValue;
@@ -132,11 +129,11 @@ Table.Component.view = function (ctrl, app) {
             {true: exprValue === true},
             {false: exprValue === false}
           )
-        }, Table.getBoolStr(exprValue));
+        }, ctrl.getBoolStr(exprValue));
       })
     ]);
   }))
 ]);
 };
 
-module.exports = Table;
+module.exports = TableComponent;

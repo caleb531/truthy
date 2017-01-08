@@ -2,7 +2,7 @@
 
 var m = require('mithril');
 var attachFastClick = require('fastclick');
-var App = require('./app');
+var AppComponent = require('./components/app');
 
-m.mount(document.querySelector('main'), App.Component);
+m.mount(document.querySelector('main'), AppComponent);
 attachFastClick(document.body);

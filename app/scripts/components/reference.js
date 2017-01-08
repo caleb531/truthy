@@ -3,10 +3,10 @@
 var m = require('mithril');
 var classNames = require('classnames');
 
-var Reference = {};
+var ReferenceComponent = {};
 
 // Reference data for all operations supported by Truthy
-Reference.features = [
+ReferenceComponent.features = [
   {
     name: 'NOT',
     examples: ['not p', '!p']
@@ -45,9 +45,7 @@ Reference.features = [
   }
 ];
 
-Reference.Component = {};
-
-Reference.Component.view = function (ctrl, referenceIsOpen) {
+ReferenceComponent.view = function (ctrl, referenceIsOpen) {
   return m('div#reference', {
     class: classNames(
       'reference-close-control',
@@ -59,7 +57,7 @@ Reference.Component.view = function (ctrl, referenceIsOpen) {
         alt: 'Close'
       }),
       m('h2', 'App Reference'),
-      Reference.features.map(function (feature) {
+      ReferenceComponent.features.map(function (feature) {
         return m('div.feature', [
           m('h3', feature.name),
           feature.examples.map(function (example) {
@@ -71,4 +69,4 @@ Reference.Component.view = function (ctrl, referenceIsOpen) {
   );
 };
 
-module.exports = Reference;
+module.exports = ReferenceComponent;
