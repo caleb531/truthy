@@ -14,5 +14,3 @@ install:
 before_script:
   - npm run generate-parser
   - ./node_modules/brunch/bin/brunch build
-script:
-  - ./node_modules/karma/bin/karma start --single-run

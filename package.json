@@ -4,7 +4,7 @@
   "description": "Create truth tables without the pain",
   "scripts": {
     "generate-parser": "pegjs --cache --output app/scripts/models/expression.parser.js app/grammars/expression.pegjs",
-    "test": "karma start --single-run"
+    "test": "karma start --single-run --reporters dots"
   },
   "repository": {
     "type": "git",
