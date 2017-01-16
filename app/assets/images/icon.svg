@@ -1,0 +1,17 @@
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <rect id="truthy-false-value" width="12" height="12" x="-6" y="-6" rx="1" ry="1" fill="#d44" stroke="#a11" stroke-width="1" />
+    <circle id="truthy-true-value" r="6" fill="#7d3" stroke="#4a0" stroke-width="1" />
+  </defs>
+  <!-- table values -->
+  <g>
+    <!-- top-left -->
+    <use xlink:href="#truthy-true-value" x="8" y="8" />
+    <!-- top-right -->
+    <use xlink:href="#truthy-false-value" x="24" y="8" />
+    <!-- bottom-left -->
+    <use xlink:href="#truthy-false-value" x="8" y="24" />
+    <!-- bottom-right -->
+    <use xlink:href="#truthy-true-value" x="24" y="24" />
+  </g>
+</svg>
