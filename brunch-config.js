@@ -2,7 +2,7 @@
 // See http://brunch.io for documentation.
 'use strict';
 
-var modules = ['app/scripts/**/*.js', /^node_modules/];
+var modules = ['app/scripts/**/*.pegjs', 'app/scripts/**/*.js', /^node_modules/];
 module.exports = {
   files: {
     javascripts: {
@@ -35,6 +35,11 @@ module.exports = {
     }
   },
   plugins: {
+    pegjs: {
+      cache: true,
+      output: 'source',
+      format: 'commonjs'
+    },
     postcss: {
       processors: [
         require('autoprefixer')({
