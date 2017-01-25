@@ -12,5 +12,4 @@ before_install:
 install:
   - npm install
 before_script:
-  - npm run generate-parser
   - ./node_modules/brunch/bin/brunch build
