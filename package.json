@@ -3,7 +3,6 @@
   "version": "3.0.0",
   "description": "Create truth tables without the pain",
   "scripts": {
-    "generate-parser": "pegjs --cache --output app/scripts/models/expression.parser.js app/grammars/expression.pegjs",
     "test": "karma start --single-run --reporters dots"
   },
   "repository": {
@@ -37,6 +36,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "mocha": "^3.2.0",
     "pegjs": "^0.10.0",
+    "pegjs-brunch": "file:./pegjs-brunch",
     "postcss-brunch": "jacksonrayhamilton/postcss-brunch#27ae06f5275079fb4fe6a24e09daa272141bec94",
     "sass-brunch": "^2.9.0",
     "uglify-js-brunch": "^2.0.1"

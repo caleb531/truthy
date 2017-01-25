@@ -35,19 +35,7 @@ From the cloned project directory, run:
 npm install
 ```
 
-### 3. Generate parser
-
-To generate the application's expression parser from the project grammar file,
-run:
-
-```bash
-npm run generate-parser
-```
-
-Please note that you must regenerate the expression parser (as above) every time
-you make a change to the grammar (`app/grammars/expression.pegjs`).
-
-### 4. Serve app locally
+### 3. Serve app locally
 
 To serve the app locally, run:
 
