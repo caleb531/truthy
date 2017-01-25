@@ -37,7 +37,6 @@ module.exports = {
   plugins: {
     pegjs: {
       cache: true,
-      output: 'source',
       format: 'commonjs'
     },
     postcss: {
