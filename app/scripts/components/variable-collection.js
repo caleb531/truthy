@@ -1,7 +1,6 @@
 'use strict';
 
 var m = require('mithril');
-var _ = require('underscore');
 
 var VariableCollectionComponent = {};
 
@@ -56,8 +55,8 @@ VariableCollectionComponent.controller = function () {
 
 VariableCollectionComponent.view = function (ctrl, app) {
   return m('div#variables', {
-    onclick: _.partial(ctrl.handleControls, ctrl, app),
-    oninput: _.partial(ctrl.updateVariableName, ctrl, app)
+    onclick: ctrl.handleControls,
+    oninput: ctrl.updateVariableName
   }, app.variables.map(function (variable) {
     return m('div.variable', m('div.has-controls', [
       m('div.control.control-add'),

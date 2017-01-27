@@ -2,7 +2,6 @@
 'use strict';
 
 var m = require('mithril');
-var _ = require('underscore');
 var classNames = require('classnames');
 var VariableCollection = require('../models/variable-collection');
 
@@ -76,8 +75,8 @@ TableComponent.view = function (ctrl, app) {
   var invalidExpressionCache = {};
   return m('table#truth-table', [
     m('thead', m('tr', {
-      onclick: _.partial(ctrl.handleControls, ctrl, app),
-      oninput: _.partial(ctrl.updateExpressionString, ctrl, app)
+      onclick: ctrl.handleControls,
+      oninput: ctrl.updateExpressionString
     }, [
       nonEmptyVariables.map(function (variable) {
         return m('th.variable', variable.name);

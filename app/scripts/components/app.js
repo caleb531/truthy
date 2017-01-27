@@ -1,7 +1,6 @@
 'use strict';
 
 var m = require('mithril');
-var _ = require('underscore');
 var App = require('../models/app');
 var ReferenceComponent = require('./reference');
 var VariableCollectionComponent = require('./variable-collection');
@@ -10,12 +9,12 @@ var TableComponent = require('./table');
 var AppComponent = {};
 
 AppComponent.controller = function () {
-  return {
+  var ctrl = {
     app: App.restore(),
     referenceIsOpen: false,
     // Toggle reference sidebar between open/closed state according to the
     // control clicked
-    toggleReference: function (ctrl, event) {
+    toggleReference: function (event) {
       if (event.target.classList.contains('reference-open-control') && !ctrl.referenceIsOpen) {
         ctrl.referenceIsOpen = true;
         event.preventDefault();
@@ -29,10 +28,11 @@ AppComponent.controller = function () {
       }
     }
   };
+  return ctrl;
 };
 
 AppComponent.view = function (ctrl) {
-  return m('div#app', {onclick: _.partial(ctrl.toggleReference, ctrl)}, [
+  return m('div#app', {onclick: ctrl.toggleReference}, [
     m('span#reference-link.nav-link.nav-link-left',
       m('a[href=#].reference-open-control', 'App Reference')
     ),
