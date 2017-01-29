@@ -4,8 +4,8 @@ var m = require('mithril');
 
 var VariableCollectionComponent = {};
 
-VariableCollectionComponent.controller = function () {
-  return {
+VariableCollectionComponent.controller = function (app) {
+  var ctrl = {
     validNamePattern: /^[A-Za-z]$/,
     getVariableIndex: function (variableElem) {
       var currentElem = variableElem.parentNode.parentNode;
@@ -16,14 +16,14 @@ VariableCollectionComponent.controller = function () {
       } while (currentElem !== null && currentElem.classList.contains('variable'));
       return variableIndex;
     },
-    updateVariableName: function (ctrl, app, event) {
+    updateVariableName: function (event) {
       if (ctrl.validNamePattern.test(event.target.value) || event.target.value === '') {
         var variable = app.variables.get(ctrl.getVariableIndex(event.target));
         variable.name = event.target.value;
         app.save();
       }
     },
-    addVariable: function (ctrl, app, event) {
+    addVariable: function (event) {
       var variableIndex = ctrl.getVariableIndex(event.target);
       var variable = app.variables.get(variableIndex);
       app.variables.insert(variableIndex + 1, {
@@ -37,20 +37,21 @@ VariableCollectionComponent.controller = function () {
         .querySelector('input').focus();
       app.save();
     },
-    removeVariable: function (ctrl, app, event) {
+    removeVariable: function (event) {
       app.variables.remove(ctrl.getVariableIndex(event.target));
       app.save();
     },
-    handleControls: function (ctrl, app, event) {
+    handleControls: function (event) {
       if (event.target.classList.contains('control-add')) {
-        ctrl.addVariable(ctrl, app, event);
+        ctrl.addVariable(event);
       } else if (event.target.classList.contains('control-remove')) {
-        ctrl.removeVariable(ctrl, app, event);
+        ctrl.removeVariable(event);
       } else {
         m.redraw.strategy('none');
       }
     }
   };
+  return ctrl;
 };
 
 VariableCollectionComponent.view = function (ctrl, app) {

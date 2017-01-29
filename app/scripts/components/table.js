@@ -7,8 +7,8 @@ var VariableCollection = require('../models/variable-collection');
 
 var TableComponent = {};
 
-TableComponent.controller = function () {
-  return {
+TableComponent.controller = function (app) {
+  var ctrl = {
     // Get the string value of the given boolean for display in the truth table
     getBoolStr: function (boolean) {
       if (boolean === true) {
@@ -28,12 +28,12 @@ TableComponent.controller = function () {
       } while (currentElem !== null && currentElem.classList.contains('expression'));
       return expressionIndex;
     },
-    updateExpressionString: function (ctrl, app, event) {
+    updateExpressionString: function (event) {
       var expression = app.expressions.get(ctrl.getExpressionIndex(event.target));
       expression.string = event.target.value;
       app.save();
     },
-    addExpression: function (ctrl, app, event) {
+    addExpression: function (event) {
       var expressionIndex = ctrl.getExpressionIndex(event.target);
       var expression = app.expressions.get(expressionIndex);
       app.expressions.insert(expressionIndex + 1, {
@@ -48,20 +48,21 @@ TableComponent.controller = function () {
         .querySelector('input').focus();
       app.save();
     },
-    removeExpression: function (ctrl, app, event) {
+    removeExpression: function (event) {
       app.expressions.remove(ctrl.getExpressionIndex(event.target));
       app.save();
     },
-    handleControls: function (ctrl, app, event) {
+    handleControls: function (event) {
       if (event.target.classList.contains('control-add')) {
-        ctrl.addExpression(ctrl, app, event);
+        ctrl.addExpression(event);
       } else if (event.target.classList.contains('control-remove')) {
-        ctrl.removeExpression(ctrl, app, event);
+        ctrl.removeExpression(event);
       } else {
         m.redraw.strategy('none');
       }
     }
   };
+  return ctrl;
 };
 
 TableComponent.view = function (ctrl, app) {
