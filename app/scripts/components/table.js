@@ -7,8 +7,10 @@ var VariableCollection = require('../models/variable-collection');
 
 var TableComponent = {};
 
-TableComponent.controller = function (app) {
-  var ctrl = {
+TableComponent.oninit = function (vnode) {
+  var app = vnode.attrs.app;
+  var state = vnode.state;
+  Object.assign(state, {
     // Get the string value of the given boolean for display in the truth table
     getBoolStr: function (boolean) {
       if (boolean === true) {
@@ -29,12 +31,12 @@ TableComponent.controller = function (app) {
       return expressionIndex;
     },
     updateExpressionString: function (event) {
-      var expression = app.expressions.get(ctrl.getExpressionIndex(event.target));
+      var expression = app.expressions.get(state.getExpressionIndex(event.target));
       expression.string = event.target.value;
       app.save();
     },
     addExpression: function (event) {
-      var expressionIndex = ctrl.getExpressionIndex(event.target);
+      var expressionIndex = state.getExpressionIndex(event.target);
       var expression = app.expressions.get(expressionIndex);
       app.expressions.insert(expressionIndex + 1, {
         string: expression.string
@@ -49,23 +51,24 @@ TableComponent.controller = function (app) {
       app.save();
     },
     removeExpression: function (event) {
-      app.expressions.remove(ctrl.getExpressionIndex(event.target));
+      app.expressions.remove(state.getExpressionIndex(event.target));
       app.save();
     },
     handleControls: function (event) {
       if (event.target.classList.contains('control-add')) {
-        ctrl.addExpression(event);
+        state.addExpression(event);
       } else if (event.target.classList.contains('control-remove')) {
-        ctrl.removeExpression(event);
+        state.removeExpression(event);
       } else {
-        m.redraw.strategy('none');
+        event.redraw = false;
       }
     }
-  };
-  return ctrl;
+  });
 };
 
-TableComponent.view = function (ctrl, app) {
+TableComponent.view = function (vnode) {
+  var app = vnode.attrs.app;
+  var state = vnode.state;
   var nonEmptyVariables = new VariableCollection({
     items: app.variables.filter(function (variable) {
       return variable.name !== '';
@@ -76,8 +79,8 @@ TableComponent.view = function (ctrl, app) {
   var invalidExpressionCache = {};
   return m('table#truth-table', [
     m('thead', m('tr', {
-      onclick: ctrl.handleControls,
-      oninput: ctrl.updateExpressionString
+      onclick: state.handleControls,
+      oninput: state.updateExpressionString
     }, [
       nonEmptyVariables.map(function (variable) {
         return m('th.variable', variable.name);
@@ -109,7 +112,7 @@ TableComponent.view = function (ctrl, app) {
             {false: varValue === false}
           )
         },
-        ctrl.getBoolStr(varValue));
+        state.getBoolStr(varValue));
       }),
       app.expressions.map(function(expression) {
         var exprValue;
@@ -129,7 +132,7 @@ TableComponent.view = function (ctrl, app) {
             {true: exprValue === true},
             {false: exprValue === false}
           )
-        }, ctrl.getBoolStr(exprValue));
+        }, state.getBoolStr(exprValue));
       })
     ]);
   }))
