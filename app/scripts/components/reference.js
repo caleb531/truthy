@@ -45,7 +45,8 @@ ReferenceComponent.features = [
   }
 ];
 
-ReferenceComponent.view = function (ctrl, referenceIsOpen) {
+ReferenceComponent.view = function (vnode) {
+  var referenceIsOpen = vnode.attrs.referenceIsOpen;
   return m('div#reference', {
     class: classNames(
       'reference-close-control',

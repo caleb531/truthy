@@ -8,31 +8,32 @@ var TableComponent = require('./table');
 
 var AppComponent = {};
 
-AppComponent.controller = function () {
-  var ctrl = {
+AppComponent.oninit = function (vnode) {
+  var state = vnode.state;
+  Object.assign(state, {
     app: App.restore(),
     referenceIsOpen: false,
     // Toggle reference sidebar between open/closed state according to the
     // control clicked
     toggleReference: function (event) {
-      if (event.target.classList.contains('reference-open-control') && !ctrl.referenceIsOpen) {
-        ctrl.referenceIsOpen = true;
+      if (event.target.classList.contains('reference-open-control') && !state.referenceIsOpen) {
+        state.referenceIsOpen = true;
         event.preventDefault();
-      } else if (event.target.classList.contains('reference-close-control') && ctrl.referenceIsOpen) {
-        ctrl.referenceIsOpen = false;
+      } else if (event.target.classList.contains('reference-close-control') && state.referenceIsOpen) {
+        state.referenceIsOpen = false;
         event.preventDefault();
       } else {
         // Stop unnecessary redraws on click, since the click event is bound to
         // the entire #app container
-        m.redraw.strategy('none');
+        event.redraw = false;
       }
     }
-  };
-  return ctrl;
+  });
 };
 
-AppComponent.view = function (ctrl) {
-  return m('div#app', {onclick: ctrl.toggleReference}, [
+AppComponent.view = function (vnode) {
+  var state = vnode.state;
+  return m('div#app', {onclick: state.toggleReference}, [
     m('span#reference-link.nav-link.nav-link-left',
       m('a[href=#].reference-open-control', 'App Reference')
     ),
@@ -40,11 +41,11 @@ AppComponent.view = function (ctrl) {
       'by ', m('a[href=https://calebevans.me/]', 'Caleb Evans')
     ]),
     m('h1', 'Truthy'),
-    m(ReferenceComponent, ctrl.referenceIsOpen),
+    m(ReferenceComponent, {referenceIsOpen: state.referenceIsOpen}),
     m('h2', 'Variables'),
-    m(VariableCollectionComponent, ctrl.app),
+    m(VariableCollectionComponent, state),
     m('h2', 'Table'),
-    m('div.scrollable-container', m(TableComponent, ctrl.app)),
+    m('div.scrollable-container', m(TableComponent, state)),
     m('p', [
       'Like Truthy? ',
       m('a[href=https://github.com/caleb531/truthy]', 'Star it on GitHub!')
