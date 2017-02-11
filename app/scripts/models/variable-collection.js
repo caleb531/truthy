@@ -12,6 +12,14 @@ function VariableCollection(args) {
 }
 VariableCollection.prototype = Object.create(Collection.prototype);
 
+// Return true if a variable with the given name does not exist in the
+// collection; otherwise, return false
+VariableCollection.prototype.checkNameAvailability = function (variableName) {
+  return !_.some(this.items, function (variable) {
+    return (variable.name === variableName);
+  });
+};
+
 // Transform all possible permutations of true/false values for this collection
 // of variables using the provided callback
 VariableCollection.prototype.mapPermutations = function (callback) {

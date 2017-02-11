@@ -19,7 +19,9 @@ VariableCollectionComponent.oninit = function (vnode) {
       return variableIndex;
     },
     updateVariableName: function (event) {
-      if (state.validNamePattern.test(event.target.value) || event.target.value === '') {
+      // Only update variable name if name is syntactically valid and if name is
+      // not already in use
+      if (event.target.value === '' || (state.validNamePattern.test(event.target.value) && app.variables.checkNameAvailability(event.target.value))) {
         var variable = app.variables.get(state.getVariableIndex(event.target));
         variable.name = event.target.value;
         app.save();
