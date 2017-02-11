@@ -55,7 +55,7 @@ VariableCollection.prototype.getNextVariableName = function (variable) {
   do {
     nextVarCharCode += 1;
     // Wrap variable name around alphabet if necessary (e.g. 'z' wraps around to
-    // 'z')
+    // 'a')
     if (nextVarCharCode === 91 || nextVarCharCode === 123) {
       nextVarCharCode = nextVarCharCode - 26;
     }
