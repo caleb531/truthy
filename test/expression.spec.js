@@ -56,6 +56,12 @@ describe('expression', function () {
         {varValues: {p: true}, output: true}
       ]);
     });
+    it('may be uppercase', function () {
+      expect('P').to.evaluateTo([
+        {varValues: {P: false}, output: false},
+        {varValues: {P: true}, output: true}
+      ]);
+    });
     it('should be case-sensitive', function () {
       expect('p').to.evaluateTo([
         {varValues: {P: false}, output: null},
