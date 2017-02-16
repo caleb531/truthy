@@ -104,7 +104,7 @@ TableComponent.view = function (vnode) {
   ),
   m('tbody', nonEmptyVariables.mapPermutations(function (varValues) {
     return m('tr', [
-      nonEmptyVariables.map(function(variable) {
+      nonEmptyVariables.map(function (variable) {
         var varValue = varValues[variable.name];
         return m('td', {
           class: classNames(
@@ -114,7 +114,7 @@ TableComponent.view = function (vnode) {
         },
         state.getBoolStr(varValue));
       }),
-      app.expressions.map(function(expression) {
+      app.expressions.map(function (expression) {
         var exprValue;
         // Don't re-evaluate expression if it is known to be invalid
         if (expression.string in invalidExpressionCache) {
