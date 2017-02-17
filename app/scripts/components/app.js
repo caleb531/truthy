@@ -48,7 +48,7 @@ AppComponent.view = function (vnode) {
     m('div.scrollable-container', m(TableComponent, state)),
     m('p', [
       'Like Truthy? ',
-      m('a[href=https://github.com/caleb531/truthy]', 'Star it on GitHub!')
+      m('a[href=https://github.com/caleb531/truthy]', 'Check it out on GitHub!')
     ])
   ]);
 };
