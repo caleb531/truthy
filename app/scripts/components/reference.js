@@ -52,7 +52,7 @@ ReferenceComponent.view = function (vnode) {
       'reference-close-control',
       {'reference-is-open': referenceIsOpen}
     )
-  }, m('#reference-sidebar', [
+  }, m('#reference-sidebar.scrollable-container', [
       m('img.reference-close-control', {
         src: 'icons/close.svg',
         alt: 'Close'
