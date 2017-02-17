@@ -1,24 +1,11 @@
 // Styling for truth tables and expressions
 
-$table-border: solid 1px #222;
+$table-border: solid 1px #000;
 table {
   margin: 0 auto;
   border: $table-border;
   border-spacing: 0;
   border-collapse: collapse;
-}
-
-// Alternate row colors for better contrast
-tr {
-  &:nth-child(odd) {
-    background-color: rgba(#000, 0.2);
-  }
-  &:nth-child(even) {
-    background-color: rgba(#000, 0.4);
-  }
-  tbody &:hover {
-    background-color: rgba(#fff, 0.1);
-  }
 }
 
 th, td {
@@ -27,7 +14,7 @@ th, td {
 // Set darker background for table head cells
 th {
   border-bottom: $table-border;
-  background-color: rgba(#000, 0.4);
+  background-color: #111;
   font-weight: 400;
   &.expression {
     input[type='text'] {
@@ -37,9 +24,16 @@ th {
 }
 
 // Highlight styles for various expression values
-td.true {
-  background-color: rgba(#6a6, 0.5);
-}
-td.false {
-  background-color: rgba(#c33, 0.5);
+$value-colors: (
+  true: #583,
+  false: #a33,
+  invalid: #444
+);
+@each $value-name, $value-color in $value-colors {
+  td.#{$value-name} {
+    background-color: $value-color;
+    tr:nth-child(even) & {
+      background-color: darken($value-color, 4%);
+    }
+  }
 }

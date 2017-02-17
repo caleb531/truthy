@@ -130,7 +130,8 @@ TableComponent.view = function (vnode) {
         return m('td', {
           class: classNames(
             {true: exprValue === true},
-            {false: exprValue === false}
+            {false: exprValue === false},
+            {invalid: exprValue === null}
           )
         }, state.getBoolStr(exprValue));
       })
