@@ -30,37 +30,37 @@ TableComponent.oninit = function (vnode) {
       } while (currentElem !== null && currentElem.classList.contains('expression'));
       return expressionIndex;
     },
-    updateExpressionString: function (event) {
-      var expression = app.expressions.get(state.getExpressionIndex(event.target));
-      expression.string = event.target.value;
+    updateExpressionString: function (clickEvent) {
+      var expression = app.expressions.get(state.getExpressionIndex(clickEvent.target));
+      expression.string = clickEvent.target.value;
       app.save();
     },
-    addExpression: function (event) {
-      var expressionIndex = state.getExpressionIndex(event.target);
+    addExpression: function (clickEvent) {
+      var expressionIndex = state.getExpressionIndex(clickEvent.target);
       var expression = app.expressions.get(expressionIndex);
       app.expressions.insert(expressionIndex + 1, {
         string: expression.string
       });
       // Redraw the view to ensire the new expression element exists
       m.redraw();
-      event.target
+      clickEvent.target
         .parentNode
         .parentNode
         .nextElementSibling
         .querySelector('input').focus();
       app.save();
     },
-    removeExpression: function (event) {
-      app.expressions.remove(state.getExpressionIndex(event.target));
+    removeExpression: function (clickEvent) {
+      app.expressions.remove(state.getExpressionIndex(clickEvent.target));
       app.save();
     },
-    handleControls: function (event) {
-      if (event.target.classList.contains('control-add')) {
-        state.addExpression(event);
-      } else if (event.target.classList.contains('control-remove')) {
-        state.removeExpression(event);
+    handleControls: function (clickEvent) {
+      if (clickEvent.target.classList.contains('control-add')) {
+        state.addExpression(clickEvent);
+      } else if (clickEvent.target.classList.contains('control-remove')) {
+        state.removeExpression(clickEvent);
       } else {
-        event.redraw = false;
+        clickEvent.redraw = false;
       }
     }
   });

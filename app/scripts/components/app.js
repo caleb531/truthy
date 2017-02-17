@@ -15,17 +15,17 @@ AppComponent.oninit = function (vnode) {
     referenceIsOpen: false,
     // Toggle reference sidebar between open/closed state according to the
     // control clicked
-    toggleReference: function (event) {
-      if (event.target.classList.contains('reference-open-control') && !state.referenceIsOpen) {
+    toggleReference: function (clickEvent) {
+      if (clickEvent.target.classList.contains('reference-open-control') && !state.referenceIsOpen) {
         state.referenceIsOpen = true;
-        event.preventDefault();
-      } else if (event.target.classList.contains('reference-close-control') && state.referenceIsOpen) {
+        clickEvent.preventDefault();
+      } else if (clickEvent.target.classList.contains('reference-close-control') && state.referenceIsOpen) {
         state.referenceIsOpen = false;
-        event.preventDefault();
+        clickEvent.preventDefault();
       } else {
         // Stop unnecessary redraws on click, since the click event is bound to
         // the entire #app container
-        event.redraw = false;
+        clickEvent.redraw = false;
       }
     }
   });

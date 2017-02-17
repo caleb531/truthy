@@ -18,40 +18,40 @@ VariableCollectionComponent.oninit = function (vnode) {
       } while (currentElem !== null && currentElem.classList.contains('variable'));
       return variableIndex;
     },
-    updateVariableName: function (event) {
+    updateVariableName: function (clickEvent) {
       // Only update variable name if name is syntactically valid and if name is
       // not already in use
-      if (event.target.value === '' || (state.validNamePattern.test(event.target.value) && app.variables.checkNameAvailability(event.target.value))) {
-        var variable = app.variables.get(state.getVariableIndex(event.target));
-        variable.name = event.target.value;
+      if (clickEvent.target.value === '' || (state.validNamePattern.test(clickEvent.target.value) && app.variables.checkNameAvailability(clickEvent.target.value))) {
+        var variable = app.variables.get(state.getVariableIndex(clickEvent.target));
+        variable.name = clickEvent.target.value;
         app.save();
       }
     },
-    addVariable: function (event) {
-      var variableIndex = state.getVariableIndex(event.target);
+    addVariable: function (clickEvent) {
+      var variableIndex = state.getVariableIndex(clickEvent.target);
       var variable = app.variables.get(variableIndex);
       app.variables.insert(variableIndex + 1, {
         name: app.variables.getNextVariableName(variable)
       });
       m.redraw();
-      event.target
+      clickEvent.target
         .parentNode
         .parentNode
         .nextElementSibling
         .querySelector('input').focus();
       app.save();
     },
-    removeVariable: function (event) {
-      app.variables.remove(state.getVariableIndex(event.target));
+    removeVariable: function (clickEvent) {
+      app.variables.remove(state.getVariableIndex(clickEvent.target));
       app.save();
     },
-    handleControls: function (event) {
-      if (event.target.classList.contains('control-add')) {
-        state.addVariable(event);
-      } else if (event.target.classList.contains('control-remove')) {
-        state.removeVariable(event);
+    handleControls: function (clickEvent) {
+      if (clickEvent.target.classList.contains('control-add')) {
+        state.addVariable(clickEvent);
+      } else if (clickEvent.target.classList.contains('control-remove')) {
+        state.removeVariable(clickEvent);
       } else {
-        event.redraw = false;
+        clickEvent.redraw = false;
       }
     }
   });

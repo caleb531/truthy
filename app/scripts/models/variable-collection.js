@@ -44,14 +44,14 @@ VariableCollection.prototype.mapPermutations = function (callback) {
 };
 
 // Get the next available variable name for a new variable (to insert next to
-// the given variable)
-VariableCollection.prototype.getNextVariableName = function (variable) {
+// the given base variable)
+VariableCollection.prototype.getNextVariableName = function (baseVariable) {
   // Create a list of variable names already in use
   var variableCharCodes = this.map(function (variable) {
     return variable.name.charCodeAt(0);
   });
   // Look for the next letter that isn't already in use
-  var nextVarCharCode = variable.name.charCodeAt(0);
+  var nextVarCharCode = baseVariable.name.charCodeAt(0);
   do {
     nextVarCharCode += 1;
     // Wrap variable name around alphabet if necessary (e.g. 'z' wraps around to
