@@ -14,6 +14,9 @@ main {
 }
 #app {
   text-align: center;
+  h1 {
+    margin-top: 30px;
+  }
 }
 h1, h2, h3 {
   font-weight: 400;
@@ -23,9 +26,9 @@ a {
 }
 .nav-link {
   position: absolute;
-  top: 6px;
+  top: 8px;
   font-size: 14px;
-  $position-x: 8px;
+  $position-x: 10px;
   &-left {
     left: $position-x;
   }
