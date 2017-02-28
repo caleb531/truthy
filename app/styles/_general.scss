@@ -2,6 +2,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: #222;
+  background-image: url('../images/grid-bg.svg');
+  background-size: 11px;
+  background-attachment: fixed;
   text-align: center;
   font-family: $sans-serif;
   font-weight: 300;

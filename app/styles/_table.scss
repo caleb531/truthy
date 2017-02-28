@@ -14,7 +14,7 @@ th, td {
 // Set darker background for table head cells
 th {
   border-bottom: $table-border;
-  background-color: #111;
+  background-color: lighten(#111, 4%);
   font-weight: 400;
   &.expression {
     input[type='text'] {
