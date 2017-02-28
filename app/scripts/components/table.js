@@ -47,7 +47,7 @@ TableComponent.oninit = function (vnode) {
         .parentNode
         .parentNode
         .nextElementSibling
-        .querySelector('input').select();
+        .querySelector('input').focus();
       app.save();
     },
     removeExpression: function (clickEvent) {
