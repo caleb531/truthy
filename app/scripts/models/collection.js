@@ -1,6 +1,6 @@
 'use strict';
 
-// A general container for any ordered sequence of items
+// An abstract base model for defining any type of ordered sequence
 function Collection(args) {
   // A reference to the constructor for the sub-collection's item type
   this.SubCollectionItem = args.SubCollectionItem;

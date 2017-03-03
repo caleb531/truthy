@@ -1,4 +1,4 @@
-// Grammar for Truthy boolean expressions
+// Formal context-free grammar for an Expression string
 
 Expression 'Boolean Expression'
   = WS* expression:OperationImplication WS* {

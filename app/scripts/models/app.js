@@ -4,6 +4,8 @@ var _ = require('underscore');
 var VariableCollection = require('./variable-collection');
 var ExpressionCollection = require('./expression-collection');
 
+// A singleton representing the core state of the application, including
+// variables and expressions
 function App(args) {
   if (args && args.variables) {
     this.variables = new VariableCollection(args.variables);

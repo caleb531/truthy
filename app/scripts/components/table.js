@@ -1,10 +1,10 @@
-// Truth table functions and view
 'use strict';
 
 var m = require('mithril');
 var classNames = require('classnames');
 var VariableCollection = require('../models/variable-collection');
 
+// The truth table UI, including all created expressions and their table values
 var TableComponent = {};
 
 TableComponent.oninit = function (vnode) {

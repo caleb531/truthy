@@ -6,6 +6,7 @@ var ReferenceComponent = require('./reference');
 var VariableCollectionComponent = require('./variable-collection');
 var TableComponent = require('./table');
 
+// The entire application UI, including static and dynamic app elements
 var AppComponent = {};
 
 AppComponent.oninit = function (vnode) {

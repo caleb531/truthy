@@ -3,6 +3,7 @@
 var m = require('mithril');
 var classNames = require('classnames');
 
+// The application reference sidebar (listing supported syntax/operations)
 var ReferenceComponent = {};
 
 // Reference data for all operations supported by Truthy

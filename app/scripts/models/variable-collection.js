@@ -4,6 +4,8 @@ var _ = require('underscore');
 var Collection = require('./collection');
 var Variable = require('./variable');
 
+// An ordered sequence of variables; every variable collection inherits from the
+// base Collection model
 function VariableCollection(args) {
   Collection.call(this, {
     SubCollectionItem: Variable,

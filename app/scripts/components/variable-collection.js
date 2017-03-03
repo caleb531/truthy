@@ -2,6 +2,8 @@
 
 var m = require('mithril');
 
+// The variable collection UI that displays all variables available to the truth
+// table
 var VariableCollectionComponent = {};
 
 VariableCollectionComponent.oninit = function (vnode) {
