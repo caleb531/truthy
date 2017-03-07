@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('underscore');
 var m = require('mithril');
 var classNames = require('classnames');
 var VariableCollection = require('../models/variable-collection');
@@ -10,7 +11,7 @@ var TableComponent = {};
 TableComponent.oninit = function (vnode) {
   var app = vnode.attrs.app;
   var state = vnode.state;
-  Object.assign(state, {
+  _.extend(state, {
     // Get the string value of the given boolean for display in the truth table
     getBoolStr: function (boolean) {
       if (boolean === true) {

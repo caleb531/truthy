@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('underscore');
 var m = require('mithril');
 var App = require('../models/app');
 var ReferenceComponent = require('./reference');
@@ -11,7 +12,7 @@ var AppComponent = {};
 
 AppComponent.oninit = function (vnode) {
   var state = vnode.state;
-  Object.assign(state, {
+  _.extend(state, {
     app: App.restore(),
     referenceIsOpen: false,
     // Toggle reference sidebar between open/closed state according to the

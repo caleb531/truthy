@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('underscore');
 var m = require('mithril');
 
 // The variable collection UI that displays all variables available to the truth
@@ -9,7 +10,7 @@ var VariableCollectionComponent = {};
 VariableCollectionComponent.oninit = function (vnode) {
   var app = vnode.attrs.app;
   var state = vnode.state;
-  Object.assign(state, {
+  _.extend(state, {
     validNamePattern: /^[A-Za-z]$/,
     getVariableIndex: function (variableElem) {
       var currentElem = variableElem.parentNode.parentNode;
