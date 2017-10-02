@@ -12,14 +12,9 @@ VariableCollectionComponent.oninit = function (vnode) {
   var state = vnode.state;
   _.extend(state, {
     validNamePattern: /^[A-Za-z]$/,
-    getVariableIndex: function (variableElem) {
-      var currentElem = variableElem.parentNode.parentNode;
-      var variableIndex = -1;
-      do {
-        currentElem = currentElem.previousElementSibling;
-        variableIndex += 1;
-      } while (currentElem !== null && currentElem.classList.contains('variable'));
-      return variableIndex;
+    getVariableIndex: function (buttonElem) {
+      var variableElem = buttonElem.parentNode.parentNode;
+      return Number(variableElem.getAttribute('data-index'));
     },
     updateVariableName: function (clickEvent) {
       // Only update variable name if name is syntactically valid and if name is
@@ -66,8 +61,8 @@ VariableCollectionComponent.view = function (vnode) {
   return m('div#variables', {
     onclick: state.handleControls,
     oninput: state.updateVariableName
-  }, app.variables.map(function (variable) {
-    return m('div.variable', m('div.has-controls', [
+  }, app.variables.map(function (variable, v) {
+    return m('div.variable', {'data-index': v}, m('div.has-controls', [
       m('div.control.control-add'),
       app.variables.length > 1 ? m('div.control.control-remove') : null,
       m('input', {

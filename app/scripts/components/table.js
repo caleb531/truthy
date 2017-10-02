@@ -22,14 +22,9 @@ TableComponent.oninit = function (vnode) {
         return '?';
       }
     },
-    getExpressionIndex: function (expressionElem) {
-      var currentElem = expressionElem.parentNode.parentNode;
-      var expressionIndex = -1;
-      do {
-        currentElem = currentElem.previousElementSibling;
-        expressionIndex += 1;
-      } while (currentElem !== null && currentElem.classList.contains('expression'));
-      return expressionIndex;
+    getExpressionIndex: function (buttonElem) {
+      var expressionElem = buttonElem.parentNode.parentNode;
+      return Number(expressionElem.getAttribute('data-index'));
     },
     updateExpressionString: function (clickEvent) {
       var expression = app.expressions.get(state.getExpressionIndex(clickEvent.target));
@@ -86,8 +81,8 @@ TableComponent.view = function (vnode) {
       nonEmptyVariables.map(function (variable) {
         return m('th.variable', variable.name);
       }),
-      app.expressions.map(function (expression) {
-        return m('th.expression', m('div.has-controls', [
+      app.expressions.map(function (expression, e) {
+        return m('th.expression', {'data-index': e}, m('div.has-controls', [
           m('div.control.control-add'),
           app.expressions.length > 1 ? m('div.control.control-remove') : null,
           m('input', {
