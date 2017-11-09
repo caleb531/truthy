@@ -34,6 +34,7 @@ OperationOR 'OR Operation'
 
 OperatorOR 'OR Operator'
   = WS+ 'or'i WS+
+  / WS* '||' WS*
   / WS* '|' WS*
 
 OperationNOR 'NOR Operation'
@@ -62,6 +63,7 @@ OperationAND 'AND Operation'
 
 OperatorAND 'AND Operator'
   = WS+ 'and'i WS+
+  / WS* '&&' WS*
   / WS* '&' WS*
 
 OperationNAND 'NAND Operation'
