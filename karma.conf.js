@@ -14,8 +14,10 @@ module.exports = function (config) {
       'scripts/modules.js': ['coverage']
     },
     coverageReporter: {
-      type: 'html',
-      dir: '../coverage/'
+      type: 'json',
+      dir: '../coverage/',
+      subdir: '.',
+      file: 'coverage-unmapped.json'
     },
     customLaunchers: {
       Chrome_travis_ci: {
