@@ -7,16 +7,11 @@ module.exports = function (config) {
     basePath: 'public',
     browsers: [process.env.TRAVIS ? 'Chrome_travis_ci' : 'Chrome'],
     files: ['scripts/modules.js', 'scripts/test.js'],
-    reporters: ['coverage'],
+    reporters: ['dots', 'coverage'],
     frameworks: ['mocha'],
-    plugins: [
-      'karma-mocha',
-      'karma-coverage',
-      'karma-sourcemap-loader',
-      'karma-chrome-launcher'
-    ],
     preprocessors: {
-      '**/*.js': ['sourcemap', 'coverage']
+      '**/*.js': ['sourcemap'],
+      'scripts/modules.js': ['coverage']
     },
     coverageReporter: {
       type: 'html',

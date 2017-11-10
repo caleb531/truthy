@@ -4,7 +4,7 @@
   "description": "Create truth tables without the pain",
   "scripts": {
     "lint": "eslint app/scripts/**/*.js test/*.js",
-    "test": "karma start --single-run --reporters dots"
+    "test": "karma start --single-run"
   },
   "repository": {
     "type": "git",

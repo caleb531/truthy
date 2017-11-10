@@ -8,5 +8,8 @@ node_modules
 # Brunch
 public/
 
+# Test coverage
+coverage/
+
 # Private environment variables for deployment
 .env
