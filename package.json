@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint app/scripts/**/*.js test/*.js",
     "test": "karma start --single-run",
-    "coverage": "npm test && npm run remap-coverage && npm run coverage-report",
+    "coverage": "COVERAGE=true npm test && npm run remap-coverage && npm run coverage-report",
     "remap-coverage": "remap-istanbul -i coverage/coverage-unmapped.json -o coverage/coverage-remapped.json",
     "coverage-report": "./coverage-report.js"
   },

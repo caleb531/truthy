@@ -7,11 +7,11 @@ module.exports = function (config) {
     basePath: 'public',
     browsers: [process.env.TRAVIS ? 'Chrome_travis_ci' : 'Chrome'],
     files: ['scripts/modules.js', 'scripts/test.js'],
-    reporters: ['dots', 'coverage'],
+    reporters: ['dots'].concat(process.env.COVERAGE ? ['coverage'] : []),
     frameworks: ['mocha'],
     preprocessors: {
       '**/*.js': ['sourcemap'],
-      'scripts/modules.js': ['coverage']
+      'scripts/modules.js': process.env.COVERAGE ? ['coverage'] : []
     },
     coverageReporter: {
       type: 'json',
