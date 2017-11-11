@@ -7,9 +7,17 @@ module.exports = function (config) {
     basePath: 'public',
     browsers: [process.env.TRAVIS ? 'Chrome_travis_ci' : 'Chrome'],
     files: ['scripts/modules.js', 'scripts/test.js'],
+    reporters: ['dots', 'coverage'],
     frameworks: ['mocha'],
     preprocessors: {
-      '**/*.js': ['sourcemap']
+      '**/*.js': ['sourcemap'],
+      'scripts/modules.js': ['coverage']
+    },
+    coverageReporter: {
+      type: 'json',
+      dir: '../coverage/',
+      subdir: '.',
+      file: 'coverage-unmapped.json'
     },
     customLaunchers: {
       Chrome_travis_ci: {

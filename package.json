@@ -4,7 +4,10 @@
   "description": "Create truth tables without the pain",
   "scripts": {
     "lint": "eslint app/scripts/**/*.js test/*.js",
-    "test": "karma start --single-run --reporters dots"
+    "test": "karma start --single-run",
+    "coverage": "npm test && npm run remap-coverage && npm run coverage-report",
+    "remap-coverage": "remap-istanbul -i coverage/coverage-unmapped.json -o coverage/coverage-remapped.json",
+    "coverage-report": "./coverage-report.js"
   },
   "repository": {
     "type": "git",
@@ -31,14 +34,17 @@
     "brunch": "^2.10.9",
     "chai": "^3.5.0",
     "eslint": "^3.15.0",
+    "istanbul": "jacksonrayhamilton/istanbul#09f9660",
     "javascript-brunch": "^2.0.0",
     "karma": "^1.3.0",
     "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
     "karma-mocha": "^1.3.0",
     "karma-sourcemap-loader": "^0.3.7",
     "mocha": "^3.2.0",
     "pegjs-brunch": "^1.0.0",
     "postcss-brunch": "github:caleb531/postcss-brunch",
+    "remap-istanbul": "^0.9.5",
     "sass-brunch": "github:caleb531/sass-brunch",
     "uglify-js-brunch": "^2.0.1"
   }
