@@ -4,8 +4,8 @@
   "description": "Create truth tables without the pain",
   "scripts": {
     "lint": "eslint app/scripts/**/*.js test/*.js",
-    "test": "npm run karma && npm run remap-coverage && npm run coverage-report",
-    "karma": "karma start --single-run",
+    "test": "karma start --single-run",
+    "coverage": "npm test && npm run remap-coverage && npm run coverage-report",
     "remap-coverage": "remap-istanbul -i coverage/coverage-unmapped.json -o coverage/coverage-remapped.json",
     "coverage-report": "./coverage-report.js"
   },
