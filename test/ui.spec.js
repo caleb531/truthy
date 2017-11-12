@@ -76,7 +76,7 @@ describe('app UI', function () {
     variable.value = 'a';
     variable.dispatchEvent(new Event('input', {bubbles: true}));
     m.redraw.sync();
-    expect(document.querySelector('th.variable:first-child')).to.have.text('a');
+    expect(document.querySelector('th.variable')).to.have.text('a');
   });
 
   it('should add new expression', function () {
