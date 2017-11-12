@@ -31,6 +31,28 @@ describe('app UI', function () {
     expect(expressions[2]).to.have.value('p or q');
   });
 
+  it('should construct table', function () {
+    var table = document.querySelector('table');
+    expect(table.querySelectorAll('thead th')).to.have.length(5);
+    expect(table.querySelectorAll('tbody tr')).to.have.length(4);
+  });
+
+  it('should build variable permutations', function () {
+    var table = document.querySelector('table');
+    var variables = table.querySelectorAll('th.variable');
+    expect(variables[0]).to.have.text('p');
+    expect(variables[1]).to.have.text('q');
+    var rows = table.querySelectorAll('tbody tr');
+    expect(rows[0].querySelectorAll('td')[0]).to.have.text('F');
+    expect(rows[0].querySelectorAll('td')[1]).to.have.text('F');
+    expect(rows[1].querySelectorAll('td')[0]).to.have.text('F');
+    expect(rows[1].querySelectorAll('td')[1]).to.have.text('T');
+    expect(rows[2].querySelectorAll('td')[0]).to.have.text('T');
+    expect(rows[2].querySelectorAll('td')[1]).to.have.text('F');
+    expect(rows[3].querySelectorAll('td')[0]).to.have.text('T');
+    expect(rows[3].querySelectorAll('td')[1]).to.have.text('T');
+  });
+
   it('should add new variable', function () {
     var variables = document.querySelectorAll('div.variable');
     expect(variables).to.have.length(2);
