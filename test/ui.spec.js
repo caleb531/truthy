@@ -89,4 +89,30 @@ describe('app UI', function () {
     expect(document.querySelector('th.expression input')).to.have.value('p and q');
   });
 
+  it('should open reference sidebar', function () {
+    var reference = document.querySelector('#reference');
+    expect(reference).not.to.have.class('reference-is-open');
+    document.querySelector('a.reference-open-control').click();
+    m.redraw.sync();
+    expect(reference).to.have.class('reference-is-open');
+  });
+
+  it('should close reference sidebar via button', function () {
+    var reference = document.querySelector('#reference');
+    document.querySelector('a.reference-open-control').click();
+    m.redraw.sync();
+    document.querySelector('img.reference-close-control').click();
+    m.redraw.sync();
+    expect(reference).not.to.have.class('reference-is-open');
+  });
+
+  it('should close reference sidebar via overlay', function () {
+    var reference = document.querySelector('#reference');
+    document.querySelector('a.reference-open-control').click();
+    m.redraw.sync();
+    reference.click();
+    m.redraw.sync();
+    expect(reference).not.to.have.class('reference-is-open');
+  });
+
 });
