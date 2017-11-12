@@ -97,6 +97,18 @@ describe('app UI', function () {
     expect(document.querySelector('th.expression input')).to.have.value('p and q');
   });
 
+  it('should update existing expression', function () {
+    var expression = document.querySelector('th.expression input');
+    expression.value = 'p xor q';
+    expression.dispatchEvent(new Event('input', {bubbles: true}));
+    m.redraw.sync();
+    var values = document.querySelectorAll('td:nth-child(3)');
+    expect(values[0]).to.have.text('F');
+    expect(values[1]).to.have.text('T');
+    expect(values[2]).to.have.text('T');
+    expect(values[3]).to.have.text('F');
+  });
+
   it('should open reference sidebar', function () {
     var reference = document.querySelector('#reference');
     expect(reference).not.to.have.class('reference-is-open');
