@@ -37,14 +37,8 @@ TableComponent.oninit = function (vnode) {
       app.expressions.insert(expressionIndex + 1, {
         string: expression.string
       });
-      // Redraw the view to ensire the new expression element exists
-      m.redraw();
-      clickEvent.target
-        .parentNode
-        .parentNode
-        .nextElementSibling
-        .querySelector('input').focus();
       app.save();
+      state.lastCreatedExpressionIndex = expressionIndex + 1;
     },
     removeExpression: function (clickEvent) {
       app.expressions.remove(state.getExpressionIndex(clickEvent.target));
@@ -57,6 +51,12 @@ TableComponent.oninit = function (vnode) {
         state.removeExpression(clickEvent);
       } else {
         clickEvent.redraw = false;
+      }
+    },
+    focusNewExpression: function (inputVnode) {
+      if (state.lastCreatedExpressionIndex === inputVnode.attrs['data-index']) {
+        inputVnode.dom.focus();
+        state.lastCreatedExpressionIndex = null;
       }
     }
   });
@@ -92,7 +92,10 @@ TableComponent.view = function (vnode) {
             autocapitalize: 'off',
             autocomplete: 'off',
             autocorrect: 'off',
-            spellcheck: false
+            spellcheck: false,
+            oncreate: state.focusNewExpression,
+            onupdate: state.focusNewExpression,
+            'data-index': e
           })
         ]));
       })

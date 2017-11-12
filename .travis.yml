@@ -13,4 +13,6 @@ before_script:
   - ./node_modules/brunch/bin/brunch build
 script:
   - npm run lint
-  - npm test
+  - npm run coverage
+after_success:
+  - cat coverage/lcov.info | coveralls

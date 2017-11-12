@@ -20,7 +20,7 @@ var coverage = Object.keys(remappedJson).reduce(function (result, source) {
 
 collector.add(coverage);
 
-reporter.add('html');
+reporter.addAll(['lcov', 'text', 'html']);
 reporter.write(collector, true, function () {
   process.stdout.write('Open file://' + __dirname + '/coverage/index.html to see the coverage report.\n');
 });

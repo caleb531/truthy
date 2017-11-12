@@ -28,16 +28,12 @@ VariableCollectionComponent.oninit = function (vnode) {
     addVariable: function (clickEvent) {
       var variableIndex = state.getVariableIndex(clickEvent.target);
       var variable = app.variables.get(variableIndex);
+      var newVariableName = app.variables.getNextVariableName(variable);
       app.variables.insert(variableIndex + 1, {
-        name: app.variables.getNextVariableName(variable)
+        name: newVariableName
       });
-      m.redraw();
-      clickEvent.target
-        .parentNode
-        .parentNode
-        .nextElementSibling
-        .querySelector('input').focus();
       app.save();
+      state.lastCreatedVariableIndex = variableIndex + 1;
     },
     removeVariable: function (clickEvent) {
       app.variables.remove(state.getVariableIndex(clickEvent.target));
@@ -50,6 +46,12 @@ VariableCollectionComponent.oninit = function (vnode) {
         state.removeVariable(clickEvent);
       } else {
         clickEvent.redraw = false;
+      }
+    },
+    focusNewVariable: function (inputVnode) {
+      if (state.lastCreatedVariableIndex === inputVnode.attrs['data-index']) {
+        inputVnode.dom.focus();
+        state.lastCreatedVariableIndex = null;
       }
     }
   });
@@ -72,7 +74,10 @@ VariableCollectionComponent.view = function (vnode) {
         autocapitalize: 'off',
         autocomplete: 'off',
         autocorrect: 'off',
-        spellcheck: false
+        spellcheck: false,
+        oncreate: state.focusNewVariable,
+        onupdate: state.focusNewVariable,
+        'data-index': v
       })
     ]));
   }));
