@@ -34,10 +34,10 @@ describe('app UI', function () {
   it('should add new variable', function () {
     var variables = document.querySelectorAll('div.variable');
     expect(variables).to.have.length(2);
-    variables[1].querySelector('.control-add').click();
+    variables[0].querySelector('.control-add').click();
     m.redraw.sync();
     expect(document.querySelectorAll('div.variable')).to.have.length(3);
-    expect(document.querySelectorAll('div.variable input')[2]).to.have.value('r');
+    expect(document.querySelectorAll('div.variable input')[1]).to.have.value('r');
   });
 
   it('should remove existing variable', function () {
