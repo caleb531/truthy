@@ -39,4 +39,13 @@ describe('app UI', function () {
     expect(document.querySelectorAll('div.variable')).to.have.length(3);
   });
 
+  it('should remove existing variable', function () {
+    var variables = document.querySelectorAll('div.variable');
+    expect(variables).to.have.length(2);
+    variables[0].querySelector('.control-remove').click();
+    m.redraw.sync();
+    expect(document.querySelectorAll('div.variable')).to.have.length(1);
+    expect(document.querySelector('div.variable input')).to.have.value('q');
+  });
+
 });
