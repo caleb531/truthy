@@ -37,6 +37,7 @@ describe('app UI', function () {
     variables[1].querySelector('.control-add').click();
     m.redraw.sync();
     expect(document.querySelectorAll('div.variable')).to.have.length(3);
+    expect(document.querySelectorAll('div.variable input')[2]).to.have.value('r');
   });
 
   it('should remove existing variable', function () {
