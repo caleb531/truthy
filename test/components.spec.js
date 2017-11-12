@@ -31,11 +31,12 @@ describe('app UI', function () {
     expect(expressions[2]).to.have.value('p or q');
   });
 
-  // it('should add new variable', function () {
-  //   var variables = document.querySelectorAll('div.variable');
-  //   expect(variables).to.have.length(2);
-  //   variables[1].querySelector('.control-add').click();
-  //   expect(variables).to.have.length(3);
-  // });
+  it('should add new variable', function () {
+    var variables = document.querySelectorAll('div.variable');
+    expect(variables).to.have.length(2);
+    variables[1].querySelector('.control-add').click();
+    m.redraw.sync();
+    expect(document.querySelectorAll('div.variable')).to.have.length(3);
+  });
 
 });
