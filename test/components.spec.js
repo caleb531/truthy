@@ -49,4 +49,22 @@ describe('app UI', function () {
     expect(document.querySelector('div.variable input')).to.have.value('q');
   });
 
+  it('should add new expression', function () {
+    var expressions = document.querySelectorAll('th.expression');
+    expect(expressions).to.have.length(3);
+    expressions[0].querySelector('.control-add').click();
+    m.redraw.sync();
+    expect(document.querySelectorAll('th.expression')).to.have.length(4);
+    expect(document.querySelectorAll('th.expression input')[1]).to.have.value('not p');
+  });
+
+  it('should remove existing expression', function () {
+    var expressions = document.querySelectorAll('th.expression');
+    expect(expressions).to.have.length(3);
+    expressions[0].querySelector('.control-remove').click();
+    m.redraw.sync();
+    expect(document.querySelectorAll('th.expression')).to.have.length(2);
+    expect(document.querySelector('th.expression input')).to.have.value('p and q');
+  });
+
 });
