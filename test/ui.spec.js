@@ -71,13 +71,13 @@ describe('app UI', function () {
     expect(document.querySelector('div.variable input')).to.have.value('q');
   });
 
-  // it('should update existing variable', function () {
-  //   var variable = document.querySelector('div.variable input');
-  //   variable.value = 'a';
-  //   variable.dispatchEvent(new Event('input'));
-  //   m.redraw.sync();
-  //   expect(document.querySelector('th.variable:first-child')).to.have.text('a');
-  // });
+  it('should update existing variable', function () {
+    var variable = document.querySelector('div.variable input');
+    variable.value = 'a';
+    variable.dispatchEvent(new Event('input', {bubbles: true}));
+    m.redraw.sync();
+    expect(document.querySelector('th.variable:first-child')).to.have.text('a');
+  });
 
   it('should add new expression', function () {
     var expressions = document.querySelectorAll('th.expression');
