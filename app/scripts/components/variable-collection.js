@@ -44,8 +44,6 @@ VariableCollectionComponent.oninit = function (vnode) {
         state.addVariable(clickEvent);
       } else if (clickEvent.target.classList.contains('control-remove')) {
         state.removeVariable(clickEvent);
-      } else {
-        clickEvent.redraw = false;
       }
     },
     focusNewVariable: function (inputVnode) {

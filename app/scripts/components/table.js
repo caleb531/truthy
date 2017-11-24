@@ -49,8 +49,6 @@ TableComponent.oninit = function (vnode) {
         state.addExpression(clickEvent);
       } else if (clickEvent.target.classList.contains('control-remove')) {
         state.removeExpression(clickEvent);
-      } else {
-        clickEvent.redraw = false;
       }
     },
     focusNewExpression: function (inputVnode) {
