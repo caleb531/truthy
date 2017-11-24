@@ -14,6 +14,7 @@ describe('app UI', function () {
 
   afterEach(function () {
     m.mount(document.body, null);
+    localStorage.clear();
   });
 
   it('should mount on main', function () {

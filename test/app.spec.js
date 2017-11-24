@@ -38,4 +38,28 @@ describe('app', function () {
     expect(app.serialize()).to.deep.equal(serializedApp);
   });
 
+  it('should save serialized app to disk', function () {
+    var serializedApp = {
+      variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
+      expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
+    };
+    var app = new App(serializedApp);
+    app.save();
+    var restoredAppStr = localStorage.getItem('truthy-v3');
+    expect(restoredAppStr).to.be.equal(JSON.stringify(serializedApp));
+    localStorage.removeItem('truthy-v3');
+  });
+
+  it('should restore serialized app to disk', function () {
+    var serializedApp = {
+      variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
+      expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
+    };
+    var app = new App(serializedApp);
+    app.save();
+    var restoredApp = App.restore();
+    expect(restoredApp).to.be.ok;
+    expect(restoredApp.serialize()).to.deep.equal(serializedApp);
+  });
+
 });

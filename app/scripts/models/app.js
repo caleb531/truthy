@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('underscore');
 var VariableCollection = require('./variable-collection');
 var ExpressionCollection = require('./expression-collection');
 
@@ -42,13 +41,10 @@ App.prototype.serialize = function () {
 
 // The key to use for storing the app data in localStorage
 App.storageKey = 'truthy-v3';
-// The time in milliseconds to wait before saving data to localStorage (since
-// the last call to app.save())
-App.persistenceDelay = 500;
 
-App.prototype.save = _.debounce(function () {
+App.prototype.save = function () {
   localStorage.setItem(App.storageKey, JSON.stringify(this.serialize()));
-}, App.persistenceDelay);
+};
 
 App.restore = function () {
   var appStr = localStorage.getItem(App.storageKey);
