@@ -16,6 +16,14 @@ describe('app UI', function () {
     m.mount(document.body, null);
   });
 
+  it('should mount on main', function () {
+    m.mount(document.body, null);
+    document.body.appendChild(document.createElement('main'));
+    require('../app/scripts/main');
+    expect(document.querySelector('#app')).not.to.be.null;
+    m.mount(document.querySelector('main'), null);
+  });
+
   it('should render default variables', function () {
     var variables = document.querySelectorAll('div.variable input');
     expect(variables).to.have.length(2);
