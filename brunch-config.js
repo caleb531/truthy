@@ -12,7 +12,7 @@ module.exports = {
         // file (latency-friendly) in the browser, and the modules are tested in
         // isolation in unit tests.
         'scripts/main.js': [/^node_modules\/(process)/],
-        'scripts/modules.js': ['app/scripts/**/*.js', /^node_modules/],
+        'scripts/modules.js': ['app/scripts/**/*.pegjs', 'app/scripts/**/*.js', /^node_modules/],
         'scripts/test.js': ['test/*.js']
       },
       entryPoints: {
