@@ -1,5 +1,3 @@
-'use strict';
-
 var expect = require('chai').expect;
 var Variable = require('../app/scripts/models/variable');
 

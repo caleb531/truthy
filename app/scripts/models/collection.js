@@ -1,5 +1,3 @@
-'use strict';
-
 // An abstract base model for defining any type of ordered sequence
 function Collection(args) {
   // A reference to the constructor for the sub-collection's item type

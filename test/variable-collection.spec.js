@@ -1,5 +1,3 @@
-'use strict';
-
 var _ = require('underscore');
 var expect = require('chai').expect;
 var VariableCollection = require('../app/scripts/models/variable-collection');

@@ -1,5 +1,3 @@
-'use strict';
-
 var _ = require('underscore');
 var m = require('mithril');
 var App = require('../models/app');

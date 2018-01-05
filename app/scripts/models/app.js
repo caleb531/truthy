@@ -1,5 +1,3 @@
-'use strict';
-
 var VariableCollection = require('./variable-collection');
 var ExpressionCollection = require('./expression-collection');
 

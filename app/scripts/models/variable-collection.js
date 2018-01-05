@@ -1,5 +1,3 @@
-'use strict';
-
 var _ = require('underscore');
 var Collection = require('./collection');
 var Variable = require('./variable');

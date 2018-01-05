@@ -1,5 +1,3 @@
-'use strict';
-
 var ExpressionParser = require('./expression.parser');
 
 // A boolean expression to display in the truth table

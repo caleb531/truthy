@@ -1,5 +1,3 @@
-'use strict';
-
 var expect = require('chai').expect;
 var ExpressionCollection = require('../app/scripts/models/expression-collection');
 var Expression = require('../app/scripts/models/expression');
