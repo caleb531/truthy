@@ -3,12 +3,15 @@ import Expression from './expression.js';
 
 // An ordered sequence of expressions; every expression collection inherits from
 // the base Collection model
-function ExpressionCollection(args) {
-  Collection.call(this, {
-    SubCollectionItem: Expression,
-    items: args.items
-  });
+class ExpressionCollection extends Collection {
+
+  constructor({ items }) {
+    super({
+      SubCollectionItem: Expression,
+      items: items
+    });
+  }
+
 }
-ExpressionCollection.prototype = Object.create(Collection.prototype);
 
 export default ExpressionCollection;

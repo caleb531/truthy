@@ -1,12 +1,17 @@
 // A variable used in an expression string
-function Variable(args) {
-  this.name = args.name;
-}
+class Variable {
 
-Variable.prototype.serialize = function () {
-  return {
-    name: this.name
-  };
-};
+  /* eslint-disable no-shadow */
+  constructor({ name }) {
+    this.name = name;
+  }
+
+  serialize() {
+    return {
+      name: this.name
+    };
+  }
+
+}
 
 export default Variable;

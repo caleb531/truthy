@@ -1,26 +1,30 @@
 import ExpressionParser from './expression.parser.pegjs';
 
 // A boolean expression to display in the truth table
-function Expression(args) {
-  // The string expression to display in the truth table
-  this.string = args.string;
-}
+class Expression {
 
-// Parse and evaluate the expression to either true or false
-Expression.prototype.evaluate = function (varValues) {
-  try {
-    return ExpressionParser.parse(this.string, {
-      varValues: varValues
-    });
-  } catch (error) {
-    return null;
+  constructor({ string }) {
+    // The string expression to display in the truth table
+    this.string = string;
   }
-};
 
-Expression.prototype.serialize = function () {
-  return {
-    string: this.string
-  };
-};
+  // Parse and evaluate the expression to either true or false
+  evaluate(varValues) {
+    try {
+      return ExpressionParser.parse(this.string, {
+        varValues: varValues
+      });
+    } catch (error) {
+      return null;
+    }
+  }
+
+  serialize() {
+    return {
+      string: this.string
+    };
+  }
+
+}
 
 export default Expression;
