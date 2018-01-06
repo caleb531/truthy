@@ -1,7 +1,5 @@
 import _ from 'underscore';
-import chai from 'chai';
-var expect = chai.expect;
-var Assertion = chai.Assertion;
+import { expect, Assertion } from 'chai';
 import Expression from '../app/scripts/models/expression.js';
 
 describe('expression', function () {
