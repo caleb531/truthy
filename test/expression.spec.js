@@ -1,8 +1,8 @@
-var _ = require('underscore');
-var chai = require('chai');
+import _ from 'underscore';
+import chai from 'chai';
 var expect = chai.expect;
 var Assertion = chai.Assertion;
-var Expression = require('../app/scripts/models/expression');
+import Expression from '../app/scripts/models/expression.js';
 
 describe('expression', function () {
 

@@ -1,7 +1,7 @@
-var _ = require('underscore');
-var m = require('mithril');
-var classNames = require('classnames');
-var VariableCollection = require('../models/variable-collection');
+import _ from 'underscore';
+import m from 'mithril';
+import classNames from 'classnames';
+import VariableCollection from '../models/variable-collection.js';
 
 // The truth table UI, including all created expressions and their table values
 var TableComponent = {};
@@ -135,4 +135,4 @@ TableComponent.view = function (vnode) {
 ]);
 };
 
-module.exports = TableComponent;
+export default TableComponent;

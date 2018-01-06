@@ -1,6 +1,6 @@
-var _ = require('underscore');
-var Collection = require('./collection');
-var Variable = require('./variable');
+import _ from 'underscore';
+import Collection from './collection.js';
+import Variable from './variable.js';
 
 // An ordered sequence of variables; every variable collection inherits from the
 // base Collection model
@@ -63,4 +63,4 @@ VariableCollection.prototype.getNextVariableName = function (baseVariable) {
   return String.fromCharCode(nextVarCharCode);
 };
 
-module.exports = VariableCollection;
+export default VariableCollection;

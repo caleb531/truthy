@@ -1,7 +1,7 @@
-var _ = require('underscore');
-var expect = require('chai').expect;
-var VariableCollection = require('../app/scripts/models/variable-collection');
-var Variable = require('../app/scripts/models/variable');
+import _ from 'underscore';
+import { expect } from 'chai';
+import VariableCollection from '../app/scripts/models/variable-collection.js';
+import Variable from '../app/scripts/models/variable.js';
 
 describe('variable collection', function () {
 

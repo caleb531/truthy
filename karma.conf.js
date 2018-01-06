@@ -1,7 +1,5 @@
 /* eslint-env node */
 
-var path = require('path');
-
 module.exports = function (config) {
   config.set({
     basePath: 'public',
@@ -21,7 +19,7 @@ module.exports = function (config) {
       file: 'coverage-unmapped.json'
     },
     static: {
-      path: path.join(__dirname, 'public')
+      path: 'public'
     }
   });
 };

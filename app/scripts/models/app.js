@@ -1,5 +1,5 @@
-var VariableCollection = require('./variable-collection');
-var ExpressionCollection = require('./expression-collection');
+import VariableCollection from './variable-collection.js';
+import ExpressionCollection from './expression-collection.js';
 
 // A singleton representing the core state of the application, including
 // variables and expressions
@@ -53,4 +53,4 @@ App.restore = function () {
   }
 };
 
-module.exports = App;
+export default App;

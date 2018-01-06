@@ -9,4 +9,4 @@ Variable.prototype.serialize = function () {
   };
 };
 
-module.exports = Variable;
+export default Variable;

@@ -54,4 +54,4 @@ Collection.prototype.serialize = function () {
   };
 };
 
-module.exports = Collection;
+export default Collection;

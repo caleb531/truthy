@@ -1,5 +1,5 @@
-var _ = require('underscore');
-var m = require('mithril');
+import _ from 'underscore';
+import m from 'mithril';
 
 // The variable collection UI that displays all variables available to the truth
 // table
@@ -79,4 +79,4 @@ VariableCollectionComponent.view = function (vnode) {
   }));
 };
 
-module.exports = VariableCollectionComponent;
+export default VariableCollectionComponent;

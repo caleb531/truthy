@@ -1,6 +1,6 @@
-var m = require('mithril');
-var attachFastClick = require('fastclick');
-var AppComponent = require('./components/app');
+import m from 'mithril';
+import attachFastClick from 'fastclick';
+import AppComponent from './components/app.js';
 
 m.mount(document.querySelector('main'), AppComponent);
 attachFastClick(document.body);

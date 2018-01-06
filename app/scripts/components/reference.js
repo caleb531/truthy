@@ -1,5 +1,5 @@
-var m = require('mithril');
-var classNames = require('classnames');
+import m from 'mithril';
+import classNames from 'classnames';
 
 // The application reference sidebar (listing supported syntax/operations)
 var ReferenceComponent = {};
@@ -69,4 +69,4 @@ ReferenceComponent.view = function (vnode) {
   );
 };
 
-module.exports = ReferenceComponent;
+export default ReferenceComponent;

@@ -1,5 +1,5 @@
-var expect = require('chai').expect;
-var Variable = require('../app/scripts/models/variable');
+import { expect } from 'chai';
+import Variable from '../app/scripts/models/variable.js';
 
 describe('variable', function () {
 

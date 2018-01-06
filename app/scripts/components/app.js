@@ -1,9 +1,9 @@
-var _ = require('underscore');
-var m = require('mithril');
-var App = require('../models/app');
-var ReferenceComponent = require('./reference');
-var VariableCollectionComponent = require('./variable-collection');
-var TableComponent = require('./table');
+import _ from 'underscore';
+import m from 'mithril';
+import App from '../models/app.js';
+import ReferenceComponent from './reference.js';
+import VariableCollectionComponent from './variable-collection.js';
+import TableComponent from './table.js';
 
 // The entire application UI, including static and dynamic app elements
 var AppComponent = {};
@@ -53,4 +53,4 @@ AppComponent.view = function (vnode) {
   ]);
 };
 
-module.exports = AppComponent;
+export default AppComponent;

@@ -1,4 +1,4 @@
-var ExpressionParser = require('./expression.parser');
+import ExpressionParser from './expression.parser.pegjs';
 
 // A boolean expression to display in the truth table
 function Expression(args) {
@@ -23,4 +23,4 @@ Expression.prototype.serialize = function () {
   };
 };
 
-module.exports = Expression;
+export default Expression;

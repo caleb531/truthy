@@ -1,5 +1,5 @@
-var expect = require('chai').expect;
-var Collection = require('../app/scripts/models/collection');
+import { expect } from 'chai';
+import Collection from '../app/scripts/models/collection.js';
 
 describe('collection', function () {
 

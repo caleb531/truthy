@@ -1,6 +1,6 @@
-var expect = require('chai').expect;
-var ExpressionCollection = require('../app/scripts/models/expression-collection');
-var Expression = require('../app/scripts/models/expression');
+import { expect } from 'chai';
+import ExpressionCollection from '../app/scripts/models/expression-collection.js';
+import Expression from '../app/scripts/models/expression.js';
 
 describe('expression collection', function () {
 

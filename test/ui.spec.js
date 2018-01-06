@@ -1,8 +1,9 @@
-var chai = require('chai');
-chai.use(require('chai-dom'));
-var expect = chai.expect;
-var m = require('mithril');
-var AppComponent = require('../app/scripts/components/app');
+import chai from 'chai';
+import { expect } from 'chai';
+import chaiDom from 'chai-dom';
+chai.use(chaiDom);
+import m from 'mithril';
+import AppComponent from '../app/scripts/components/app.js';
 
 describe('app UI', function () {
 
