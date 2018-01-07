@@ -6,7 +6,7 @@ import Variable from '../app/scripts/models/variable.js';
 describe('variable collection', () => {
 
   it('should initialize with list of variables', () => {
-    var variables = new VariableCollection({
+    let variables = new VariableCollection({
       items: [{name: 'u'}, {name: 'v'}]
     });
     expect(variables).to.have.property('items');
@@ -17,16 +17,16 @@ describe('variable collection', () => {
   });
 
   it('should map variable permutations', () => {
-    var expectedPermutations = [
+    let expectedPermutations = [
       {s: false, t: false},
       {s: false, t: true},
       {s: true, t: false},
       {s: true, t: true}
     ];
-    var variables = new VariableCollection({
+    let variables = new VariableCollection({
       items: [{name: 's'}, {name: 't'}]
     });
-    var actualPermutations = variables.mapPermutations((varValues) => {
+    let actualPermutations = variables.mapPermutations((varValues) => {
       return _.extend({}, varValues);
     });
     expect(actualPermutations[0]).to.deep.equal(expectedPermutations[0]);
@@ -37,7 +37,7 @@ describe('variable collection', () => {
 
   describe('getNextVariableName', () => {
 
-    var variables = new VariableCollection({
+    let variables = new VariableCollection({
       items: [{name: 'q'}, {name: 's'}, {name: 'z'}, {name: 'a'}]
     });
 

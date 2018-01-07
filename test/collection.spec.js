@@ -11,7 +11,7 @@ describe('collection', () => {
   };
 
   it('should initialize with list of items', () => {
-    var collection = new Collection({
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}]
     });
@@ -23,8 +23,8 @@ describe('collection', () => {
   });
 
   it('should serialize to a JSON object', () => {
-    var serializedCollection = {items: [{foo: 'abc'}, {foo: 'xyz'}]};
-    var collection = new Collection({
+    let serializedCollection = {items: [{foo: 'abc'}, {foo: 'xyz'}]};
+    let collection = new Collection({
         SubCollectionItem: DummyItem,
         items: serializedCollection.items
     });
@@ -32,7 +32,7 @@ describe('collection', () => {
   });
 
   it('should get item by its index', () => {
-    var collection = new Collection({
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}]
     });
@@ -41,7 +41,7 @@ describe('collection', () => {
   });
 
   it('should insert new item', () => {
-    var collection = new Collection({
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}]
     });
@@ -52,7 +52,7 @@ describe('collection', () => {
   });
 
   it('should remove existing item', () => {
-    var collection = new Collection({
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });
@@ -63,11 +63,11 @@ describe('collection', () => {
   });
 
   it('should iterate over items', () => {
-    var collection = new Collection({
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });
-    var iteratedItems = [];
+    let iteratedItems = [];
     collection.forEach((item) => {
       iteratedItems.push(item);
     });
@@ -75,11 +75,11 @@ describe('collection', () => {
   });
 
   it('should filter items', () => {
-    var collection = new Collection({
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'bef'}, {foo: 'ghi'}]
     });
-    var itemsWithoutB = collection.filter((item) => {
+    let itemsWithoutB = collection.filter((item) => {
       return item.foo.indexOf('b') === -1;
     });
     expect(itemsWithoutB).to.have.length(2);
@@ -88,18 +88,18 @@ describe('collection', () => {
   });
 
   it('should map items', () => {
-    var collection = new Collection({
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });
-    var iteratedItems = collection.map((item) => {
+    let iteratedItems = collection.map((item) => {
       return item;
     });
     expect(iteratedItems).to.deep.equal(collection.items);
   });
 
   it('should get collection length', () => {
-    var collection = new Collection({
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });
@@ -107,7 +107,7 @@ describe('collection', () => {
   });
 
   it('should set collection length', () => {
-    var collection = new Collection({
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });

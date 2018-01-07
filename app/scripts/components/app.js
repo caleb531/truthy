@@ -29,7 +29,7 @@ class AppComponent {
   }
 
   view(vnode) {
-    var state = vnode.state;
+    let state = vnode.state;
     return m('div#app', {
       onclick: (clickEvent) => this.toggleReference(clickEvent)
     }, [

@@ -25,14 +25,14 @@ describe('app UI', () => {
   });
 
   it('should render default variables', () => {
-    var variables = document.querySelectorAll('div.variable input');
+    let variables = document.querySelectorAll('div.variable input');
     expect(variables).to.have.length(2);
     expect(variables[0]).to.have.value('p');
     expect(variables[1]).to.have.value('q');
   });
 
   it('should render default expressions', () => {
-    var expressions = document.querySelectorAll('th.expression input');
+    let expressions = document.querySelectorAll('th.expression input');
     expect(expressions).to.have.length(3);
     expect(expressions[0]).to.have.value('not p');
     expect(expressions[1]).to.have.value('p and q');
@@ -40,17 +40,17 @@ describe('app UI', () => {
   });
 
   it('should construct table', () => {
-    var table = document.querySelector('table');
+    let table = document.querySelector('table');
     expect(table.querySelectorAll('thead th')).to.have.length(5);
     expect(table.querySelectorAll('tbody tr')).to.have.length(4);
   });
 
   it('should build variable permutations', () => {
-    var table = document.querySelector('table');
-    var variables = table.querySelectorAll('th.variable');
+    let table = document.querySelector('table');
+    let variables = table.querySelectorAll('th.variable');
     expect(variables[0]).to.have.text('p');
     expect(variables[1]).to.have.text('q');
-    var rows = table.querySelectorAll('tbody tr');
+    let rows = table.querySelectorAll('tbody tr');
     expect(rows[0].querySelectorAll('td')[0]).to.have.text('F');
     expect(rows[0].querySelectorAll('td')[1]).to.have.text('F');
     expect(rows[1].querySelectorAll('td')[0]).to.have.text('F');
@@ -62,7 +62,7 @@ describe('app UI', () => {
   });
 
   it('should add new variable', () => {
-    var variables = document.querySelectorAll('div.variable');
+    let variables = document.querySelectorAll('div.variable');
     expect(variables).to.have.length(2);
     variables[0].querySelector('.control-add').click();
     m.redraw.sync();
@@ -71,7 +71,7 @@ describe('app UI', () => {
   });
 
   it('should remove existing variable', () => {
-    var variables = document.querySelectorAll('div.variable');
+    let variables = document.querySelectorAll('div.variable');
     expect(variables).to.have.length(2);
     variables[0].querySelector('.control-remove').click();
     m.redraw.sync();
@@ -80,7 +80,7 @@ describe('app UI', () => {
   });
 
   it('should update existing variable', () => {
-    var variable = document.querySelector('div.variable input');
+    let variable = document.querySelector('div.variable input');
     variable.value = 'a';
     variable.dispatchEvent(new Event('input', {bubbles: true}));
     m.redraw.sync();
@@ -88,7 +88,7 @@ describe('app UI', () => {
   });
 
   it('should add new expression', () => {
-    var expressions = document.querySelectorAll('th.expression');
+    let expressions = document.querySelectorAll('th.expression');
     expect(expressions).to.have.length(3);
     expressions[0].querySelector('.control-add').click();
     m.redraw.sync();
@@ -97,7 +97,7 @@ describe('app UI', () => {
   });
 
   it('should remove existing expression', () => {
-    var expressions = document.querySelectorAll('th.expression');
+    let expressions = document.querySelectorAll('th.expression');
     expect(expressions).to.have.length(3);
     expressions[0].querySelector('.control-remove').click();
     m.redraw.sync();
@@ -106,11 +106,11 @@ describe('app UI', () => {
   });
 
   it('should update existing expression', () => {
-    var expression = document.querySelector('th.expression input');
+    let expression = document.querySelector('th.expression input');
     expression.value = 'p xor q';
     expression.dispatchEvent(new Event('input', {bubbles: true}));
     m.redraw.sync();
-    var values = document.querySelectorAll('td:nth-child(3)');
+    let values = document.querySelectorAll('td:nth-child(3)');
     expect(values[0]).to.have.text('F');
     expect(values[1]).to.have.text('T');
     expect(values[2]).to.have.text('T');
@@ -118,7 +118,7 @@ describe('app UI', () => {
   });
 
   it('should open reference sidebar', () => {
-    var reference = document.querySelector('#reference');
+    let reference = document.querySelector('#reference');
     expect(reference).not.to.have.class('reference-is-open');
     document.querySelector('a.reference-open-control').click();
     m.redraw.sync();
@@ -126,7 +126,7 @@ describe('app UI', () => {
   });
 
   it('should close reference sidebar via button', () => {
-    var reference = document.querySelector('#reference');
+    let reference = document.querySelector('#reference');
     document.querySelector('a.reference-open-control').click();
     m.redraw.sync();
     document.querySelector('img.reference-close-control').click();
@@ -135,7 +135,7 @@ describe('app UI', () => {
   });
 
   it('should close reference sidebar via overlay', () => {
-    var reference = document.querySelector('#reference');
+    let reference = document.querySelector('#reference');
     document.querySelector('a.reference-open-control').click();
     m.redraw.sync();
     reference.click();

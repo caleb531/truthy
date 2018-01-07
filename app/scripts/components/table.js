@@ -21,19 +21,19 @@ class TableComponent {
   }
 
   getExpressionIndex(buttonElem) {
-    var expressionElem = buttonElem.parentNode.parentNode;
+    let expressionElem = buttonElem.parentNode.parentNode;
     return Number(expressionElem.getAttribute('data-index'));
   }
 
   updateExpressionString(clickEvent) {
-    var expression = this.app.expressions.get(this.getExpressionIndex(clickEvent.target));
+    let expression = this.app.expressions.get(this.getExpressionIndex(clickEvent.target));
     expression.string = clickEvent.target.value;
     this.app.save();
   }
 
   addExpression(clickEvent) {
-    var expressionIndex = this.getExpressionIndex(clickEvent.target);
-    var expression = this.app.expressions.get(expressionIndex);
+    let expressionIndex = this.getExpressionIndex(clickEvent.target);
+    let expression = this.app.expressions.get(expressionIndex);
     this.app.expressions.insert(expressionIndex + 1, {
       string: expression.string
     });
@@ -62,12 +62,12 @@ class TableComponent {
   }
 
   view() {
-    var nonEmptyVariables = new VariableCollection({
+    let nonEmptyVariables = new VariableCollection({
       items: this.app.variables.filter((variable) => variable.name !== '')
     });
     // A cache to store expressions which are known to be invalid (so as to avoid
     // re-evaluating them later)
-    var invalidExpressionCache = {};
+    let invalidExpressionCache = {};
     return m('table#truth-table', [
       m('thead', m('tr', {
         onclick: (clickEvent) => this.handleControls(clickEvent),
@@ -96,7 +96,7 @@ class TableComponent {
       m('tbody', nonEmptyVariables.mapPermutations((varValues) => {
         return m('tr', [
           nonEmptyVariables.map((variable) => {
-            var varValue = varValues[variable.name];
+            let varValue = varValues[variable.name];
             return m('td', {
               class: classNames(
                 {true: varValue === true},
@@ -106,7 +106,7 @@ class TableComponent {
             this.getBoolStr(varValue));
           }),
           this.app.expressions.map((expression) => {
-            var exprValue;
+            let exprValue;
             // Don't re-evaluate expression if it is known to be invalid
             if (expression.string in invalidExpressionCache) {
               exprValue = null;

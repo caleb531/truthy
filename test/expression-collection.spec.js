@@ -5,7 +5,7 @@ import Expression from '../app/scripts/models/expression.js';
 describe('expression collection', () => {
 
   it('should initialize with list of expressions', () => {
-    var expressions = new ExpressionCollection({
+    let expressions = new ExpressionCollection({
       items: [{string: 'a xor b'}, {string: 's nand t'}]
     });
     expect(expressions).to.have.property('items');
