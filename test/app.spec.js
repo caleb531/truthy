@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import App from '../app/scripts/models/app.js';
 
-describe('app', function () {
+describe('app', () => {
 
-  it('should initialize with no arguments', function () {
+  it('should initialize with no arguments', () => {
     var app = new App();
     expect(app).to.have.property('variables');
     expect(app.variables).to.have.length(2);
@@ -11,7 +11,7 @@ describe('app', function () {
     expect(app.expressions).to.have.length(3);
   });
 
-  it('should initialize with arguments', function () {
+  it('should initialize with arguments', () => {
     var app = new App({
       variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
       expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
@@ -27,7 +27,7 @@ describe('app', function () {
     expect(app.expressions.items[1]).to.have.property('string', 'a nand b');
   });
 
-  it('should serialize to JSON object', function () {
+  it('should serialize to JSON object', () => {
     var serializedApp = {
       variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
       expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
@@ -36,7 +36,7 @@ describe('app', function () {
     expect(app.serialize()).to.deep.equal(serializedApp);
   });
 
-  it('should save serialized app to disk', function () {
+  it('should save serialized app to disk', () => {
     var serializedApp = {
       variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
       expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
@@ -48,7 +48,7 @@ describe('app', function () {
     localStorage.removeItem('truthy-v3');
   });
 
-  it('should restore serialized app to disk', function () {
+  it('should restore serialized app to disk', () => {
     var serializedApp = {
       variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
       expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}

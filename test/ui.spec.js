@@ -5,18 +5,18 @@ chai.use(chaiDom);
 import m from 'mithril';
 import AppComponent from '../app/scripts/components/app.js';
 
-describe('app UI', function () {
+describe('app UI', () => {
 
-  beforeEach(function () {
+  beforeEach(() => {
     m.mount(document.body, AppComponent);
   });
 
-  afterEach(function () {
+  afterEach(() => {
     m.mount(document.body, null);
     localStorage.clear();
   });
 
-  it('should mount on main', function () {
+  it('should mount on main', () => {
     m.mount(document.body, null);
     document.body.appendChild(document.createElement('main'));
     require('../app/scripts/main');
@@ -24,14 +24,14 @@ describe('app UI', function () {
     m.mount(document.querySelector('main'), null);
   });
 
-  it('should render default variables', function () {
+  it('should render default variables', () => {
     var variables = document.querySelectorAll('div.variable input');
     expect(variables).to.have.length(2);
     expect(variables[0]).to.have.value('p');
     expect(variables[1]).to.have.value('q');
   });
 
-  it('should render default expressions', function () {
+  it('should render default expressions', () => {
     var expressions = document.querySelectorAll('th.expression input');
     expect(expressions).to.have.length(3);
     expect(expressions[0]).to.have.value('not p');
@@ -39,13 +39,13 @@ describe('app UI', function () {
     expect(expressions[2]).to.have.value('p or q');
   });
 
-  it('should construct table', function () {
+  it('should construct table', () => {
     var table = document.querySelector('table');
     expect(table.querySelectorAll('thead th')).to.have.length(5);
     expect(table.querySelectorAll('tbody tr')).to.have.length(4);
   });
 
-  it('should build variable permutations', function () {
+  it('should build variable permutations', () => {
     var table = document.querySelector('table');
     var variables = table.querySelectorAll('th.variable');
     expect(variables[0]).to.have.text('p');
@@ -61,7 +61,7 @@ describe('app UI', function () {
     expect(rows[3].querySelectorAll('td')[1]).to.have.text('T');
   });
 
-  it('should add new variable', function () {
+  it('should add new variable', () => {
     var variables = document.querySelectorAll('div.variable');
     expect(variables).to.have.length(2);
     variables[0].querySelector('.control-add').click();
@@ -70,7 +70,7 @@ describe('app UI', function () {
     expect(document.querySelectorAll('div.variable input')[1]).to.have.value('r');
   });
 
-  it('should remove existing variable', function () {
+  it('should remove existing variable', () => {
     var variables = document.querySelectorAll('div.variable');
     expect(variables).to.have.length(2);
     variables[0].querySelector('.control-remove').click();
@@ -79,7 +79,7 @@ describe('app UI', function () {
     expect(document.querySelector('div.variable input')).to.have.value('q');
   });
 
-  it('should update existing variable', function () {
+  it('should update existing variable', () => {
     var variable = document.querySelector('div.variable input');
     variable.value = 'a';
     variable.dispatchEvent(new Event('input', {bubbles: true}));
@@ -87,7 +87,7 @@ describe('app UI', function () {
     expect(document.querySelector('th.variable')).to.have.text('a');
   });
 
-  it('should add new expression', function () {
+  it('should add new expression', () => {
     var expressions = document.querySelectorAll('th.expression');
     expect(expressions).to.have.length(3);
     expressions[0].querySelector('.control-add').click();
@@ -96,7 +96,7 @@ describe('app UI', function () {
     expect(document.querySelectorAll('th.expression input')[1]).to.have.value('not p');
   });
 
-  it('should remove existing expression', function () {
+  it('should remove existing expression', () => {
     var expressions = document.querySelectorAll('th.expression');
     expect(expressions).to.have.length(3);
     expressions[0].querySelector('.control-remove').click();
@@ -105,7 +105,7 @@ describe('app UI', function () {
     expect(document.querySelector('th.expression input')).to.have.value('p and q');
   });
 
-  it('should update existing expression', function () {
+  it('should update existing expression', () => {
     var expression = document.querySelector('th.expression input');
     expression.value = 'p xor q';
     expression.dispatchEvent(new Event('input', {bubbles: true}));
@@ -117,7 +117,7 @@ describe('app UI', function () {
     expect(values[3]).to.have.text('F');
   });
 
-  it('should open reference sidebar', function () {
+  it('should open reference sidebar', () => {
     var reference = document.querySelector('#reference');
     expect(reference).not.to.have.class('reference-is-open');
     document.querySelector('a.reference-open-control').click();
@@ -125,7 +125,7 @@ describe('app UI', function () {
     expect(reference).to.have.class('reference-is-open');
   });
 
-  it('should close reference sidebar via button', function () {
+  it('should close reference sidebar via button', () => {
     var reference = document.querySelector('#reference');
     document.querySelector('a.reference-open-control').click();
     m.redraw.sync();
@@ -134,7 +134,7 @@ describe('app UI', function () {
     expect(reference).not.to.have.class('reference-is-open');
   });
 
-  it('should close reference sidebar via overlay', function () {
+  it('should close reference sidebar via overlay', () => {
     var reference = document.querySelector('#reference');
     document.querySelector('a.reference-open-control').click();
     m.redraw.sync();
