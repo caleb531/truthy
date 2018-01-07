@@ -28,8 +28,7 @@ class AppComponent {
     }
   }
 
-  view(vnode) {
-    let state = vnode.state;
+  view() {
     return m('div#app', {
       onclick: (clickEvent) => this.toggleReference(clickEvent)
     }, [
@@ -42,9 +41,9 @@ class AppComponent {
       m('h1', 'Truthy'),
       m(ReferenceComponent, {referenceIsOpen: this.referenceIsOpen}),
       m('h2', 'Variables'),
-      m(VariableCollectionComponent, {app: state.app}),
+      m(VariableCollectionComponent, {app: this.app}),
       m('h2', 'Table'),
-      m('div.scrollable-container', m(TableComponent, {app: state.app})),
+      m('div.scrollable-container', m(TableComponent, {app: this.app})),
       m('p', [
         'Like Truthy? ',
         m('a[href=https://github.com/caleb531/truthy]', 'Check it out on GitHub!')
