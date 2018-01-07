@@ -1,6 +1,5 @@
 import m from 'mithril';
 import classNames from 'classnames';
-import VariableCollection from '../models/variable-collection.js';
 
 // The truth table UI, including all created expressions and their table values
 class TableComponent {
@@ -62,9 +61,6 @@ class TableComponent {
   }
 
   view() {
-    let nonEmptyVariables = new VariableCollection({
-      items: this.app.variables.filter((variable) => variable.name !== '')
-    });
     // A cache to store expressions which are known to be invalid (so as to avoid
     // re-evaluating them later)
     let invalidExpressionCache = {};
@@ -73,7 +69,9 @@ class TableComponent {
         onclick: (clickEvent) => this.handleControls(clickEvent),
         oninput: (inputEvent) => this.updateExpressionString(inputEvent)
       }, [
-        nonEmptyVariables.map((variable) => m('th.variable', variable.name)),
+        this.app.variables.map((variable) => {
+          return m('th.variable', variable.name ? variable.name : '?');
+        }),
         this.app.expressions.map((expression, e) => {
           return m('th.expression', {'data-index': e}, m('div.has-controls', [
             m('div.control.control-add'),
@@ -93,9 +91,9 @@ class TableComponent {
           ]));
         })
       ])),
-      m('tbody', nonEmptyVariables.mapPermutations((varValues) => {
+      m('tbody', this.app.variables.mapPermutations((varValues) => {
         return m('tr', [
-          nonEmptyVariables.map((variable) => {
+          this.app.variables.map((variable) => {
             let varValue = varValues[variable.name];
             return m('td', {
               class: classNames(
