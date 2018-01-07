@@ -2,7 +2,33 @@ import m from 'mithril';
 import classNames from 'classnames';
 
 // The application reference sidebar (listing supported syntax/operations)
-var ReferenceComponent = {};
+class ReferenceComponent {
+
+  view(vnode) {
+    return m('div#reference', {
+      class: classNames(
+        'reference-close-control',
+        {'reference-is-open': vnode.attrs.referenceIsOpen}
+      )
+    }, m('#reference-sidebar.scrollable-container', [
+        m('img.reference-close-control', {
+          src: 'icons/close.svg',
+          alt: 'Close'
+        }),
+        m('h2', 'App Reference'),
+        ReferenceComponent.features.map((feature) => {
+          return m('div.feature', [
+            m('h3', feature.name),
+            feature.examples.map((example) => {
+              return m('pre.feature-example', example);
+            })
+          ]);
+        })
+      ])
+    );
+  }
+
+}
 
 // Reference data for all operations supported by Truthy
 ReferenceComponent.features = [
@@ -43,30 +69,5 @@ ReferenceComponent.features = [
     examples: ['p <-> q', 'p xnor q']
   }
 ];
-
-ReferenceComponent.view = function (vnode) {
-  var referenceIsOpen = vnode.attrs.referenceIsOpen;
-  return m('div#reference', {
-    class: classNames(
-      'reference-close-control',
-      {'reference-is-open': referenceIsOpen}
-    )
-  }, m('#reference-sidebar.scrollable-container', [
-      m('img.reference-close-control', {
-        src: 'icons/close.svg',
-        alt: 'Close'
-      }),
-      m('h2', 'App Reference'),
-      ReferenceComponent.features.map(function (feature) {
-        return m('div.feature', [
-          m('h3', feature.name),
-          feature.examples.map(function (example) {
-            return m('pre.feature-example', example);
-          })
-        ]);
-      })
-    ])
-  );
-};
 
 export default ReferenceComponent;
