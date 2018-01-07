@@ -4,7 +4,7 @@ class Collection {
   constructor({ SubCollectionItem, items }) {
     // A reference to the constructor for the sub-collection's item type
     this.SubCollectionItem = SubCollectionItem;
-    this.items = items.map(function (item) {
+    this.items = items.map((item) => {
       return new SubCollectionItem(item);
     });
   }
@@ -37,9 +37,7 @@ class Collection {
 
   serialize() {
     return {
-      items: this.items.map(function (item) {
-        return item.serialize();
-      })
+      items: this.items.map((item) => item.serialize())
     };
   }
 

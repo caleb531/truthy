@@ -16,9 +16,7 @@ class VariableCollection extends Collection {
   // Return true if a variable with the given name does not exist in the
   // collection; otherwise, return false
   checkNameAvailability(variableName) {
-    return !_.some(this.items, function (variable) {
-      return (variable.name === variableName);
-    });
+    return !_.some(this.items, (variable) => variable.name === variableName);
   }
 
   // Transform all possible permutations of true/false values for this collection
@@ -27,14 +25,14 @@ class VariableCollection extends Collection {
     var variables = this;
     // An object where each key is a variable name and each value is a boolean
     // representing the current value of that variable
-    var currentVarValues = _.object(variables.map(function (variable) {
+    var currentVarValues = _.object(variables.map((variable) => {
       // Initialize all variable values to false
       return [variable.name, false];
     }));
     // If n corresponds to the number of variables, then there will always be 2^n
     // permutations to generate
-    return _.times(Math.pow(2, variables.length), function (rowIndex) {
-      variables.forEach(function (variable, varIndex) {
+    return _.times(Math.pow(2, variables.length), (rowIndex) => {
+      variables.forEach((variable, varIndex) => {
         // Alternate variable values as needed (but not on the first permutation)
         if (rowIndex % Math.pow(2, variables.length - varIndex - 1) === 0 && rowIndex !== 0) {
           currentVarValues[variable.name] = !currentVarValues[variable.name];
@@ -48,9 +46,7 @@ class VariableCollection extends Collection {
   // the given base variable)
   getNextVariableName(baseVariable) {
     // Create a list of variable names already in use
-    var variableCharCodes = this.map(function (variable) {
-      return variable.name.charCodeAt(0);
-    });
+    var variableCharCodes = this.map((variable) => variable.name.charCodeAt(0));
     // Look for the next letter that isn't already in use
     var nextVarCharCode = baseVariable.name.charCodeAt(0);
     do {
