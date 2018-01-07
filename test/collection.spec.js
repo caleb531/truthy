@@ -1,9 +1,7 @@
-'use strict';
+import { expect } from 'chai';
+import Collection from '../app/scripts/models/collection.js';
 
-var expect = require('chai').expect;
-var Collection = require('../app/scripts/models/collection');
-
-describe('collection', function () {
+describe('collection', () => {
 
   function DummyItem(args) {
     this.foo = args.foo;
@@ -12,29 +10,29 @@ describe('collection', function () {
     return {foo: this.foo};
   };
 
-  it('should initialize with list of items', function () {
-    var collection = new Collection({
+  it('should initialize with list of items', () => {
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}]
     });
     expect(collection).to.have.property('items');
     expect(collection.items).to.have.length(2);
-    collection.items.forEach(function (item) {
+    collection.items.forEach((item) => {
       expect(item).to.be.an.instanceof(DummyItem);
     });
   });
 
-  it('should serialize to a JSON object', function () {
-    var serializedCollection = {items: [{foo: 'abc'}, {foo: 'xyz'}]};
-    var collection = new Collection({
+  it('should serialize to a JSON object', () => {
+    let serializedCollection = {items: [{foo: 'abc'}, {foo: 'xyz'}]};
+    let collection = new Collection({
         SubCollectionItem: DummyItem,
         items: serializedCollection.items
     });
     expect(collection.serialize()).to.deep.equal(serializedCollection);
   });
 
-  it('should get item by its index', function () {
-    var collection = new Collection({
+  it('should get item by its index', () => {
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}]
     });
@@ -42,8 +40,8 @@ describe('collection', function () {
     expect(collection.get(1)).to.have.property('foo', 'xyz');
   });
 
-  it('should insert new item', function () {
-    var collection = new Collection({
+  it('should insert new item', () => {
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}]
     });
@@ -53,8 +51,8 @@ describe('collection', function () {
     expect(collection.items[1]).to.be.an.instanceof(DummyItem);
   });
 
-  it('should remove existing item', function () {
-    var collection = new Collection({
+  it('should remove existing item', () => {
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });
@@ -64,24 +62,24 @@ describe('collection', function () {
     expect(collection.items[1]).to.have.property('foo', 'def');
   });
 
-  it('should iterate over items', function () {
-    var collection = new Collection({
+  it('should iterate over items', () => {
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });
-    var iteratedItems = [];
-    collection.forEach(function (item) {
+    let iteratedItems = [];
+    collection.forEach((item) => {
       iteratedItems.push(item);
     });
     expect(iteratedItems).to.deep.equal(collection.items);
   });
 
-  it('should filter items', function () {
-    var collection = new Collection({
+  it('should filter items', () => {
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'bef'}, {foo: 'ghi'}]
     });
-    var itemsWithoutB = collection.filter(function (item) {
+    let itemsWithoutB = collection.filter((item) => {
       return item.foo.indexOf('b') === -1;
     });
     expect(itemsWithoutB).to.have.length(2);
@@ -89,27 +87,27 @@ describe('collection', function () {
     expect(itemsWithoutB[1]).to.have.property('foo', 'ghi');
   });
 
-  it('should map items', function () {
-    var collection = new Collection({
+  it('should map items', () => {
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });
-    var iteratedItems = collection.map(function (item) {
+    let iteratedItems = collection.map((item) => {
       return item;
     });
     expect(iteratedItems).to.deep.equal(collection.items);
   });
 
-  it('should get collection length', function () {
-    var collection = new Collection({
+  it('should get collection length', () => {
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });
     expect(collection.length).to.equal(3);
   });
 
-  it('should set collection length', function () {
-    var collection = new Collection({
+  it('should set collection length', () => {
+    let collection = new Collection({
       SubCollectionItem: DummyItem,
       items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
     });

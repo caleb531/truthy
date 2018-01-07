@@ -1,20 +1,18 @@
-'use strict';
+import { expect } from 'chai';
+import Variable from '../app/scripts/models/variable.js';
 
-var expect = require('chai').expect;
-var Variable = require('../app/scripts/models/variable');
+describe('variable', () => {
 
-describe('variable', function () {
-
-  it('should initialize with unmodified name', function () {
-    var variable = new Variable({
+  it('should initialize with unmodified name', () => {
+    let variable = new Variable({
       name: 'g'
     });
     expect(variable).to.have.property('name', 'g');
   });
 
-  it('should serialize to a JSON object', function () {
-    var serializedVariable = {name: 'h'};
-    var variable = new Variable(serializedVariable);
+  it('should serialize to a JSON object', () => {
+    let serializedVariable = {name: 'h'};
+    let variable = new Variable(serializedVariable);
     expect(variable.serialize()).to.deep.equal(serializedVariable);
   });
 

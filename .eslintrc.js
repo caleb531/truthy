@@ -1,7 +1,5 @@
 // Configured for ESLint 3.15.0
 
-'use strict';
-
 module.exports = {
 
   /**
@@ -12,8 +10,22 @@ module.exports = {
 
     // browser global variables
     'browser': true,
+    // enable all ECMAScript 6 features except for modules (this automatically
+    // sets the ecmaVersion parser option to 6)
+    'es6': true,
     // Node.js global variables and Node.js scoping
     'node': true
+
+  },
+
+  /**
+   * Supported language options
+   */
+
+  parserOptions: {
+
+    // Enable ES6 modules
+    'sourceType': 'module'
 
   },
 
@@ -184,7 +196,7 @@ module.exports = {
     // enforce consistent brace style for blocks
     'brace-style': ['error', '1tbs', {'allowSingleLine': false}],
     // require or disallow trailing commas
-    "comma-dangle": ["error", "never"],
+    'comma-dangle': ['error', 'never'],
     // enforce consistent spacing before and after commas
     'comma-spacing': ['error'],
     // enforce consistent comma style
@@ -215,8 +227,6 @@ module.exports = {
     'no-plusplus': ['error'],
     // disallow whitespace before properties
     'no-whitespace-before-property': ['error'],
-    // enforce consistent spacing inside braces
-    'object-curly-spacing': ['error', 'never'],
     // enforce the consistent use of either backticks, double, or single quotes
     'quotes': ['error', 'single'],
     // require or disallow semicolons instead of ASI
@@ -235,4 +245,5 @@ module.exports = {
     'spaced-comment': ['error', 'always']
 
   }
+
 };

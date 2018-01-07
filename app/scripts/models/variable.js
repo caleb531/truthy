@@ -1,14 +1,17 @@
-'use strict';
-
 // A variable used in an expression string
-function Variable(args) {
-  this.name = args.name;
+class Variable {
+
+  /* eslint-disable no-shadow */
+  constructor({ name }) {
+    this.name = name;
+  }
+
+  serialize() {
+    return {
+      name: this.name
+    };
+  }
+
 }
 
-Variable.prototype.serialize = function () {
-  return {
-    name: this.name
-  };
-};
-
-module.exports = Variable;
+export default Variable;
