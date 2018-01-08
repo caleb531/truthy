@@ -61,9 +61,6 @@ class TableComponent {
   }
 
   view() {
-    // A cache to store expressions which are known to be invalid (so as to avoid
-    // re-evaluating them later)
-    let invalidExpressionCache = {};
     return m('table#truth-table', [
       m('thead', m('tr', {
         onclick: (clickEvent) => this.handleControls(clickEvent),
@@ -104,18 +101,7 @@ class TableComponent {
             this.getBoolStr(varValue));
           }),
           this.app.expressions.map((expression) => {
-            let exprValue;
-            // Don't re-evaluate expression if it is known to be invalid
-            if (expression.string in invalidExpressionCache) {
-              exprValue = null;
-            } else {
-              exprValue = expression.evaluate(varValues);
-              if (exprValue === null) {
-                // The value stored with the key in the cache doesn't really matter;
-                // the cache itself functions more as a set than a dictionary
-                invalidExpressionCache[expression.string] = true;
-              }
-            }
+            let exprValue = expression.evaluate(varValues);
             return m('td', {
               class: classNames(
                 {true: exprValue === true},
