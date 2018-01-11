@@ -3,7 +3,7 @@
 module.exports = function (config) {
   config.set({
     basePath: 'public',
-    browsers: ['ChromeHeadless'],
+    browsers: ['ChromeHeadlessCustom'],
     files: ['scripts/modules.js', 'scripts/test.js'],
     reporters: ['dots'].concat(process.env.COVERAGE ? ['coverage'] : []),
     frameworks: ['mocha'],
@@ -20,6 +20,12 @@ module.exports = function (config) {
     },
     static: {
       path: 'public'
+    },
+    customLaunchers: {
+      ChromeHeadlessCustom: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
     }
   });
 };
