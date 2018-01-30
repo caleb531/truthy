@@ -11,7 +11,7 @@ describe('variable', function () {
   });
 
   it('should serialize to a JSON object', function () {
-    let serializedVariable = {name: 'h'};
+    let serializedVariable = { name: 'h' };
     let variable = new Variable(serializedVariable);
     expect(variable.serialize()).to.deep.equal(serializedVariable);
   });

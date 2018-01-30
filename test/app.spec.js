@@ -13,8 +13,8 @@ describe('app', function () {
 
   it('should initialize with arguments', function () {
     let app = new App({
-      variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
-      expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
+      variables: { items: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
+      expressions: { items: [{ string: 'a xor b' }, { string: 'a nand b' }] }
     });
     expect(app).to.have.property('variables');
     expect(app.variables).to.have.length(3);
@@ -29,8 +29,8 @@ describe('app', function () {
 
   it('should serialize to JSON object', function () {
     let serializedApp = {
-      variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
-      expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
+      variables: { items: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
+      expressions: { items: [{ string: 'a xor b' }, { string: 'a nand b' }] }
     };
     let app = new App(serializedApp);
     expect(app.serialize()).to.deep.equal(serializedApp);
@@ -38,8 +38,8 @@ describe('app', function () {
 
   it('should save serialized app to disk', function () {
     let serializedApp = {
-      variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
-      expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
+      variables: { items: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
+      expressions: { items: [{ string: 'a xor b' }, { string: 'a nand b' }] }
     };
     let app = new App(serializedApp);
     app.save();
@@ -50,8 +50,8 @@ describe('app', function () {
 
   it('should restore serialized app to disk', function () {
     let serializedApp = {
-      variables: {items: [{name: 'a'}, {name: 'b'}, {name: 'c'}]},
-      expressions: {items: [{string: 'a xor b'}, {string: 'a nand b'}]}
+      variables: { items: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
+      expressions: { items: [{ string: 'a xor b' }, { string: 'a nand b' }] }
     };
     let app = new App(serializedApp);
     app.save();

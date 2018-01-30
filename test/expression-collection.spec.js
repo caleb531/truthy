@@ -6,7 +6,7 @@ describe('expression collection', function () {
 
   it('should initialize with list of expressions', function () {
     let expressions = new ExpressionCollection({
-      items: [{string: 'a xor b'}, {string: 's nand t'}]
+      items: [{ string: 'a xor b' }, { string: 's nand t' }]
     });
     expect(expressions).to.have.property('items');
     expect(expressions.items).to.have.length(2);

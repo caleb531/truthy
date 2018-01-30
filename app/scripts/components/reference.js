@@ -8,7 +8,7 @@ class ReferenceComponent {
     return m('div#reference', {
       class: classNames(
         'reference-close-control',
-        {'reference-is-open': vnode.attrs.referenceIsOpen}
+        { 'reference-is-open': vnode.attrs.referenceIsOpen }
       )
     }, m('#reference-sidebar.scrollable-container', [
         m('img.reference-close-control', {

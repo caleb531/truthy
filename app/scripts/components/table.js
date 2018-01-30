@@ -70,7 +70,7 @@ class TableComponent {
           return m('th.variable', variable.name ? variable.name : '?');
         }),
         this.app.expressions.map((expression, e) => {
-          return m('th.expression', {'data-index': e}, m('div.has-controls', [
+          return m('th.expression', { 'data-index': e }, m('div.has-controls', [
             m('div.control.control-add'),
             this.app.expressions.length > 1 ? m('div.control.control-remove') : null,
             m('input', {
@@ -94,8 +94,8 @@ class TableComponent {
             let varValue = varValues[variable.name];
             return m('td', {
               class: classNames(
-                {true: varValue === true},
-                {false: varValue === false}
+                { true: varValue === true },
+                { false: varValue === false }
               )
             },
             this.getBoolStr(varValue));
@@ -104,9 +104,9 @@ class TableComponent {
             let exprValue = expression.evaluate(varValues);
             return m('td', {
               class: classNames(
-                {true: exprValue === true},
-                {false: exprValue === false},
-                {invalid: exprValue === null}
+                { true: exprValue === true },
+                { false: exprValue === false },
+                { invalid: exprValue === null }
               )
             }, this.getBoolStr(exprValue));
           })

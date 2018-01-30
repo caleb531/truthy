@@ -82,7 +82,7 @@ describe('app UI', function () {
   it('should update existing variable', function () {
     let variable = document.querySelector('div.variable input');
     variable.value = 'a';
-    variable.dispatchEvent(new Event('input', {bubbles: true}));
+    variable.dispatchEvent(new Event('input', { bubbles: true }));
     m.redraw.sync();
     expect(document.querySelector('th.variable')).to.have.text('a');
   });
@@ -108,7 +108,7 @@ describe('app UI', function () {
   it('should update existing expression', function () {
     let expression = document.querySelector('th.expression input');
     expression.value = 'p xor q';
-    expression.dispatchEvent(new Event('input', {bubbles: true}));
+    expression.dispatchEvent(new Event('input', { bubbles: true }));
     m.redraw.sync();
     let values = document.querySelectorAll('td:nth-child(3)');
     expect(values[0]).to.have.text('F');

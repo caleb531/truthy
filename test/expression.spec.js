@@ -12,7 +12,7 @@ describe('expression', function () {
   });
 
   it('should serialize to a JSON object', function () {
-    let serializedExpression = {string: 'p xor q'};
+    let serializedExpression = { string: 'p xor q' };
     let expression = new Expression(serializedExpression);
     expect(expression.serialize()).to.deep.equal(serializedExpression);
   });
@@ -21,7 +21,7 @@ describe('expression', function () {
   // set of inputs
   Assertion.addMethod('evaluateTo', function (testCases) {
     let assertion = this;
-    let expression = new Expression({string: assertion._obj});
+    let expression = new Expression({ string: assertion._obj });
     // Test each expression against the given permutations of variable values
     // and the expected outputs
     testCases.forEach(function (testCase) {
@@ -49,37 +49,37 @@ describe('expression', function () {
 
     it('should evaluate', function () {
       expect('p').to.evaluateTo([
-        {varValues: {p: false}, output: false},
-        {varValues: {p: true}, output: true}
+        { varValues: { p: false }, output: false },
+        { varValues: { p: true }, output: true }
       ]);
     });
 
     it('may be uppercase', function () {
       expect('P').to.evaluateTo([
-        {varValues: {P: false}, output: false},
-        {varValues: {P: true}, output: true}
+        { varValues: { P: false }, output: false },
+        { varValues: { P: true }, output: true }
       ]);
     });
 
     it('may be any letter', function () {
       expect('a').to.evaluateTo([
-        {varValues: {a: false}, output: false},
-        {varValues: {a: true}, output: true}
+        { varValues: { a: false }, output: false },
+        { varValues: { a: true }, output: true }
       ]);
       expect('z').to.evaluateTo([
-        {varValues: {z: false}, output: false},
-        {varValues: {z: true}, output: true}
+        { varValues: { z: false }, output: false },
+        { varValues: { z: true }, output: true }
       ]);
     });
 
     it('should be case-sensitive', function () {
       expect('p').to.evaluateTo([
-        {varValues: {P: false}, output: null},
-        {varValues: {P: true}, output: null}
+        { varValues: { P: false }, output: null },
+        { varValues: { P: true }, output: null }
       ]);
       expect('P').to.evaluateTo([
-        {varValues: {p: false}, output: null},
-        {varValues: {p: true}, output: null}
+        { varValues: { p: false }, output: null },
+        { varValues: { p: true }, output: null }
       ]);
     });
 
@@ -90,8 +90,8 @@ describe('expression', function () {
     describe('false', function () {
 
       let testCases = [
-        {varValues: {p: false}, output: false},
-        {varValues: {p: true}, output: false}
+        { varValues: { p: false }, output: false },
+        { varValues: { p: true }, output: false }
       ];
 
       it('should evaluate', function () {
@@ -107,8 +107,8 @@ describe('expression', function () {
     describe('true', function () {
 
       let testCases = [
-        {varValues: {p: false}, output: true},
-        {varValues: {p: true}, output: true}
+        { varValues: { p: false }, output: true },
+        { varValues: { p: true }, output: true }
       ];
 
       it('should evaluate', function () {
@@ -126,8 +126,8 @@ describe('expression', function () {
   describe('NOT operation', function () {
 
     let testCases = [
-      {varValues: {p: false}, output: true},
-      {varValues: {p: true}, output: false}
+      { varValues: { p: false }, output: true },
+      { varValues: { p: true }, output: false }
     ];
 
     it('should evaluate named operator', function () {
@@ -152,8 +152,8 @@ describe('expression', function () {
 
     it('should not coerce nonexistent variable name', function () {
       expect('!a').to.evaluateTo([
-        {varValues: {p: false}, output: null},
-        {varValues: {p: true}, output: null}
+        { varValues: { p: false }, output: null },
+        { varValues: { p: true }, output: null }
       ]);
     });
 
@@ -162,10 +162,10 @@ describe('expression', function () {
   describe('AND operation', function () {
 
     let testCases = [
-      {varValues: {p: false, q: false}, output: false},
-      {varValues: {p: false, q: true}, output: false},
-      {varValues: {p: true, q: false}, output: false},
-      {varValues: {p: true, q: true}, output: true}
+      { varValues: { p: false, q: false }, output: false },
+      { varValues: { p: false, q: true }, output: false },
+      { varValues: { p: true, q: false }, output: false },
+      { varValues: { p: true, q: true }, output: true }
     ];
 
     it('should evaluate named operator', function () {
@@ -201,10 +201,10 @@ describe('expression', function () {
   describe('NAND operation', function () {
 
     let testCases = [
-      {varValues: {p: false, q: false}, output: true},
-      {varValues: {p: false, q: true}, output: true},
-      {varValues: {p: true, q: false}, output: true},
-      {varValues: {p: true, q: true}, output: false}
+      { varValues: { p: false, q: false }, output: true },
+      { varValues: { p: false, q: true }, output: true },
+      { varValues: { p: true, q: false }, output: true },
+      { varValues: { p: true, q: true }, output: false }
     ];
 
     it('should evaluate operator', function () {
@@ -224,10 +224,10 @@ describe('expression', function () {
   describe('OR operation', function () {
 
     let testCases = [
-      {varValues: {p: false, q: false}, output: false},
-      {varValues: {p: false, q: true}, output: true},
-      {varValues: {p: true, q: false}, output: true},
-      {varValues: {p: true, q: true}, output: true}
+      { varValues: { p: false, q: false }, output: false },
+      { varValues: { p: false, q: true }, output: true },
+      { varValues: { p: true, q: false }, output: true },
+      { varValues: { p: true, q: true }, output: true }
     ];
 
     it('should evaluate named operator', function () {
@@ -263,10 +263,10 @@ describe('expression', function () {
   describe('NOR operation', function () {
 
     let testCases = [
-      {varValues: {p: false, q: false}, output: true},
-      {varValues: {p: false, q: true}, output: false},
-      {varValues: {p: true, q: false}, output: false},
-      {varValues: {p: true, q: true}, output: false}
+      { varValues: { p: false, q: false }, output: true },
+      { varValues: { p: false, q: true }, output: false },
+      { varValues: { p: true, q: false }, output: false },
+      { varValues: { p: true, q: true }, output: false }
     ];
 
     it('should evaluate operator', function () {
@@ -286,10 +286,10 @@ describe('expression', function () {
   describe('XOR operation', function () {
 
     let testCases = [
-      {varValues: {p: false, q: false}, output: false},
-      {varValues: {p: false, q: true}, output: true},
-      {varValues: {p: true, q: false}, output: true},
-      {varValues: {p: true, q: true}, output: false}
+      { varValues: { p: false, q: false }, output: false },
+      { varValues: { p: false, q: true }, output: true },
+      { varValues: { p: true, q: false }, output: true },
+      { varValues: { p: true, q: true }, output: false }
     ];
 
     it('should evaluate named operator', function () {
@@ -317,10 +317,10 @@ describe('expression', function () {
   describe('implication operation', function () {
 
     let testCases = [
-      {varValues: {p: false, q: false}, output: true},
-      {varValues: {p: false, q: true}, output: true},
-      {varValues: {p: true, q: false}, output: false},
-      {varValues: {p: true, q: true}, output: true}
+      { varValues: { p: false, q: false }, output: true },
+      { varValues: { p: false, q: true }, output: true },
+      { varValues: { p: true, q: false }, output: false },
+      { varValues: { p: true, q: true }, output: true }
     ];
 
     it('should evaluate operator', function () {
@@ -336,10 +336,10 @@ describe('expression', function () {
   describe('double-implication (XNOR) operation', function () {
 
     let testCases = [
-      {varValues: {p: false, q: false}, output: true},
-      {varValues: {p: false, q: true}, output: false},
-      {varValues: {p: true, q: false}, output: false},
-      {varValues: {p: true, q: true}, output: true}
+      { varValues: { p: false, q: false }, output: true },
+      { varValues: { p: false, q: true }, output: false },
+      { varValues: { p: true, q: false }, output: false },
+      { varValues: { p: true, q: true }, output: true }
     ];
 
     it('should evaluate shorthand operator', function () {
@@ -366,28 +366,28 @@ describe('expression', function () {
 
   it('should respect parentheses', function () {
     expect('p & (p | !q)').to.evaluateTo([
-      {varValues: {p: false, q: false}, output: false},
-      {varValues: {p: false, q: true}, output: false},
-      {varValues: {p: true, q: false}, output: true},
-      {varValues: {p: true, q: true}, output: true}
+      { varValues: { p: false, q: false }, output: false },
+      { varValues: { p: false, q: true }, output: false },
+      { varValues: { p: true, q: false }, output: true },
+      { varValues: { p: true, q: true }, output: true }
     ]);
   });
 
   it('should ignore leading/trailing whitespace', function () {
     expect('  p & q  ').to.evaluateTo([
-      {varValues: {p: false, q: false}, output: false},
-      {varValues: {p: false, q: true}, output: false},
-      {varValues: {p: true, q: false}, output: false},
-      {varValues: {p: true, q: true}, output: true}
+      { varValues: { p: false, q: false }, output: false },
+      { varValues: { p: false, q: true }, output: false },
+      { varValues: { p: true, q: false }, output: false },
+      { varValues: { p: true, q: true }, output: true }
     ]);
   });
 
   it('should count tabs/newlines as ignored whitespace', function () {
     expect('\n p \t & \n q \t').to.evaluateTo([
-      {varValues: {p: false, q: false}, output: false},
-      {varValues: {p: false, q: true}, output: false},
-      {varValues: {p: true, q: false}, output: false},
-      {varValues: {p: true, q: true}, output: true}
+      { varValues: { p: false, q: false }, output: false },
+      { varValues: { p: false, q: true }, output: false },
+      { varValues: { p: true, q: false }, output: false },
+      { varValues: { p: true, q: true }, output: true }
     ]);
   });
 

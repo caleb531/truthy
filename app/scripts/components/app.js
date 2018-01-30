@@ -39,11 +39,11 @@ class AppComponent {
         'by ', m('a[href=https://calebevans.me/]', 'Caleb Evans')
       ]),
       m('h1', 'Truthy'),
-      m(ReferenceComponent, {referenceIsOpen: this.referenceIsOpen}),
+      m(ReferenceComponent, { referenceIsOpen: this.referenceIsOpen }),
       m('h2', 'Variables'),
-      m(VariableCollectionComponent, {app: this.app}),
+      m(VariableCollectionComponent, { app: this.app }),
       m('h2', 'Table'),
-      m('div.scrollable-container', m(TableComponent, {app: this.app})),
+      m('div.scrollable-container', m(TableComponent, { app: this.app })),
       m('p', [
         'Like Truthy? ',
         m('a[href=https://github.com/caleb531/truthy]', 'Check it out on GitHub!')

@@ -11,8 +11,8 @@ class App {
     } else {
       this.variables = new VariableCollection({
         items: [
-          {name: 'p'},
-          {name: 'q'}
+          { name: 'p' },
+          { name: 'q' }
         ]
       });
     }
@@ -21,9 +21,9 @@ class App {
     } else {
       this.expressions = new ExpressionCollection({
         items: [
-          {string: 'not p'},
-          {string: 'p and q'},
-          {string: 'p or q'}
+          { string: 'not p' },
+          { string: 'p and q' },
+          { string: 'p or q' }
         ]
       });
     }

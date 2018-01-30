@@ -59,7 +59,7 @@ class VariableCollectionComponent {
         onclick: (clickEvent) => this.handleControls(clickEvent),
         oninput: (inputEvent) => this.updateVariableName(inputEvent)
     }, this.app.variables.map((variable, v) => {
-      return m('div.variable', {'data-index': v}, m('div.has-controls', [
+      return m('div.variable', { 'data-index': v }, m('div.has-controls', [
         m('div.control.control-add'),
         this.app.variables.length > 1 ? m('div.control.control-remove') : null,
         m('input', {

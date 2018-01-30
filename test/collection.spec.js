@@ -7,13 +7,13 @@ describe('collection', function () {
     this.foo = args.foo;
   }
   DummyItem.prototype.serialize = function () {
-    return {foo: this.foo};
+    return { foo: this.foo };
   };
 
   it('should initialize with list of items', function () {
     let collection = new Collection({
       SubCollectionItem: DummyItem,
-      items: [{foo: 'abc'}, {foo: 'xyz'}]
+      items: [{ foo: 'abc' }, { foo: 'xyz' }]
     });
     expect(collection).to.have.property('items');
     expect(collection.items).to.have.length(2);
@@ -23,7 +23,7 @@ describe('collection', function () {
   });
 
   it('should serialize to a JSON object', function () {
-    let serializedCollection = {items: [{foo: 'abc'}, {foo: 'xyz'}]};
+    let serializedCollection = { items: [{ foo: 'abc' }, { foo: 'xyz' }] };
     let collection = new Collection({
         SubCollectionItem: DummyItem,
         items: serializedCollection.items
@@ -34,7 +34,7 @@ describe('collection', function () {
   it('should get item by its index', function () {
     let collection = new Collection({
       SubCollectionItem: DummyItem,
-      items: [{foo: 'abc'}, {foo: 'xyz'}]
+      items: [{ foo: 'abc' }, { foo: 'xyz' }]
     });
     expect(collection.get(0)).to.have.property('foo', 'abc');
     expect(collection.get(1)).to.have.property('foo', 'xyz');
@@ -43,9 +43,9 @@ describe('collection', function () {
   it('should insert new item', function () {
     let collection = new Collection({
       SubCollectionItem: DummyItem,
-      items: [{foo: 'abc'}, {foo: 'xyz'}]
+      items: [{ foo: 'abc' }, { foo: 'xyz' }]
     });
-    collection.insert(1, {foo: 'def'});
+    collection.insert(1, { foo: 'def' });
     expect(collection.items).to.have.length(3);
     expect(collection.items[1]).to.have.property('foo', 'def');
     expect(collection.items[1]).to.be.an.instanceof(DummyItem);
@@ -54,7 +54,7 @@ describe('collection', function () {
   it('should remove existing item', function () {
     let collection = new Collection({
       SubCollectionItem: DummyItem,
-      items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
+      items: [{ foo: 'abc' }, { foo: 'xyz' }, { foo: 'def' }]
     });
     collection.remove(1);
     expect(collection).to.have.length(2);
@@ -65,7 +65,7 @@ describe('collection', function () {
   it('should iterate over items', function () {
     let collection = new Collection({
       SubCollectionItem: DummyItem,
-      items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
+      items: [{ foo: 'abc' }, { foo: 'xyz' }, { foo: 'def' }]
     });
     let iteratedItems = [];
     collection.forEach(function (item) {
@@ -77,7 +77,7 @@ describe('collection', function () {
   it('should filter items', function () {
     let collection = new Collection({
       SubCollectionItem: DummyItem,
-      items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'bef'}, {foo: 'ghi'}]
+      items: [{ foo: 'abc' }, { foo: 'xyz' }, { foo: 'bef' }, { foo: 'ghi' }]
     });
     let itemsWithoutB = collection.filter(function (item) {
       return item.foo.indexOf('b') === -1;
@@ -90,7 +90,7 @@ describe('collection', function () {
   it('should map items', function () {
     let collection = new Collection({
       SubCollectionItem: DummyItem,
-      items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
+      items: [{ foo: 'abc' }, { foo: 'xyz' }, { foo: 'def' }]
     });
     let iteratedItems = collection.map(function (item) {
       return item;
@@ -101,7 +101,7 @@ describe('collection', function () {
   it('should get collection length', function () {
     let collection = new Collection({
       SubCollectionItem: DummyItem,
-      items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
+      items: [{ foo: 'abc' }, { foo: 'xyz' }, { foo: 'def' }]
     });
     expect(collection.length).to.equal(3);
   });
@@ -109,7 +109,7 @@ describe('collection', function () {
   it('should set collection length', function () {
     let collection = new Collection({
       SubCollectionItem: DummyItem,
-      items: [{foo: 'abc'}, {foo: 'xyz'}, {foo: 'def'}]
+      items: [{ foo: 'abc' }, { foo: 'xyz' }, { foo: 'def' }]
     });
     collection.length = 0;
     expect(collection.length).to.equal(0);

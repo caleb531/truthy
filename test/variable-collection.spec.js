@@ -7,7 +7,7 @@ describe('variable collection', function () {
 
   it('should initialize with list of variables', function () {
     let variables = new VariableCollection({
-      items: [{name: 'u'}, {name: 'v'}]
+      items: [{ name: 'u' }, { name: 'v' }]
     });
     expect(variables).to.have.property('items');
     expect(variables.items).to.have.length(2);
@@ -18,13 +18,13 @@ describe('variable collection', function () {
 
   it('should map variable permutations', function () {
     let expectedPermutations = [
-      {s: false, t: false},
-      {s: false, t: true},
-      {s: true, t: false},
-      {s: true, t: true}
+      { s: false, t: false },
+      { s: false, t: true },
+      { s: true, t: false },
+      { s: true, t: true }
     ];
     let variables = new VariableCollection({
-      items: [{name: 's'}, {name: 't'}]
+      items: [{ name: 's' }, { name: 't' }]
     });
     let actualPermutations = variables.mapPermutations(function (varValues) {
       return _.extend({}, varValues);
@@ -38,7 +38,7 @@ describe('variable collection', function () {
   describe('getNextVariableName', function () {
 
     let variables = new VariableCollection({
-      items: [{name: 'q'}, {name: 's'}, {name: 'z'}, {name: 'a'}]
+      items: [{ name: 'q' }, { name: 's' }, { name: 'z' }, { name: 'a' }]
     });
 
     it('should find names in-between existing variables', function () {
