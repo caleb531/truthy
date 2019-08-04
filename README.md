@@ -14,6 +14,8 @@ tables for any boolean expressions you supply.
 You can view the app online at:  
 https://projects.calebevans.me/truthy/
 
+![Truthy in action](screenshot.png)
+
 ## Run the project locally
 
 ### 1. Install global dependencies
