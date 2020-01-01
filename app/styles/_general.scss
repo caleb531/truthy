@@ -1,8 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #222;
-  background-image: url('../images/grid-bg.svg');
+  background-color: #111;
   background-size: 11px;
   background-attachment: fixed;
   text-align: center;
@@ -64,6 +63,7 @@ input[type='text'] {
 // A general-purpose container that fits to the viewport width but is
 // horizontally scrollable
 .scrollable-container {
+  padding: 5px 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }

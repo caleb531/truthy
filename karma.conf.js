@@ -12,8 +12,7 @@ module.exports = function (config) {
       'scripts/test.js'
     ],
     proxies: {
-      '/base/icons/': '/icons/',
-      '/base/images/': '/images/'
+      '/base/icons/': '/icons/'
     },
     reporters: ['dots'].concat(process.env.COVERAGE ? ['coverage'] : []),
     frameworks: ['mocha', 'chai-dom', 'sinon-chai'],
