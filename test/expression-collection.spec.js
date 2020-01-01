@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import ExpressionCollection from '../app/scripts/models/expression-collection.js';
 import Expression from '../app/scripts/models/expression.js';
 

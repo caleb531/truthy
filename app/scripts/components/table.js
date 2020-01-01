@@ -1,5 +1,5 @@
 import m from 'mithril';
-import classNames from 'classnames';
+import classNames from '../classnames.js';
 
 // The truth table UI, including all created expressions and their table values
 class TableComponent {
@@ -93,21 +93,21 @@ class TableComponent {
           this.app.variables.map((variable) => {
             let varValue = varValues[variable.name];
             return m('td', {
-              class: classNames(
-                { true: varValue === true },
-                { false: varValue === false }
-              )
+              class: classNames({
+                true: varValue === true,
+                false: varValue === false
+              })
             },
             this.getBoolStr(varValue));
           }),
           this.app.expressions.map((expression) => {
             let exprValue = expression.evaluate(varValues);
             return m('td', {
-              class: classNames(
-                { true: exprValue === true },
-                { false: exprValue === false },
-                { invalid: exprValue === null }
-              )
+              class: classNames({
+                true: exprValue === true,
+                false: exprValue === false,
+                invalid: exprValue === null
+              })
             }, this.getBoolStr(exprValue));
           })
         ]);

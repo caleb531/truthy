@@ -1,13 +1,12 @@
 import m from 'mithril';
-import classNames from 'classnames';
+import classNames from '../classnames.js';
 
 // The application reference sidebar (listing supported syntax/operations)
 class ReferenceComponent {
 
   view(vnode) {
-    return m('div#reference', {
+    return m('div#reference.reference-close-control', {
       class: classNames(
-        'reference-close-control',
         { 'reference-is-open': vnode.attrs.referenceIsOpen }
       )
     }, m('#reference-sidebar.scrollable-container', [

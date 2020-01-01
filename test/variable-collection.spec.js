@@ -1,5 +1,4 @@
 import _ from 'underscore';
-import { expect } from 'chai';
 import VariableCollection from '../app/scripts/models/variable-collection.js';
 import Variable from '../app/scripts/models/variable.js';
 

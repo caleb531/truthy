@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import App from '../app/scripts/models/app.js';
 
 describe('app', function () {

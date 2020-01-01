@@ -1,5 +1,3 @@
-import chai from 'chai';
-import { expect } from 'chai';
 import chaiDom from 'chai-dom';
 chai.use(chaiDom);
 import m from 'mithril';
@@ -8,20 +6,14 @@ import AppComponent from '../app/scripts/components/app.js';
 describe('app UI', function () {
 
   beforeEach(function () {
-    m.mount(document.body, AppComponent);
+    localStorage.clear();
+    document.body.appendChild(document.createElement('main'));
+    m.mount(document.querySelector('main'), AppComponent);
   });
 
   afterEach(function () {
-    m.mount(document.body, null);
-    localStorage.clear();
-  });
-
-  it('should mount on main', function () {
-    m.mount(document.body, null);
-    document.body.appendChild(document.createElement('main'));
-    require('../app/scripts/main');
-    expect(document.querySelector('#app')).not.to.be.null;
     m.mount(document.querySelector('main'), null);
+    localStorage.clear();
   });
 
   it('should render default variables', function () {

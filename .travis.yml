@@ -11,9 +11,8 @@ install:
   - npm install
   - npm install coveralls
 before_script:
-  - ./node_modules/brunch/bin/brunch build
+  - gulp build
 script:
-  - npm run lint
   - npm run coverage
 after_success:
   - cat coverage/lcov.info | coveralls

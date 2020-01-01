@@ -27,7 +27,7 @@ brew install node
 ```
 
 ```bash
-npm install -g brunch
+npm install -g gulp-cli
 ```
 
 ### 2. Install project dependencies
@@ -43,7 +43,7 @@ npm install
 To serve the app locally, run:
 
 ```bash
-brunch watch --server
+gulp build
 ```
 
 When run, the app will be accessible at `http://localhost:3333`.

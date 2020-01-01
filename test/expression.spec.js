@@ -1,5 +1,4 @@
 import _ from 'underscore';
-import { expect, Assertion } from 'chai';
 import Expression from '../app/scripts/models/expression.js';
 
 describe('expression', function () {
@@ -19,7 +18,7 @@ describe('expression', function () {
 
   // Expect some expression string to evaluate to some set of values given some
   // set of inputs
-  Assertion.addMethod('evaluateTo', function (testCases) {
+  chai.Assertion.addMethod('evaluateTo', function (testCases) {
     let assertion = this;
     let expression = new Expression({ string: assertion._obj });
     // Test each expression against the given permutations of variable values

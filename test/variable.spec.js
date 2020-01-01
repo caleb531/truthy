@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import Variable from '../app/scripts/models/variable.js';
 
 describe('variable', function () {
