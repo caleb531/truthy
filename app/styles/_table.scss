@@ -32,7 +32,8 @@ $value-colors: (
 @each $value-name, $value-color in $value-colors {
   td.#{$value-name} {
     background-color: $value-color;
-    tr:nth-child(even) & {
+    tr:nth-child(odd) &:nth-child(odd),
+    tr:nth-child(even) &:nth-child(even) {
       background-color: darken($value-color, 4%);
     }
   }
