@@ -16,6 +16,7 @@ class VariableCollectionComponent {
   updateVariableName(inputEvent) {
     // Only update variable name if name is syntactically valid and if name is
     // not already in use
+    /* istanbul ignore else */
     if (inputEvent.target.value === '' || (this.validNamePattern.test(inputEvent.target.value) && this.app.variables.checkNameAvailability(inputEvent.target.value))) {
       let variable = this.app.variables.get(this.getVariableIndex(inputEvent.target));
       variable.name = inputEvent.target.value;
@@ -40,6 +41,9 @@ class VariableCollectionComponent {
   }
 
   handleControls(clickEvent) {
+    // There is no need for an 'else' case, because we are only using event
+    // delegation to capture clicks on the UI controls
+    /* istanbul ignore else */
     if (clickEvent.target.classList.contains('control-add')) {
       this.addVariable(clickEvent);
     } else if (clickEvent.target.classList.contains('control-remove')) {
@@ -48,6 +52,9 @@ class VariableCollectionComponent {
   }
 
   focusNewVariable(inputVnode) {
+    // There is no need for an 'else' case; we don't want cause unnecessary
+    // behavior
+    /* istanbul ignore else */
     if (this.lastCreatedVariableIndex === inputVnode.attrs['data-index']) {
       inputVnode.dom.focus();
       this.lastCreatedVariableIndex = null;
