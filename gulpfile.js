@@ -61,7 +61,7 @@ gulp.task('rollup:test', () => {
 });
 gulp.task('rollup:watch', () => {
   return gulp.watch(
-    ['app/scripts/**/*.js', 'test/**/*.js'],
+    ['app/scripts/**/*.js', 'app/scripts/**/*.pegjs', 'test/**/*.js'],
     gulp.series('rollup')
   );
 });
