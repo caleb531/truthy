@@ -28,9 +28,9 @@ a {
 }
 .nav-link {
   position: absolute;
-  top: 8px;
+  top: 12px;
   font-size: 14px;
-  $position-x: 10px;
+  $position-x: 16px;
   &-left {
     left: $position-x;
   }

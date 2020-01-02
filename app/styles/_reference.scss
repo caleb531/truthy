@@ -52,10 +52,10 @@ $reference-fade-easing: ease-in-out;
   // Close button in top-left corner
   img.reference-close-control {
     position: absolute;
-    $link-position: 6px;
+    $link-position: 16px;
     top: $link-position;
     left: $link-position;
-    $link-size: 14px;
+    $link-size: 16px;
     width: $link-size;
     width: $link-size;
   }
