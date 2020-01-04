@@ -51,7 +51,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-static": "^1.0.1",
     "mocha": "^6.2.2",
-    "remap-istanbul": "^0.9.5",
+    "remap-istanbul": "^0.13.0",
     "rollup": "^0.67.0",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-glob-import": "^0.3.0",
