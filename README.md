@@ -43,7 +43,7 @@ npm install
 To serve the app locally, run:
 
 ```bash
-gulp build
+gulp serve
 ```
 
 When run, the app will be accessible at `http://localhost:3333`.
