@@ -46,4 +46,4 @@ To serve the app locally, run:
 gulp serve
 ```
 
-When run, the app will be accessible at `http://localhost:3333`.
+When run, the app will be accessible at `http://localhost:8080`.
