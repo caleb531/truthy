@@ -195,6 +195,14 @@ describe('expression', function () {
       expect('p  &&  q').to.evaluateTo(testCases);
     });
 
+    it('should evaluate arithmetic operator', function () {
+      expect('p*q').to.evaluateTo(testCases);
+    });
+
+    it('should ignore whitespace around arithmetic operator', function () {
+      expect('p  *  q').to.evaluateTo(testCases);
+    });
+
   });
 
   describe('NAND operation', function () {
@@ -255,6 +263,14 @@ describe('expression', function () {
 
     it('should ignore whitespace around shorthand logical operator', function () {
       expect('p  ||  q').to.evaluateTo(testCases);
+    });
+
+    it('should evaluate arithmetic operator', function () {
+      expect('p+q').to.evaluateTo(testCases);
+    });
+
+    it('should ignore whitespace around arithmetic operator', function () {
+      expect('p  +  q').to.evaluateTo(testCases);
     });
 
   });
