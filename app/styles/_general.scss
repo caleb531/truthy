@@ -28,16 +28,22 @@ a {
 }
 .nav-link {
   position: absolute;
-  top: 12px;
-  font-size: 14px;
+  $position-y: 12px;
   $position-x: 16px;
+  font-size: 14px;
   &-left {
-    left: $position-x;
+    top: 0;
+    left: 0;
+    a {
+      padding: $position-y $position-x;
+    }
   }
   &-right {
+    top: $position-y;
     right: $position-x;
   }
   a {
+    display: inline-block;
     text-decoration: none;
   }
 }
