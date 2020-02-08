@@ -37,11 +37,11 @@ ReferenceComponent.features = [
   },
   {
     name: 'AND',
-    examples: ['p and q', 'p & q', 'p && q']
+    examples: ['p and q', 'p & q', 'p && q', 'p * q']
   },
   {
     name: 'OR',
-    examples: ['p or q', 'p | q', 'p || q']
+    examples: ['p or q', 'p | q', 'p || q', 'p + q']
   },
   {
     name: 'Parentheses',
