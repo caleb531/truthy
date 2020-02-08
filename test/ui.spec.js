@@ -135,4 +135,64 @@ describe('app UI', function () {
     expect(reference).not.to.have.class('reference-is-open');
   });
 
+  it('should add unary example to table when clicked', function () {
+    document.querySelector('a.reference-open-control').click();
+    m.redraw.sync();
+    document.querySelector('.feature:nth-of-type(1) .feature-example:nth-of-type(2)').click();
+    m.redraw.sync();
+    let expression = document.querySelector('.expression:last-child input');
+    expect(expression).to.have.value('!p');
+  });
+
+  it('should add binary example to table when clicked', function () {
+    document.querySelector('a.reference-open-control').click();
+    m.redraw.sync();
+    document.querySelector('.feature:nth-of-type(2) .feature-example:nth-of-type(4)').click();
+    m.redraw.sync();
+    let expression = document.querySelector('.expression:last-child input');
+    expect(expression).to.have.value('p * q');
+  });
+
+  it('should add variable if example requires it', function () {
+    let variables = document.querySelectorAll('div.variable');
+    variables[1].querySelector('.control-remove').click();
+    m.redraw.sync();
+    let secondVariable = document.querySelector('div.variable:nth-of-type(2) input');
+    expect(secondVariable).to.be.null;
+    document.querySelector('a.reference-open-control').click();
+    m.redraw.sync();
+    document.querySelector('.feature:nth-of-type(2) .feature-example:nth-of-type(4)').click();
+    m.redraw.sync();
+    secondVariable = document.querySelector('div.variable:nth-of-type(2) input');
+    expect(secondVariable).to.have.value('q');
+  });
+
+  it('should modify unary example to use variable names defined by user', function () {
+    let variables = document.querySelectorAll('div.variable input');
+    variables[0].value = 'a';
+    variables[0].dispatchEvent(new Event('input', { bubbles: true }));
+    m.redraw.sync();
+    document.querySelector('a.reference-open-control').click();
+    m.redraw.sync();
+    document.querySelector('.feature:nth-of-type(1) .feature-example:nth-of-type(2)').click();
+    m.redraw.sync();
+    let expression = document.querySelector('.expression:last-child input');
+    expect(expression).to.have.value('!a');
+  });
+
+  it('should modify binary example to use variable names defined by user', function () {
+    let variables = document.querySelectorAll('div.variable input');
+    variables[0].value = 'a';
+    variables[1].value = 'b';
+    variables[0].dispatchEvent(new Event('input', { bubbles: true }));
+    variables[1].dispatchEvent(new Event('input', { bubbles: true }));
+    m.redraw.sync();
+    document.querySelector('a.reference-open-control').click();
+    m.redraw.sync();
+    document.querySelector('.feature:nth-of-type(5) .feature-example:nth-of-type(2)').click();
+    m.redraw.sync();
+    let expression = document.querySelector('.expression:last-child input');
+    expect(expression).to.have.value('a ^ b');
+  });
+
 });
