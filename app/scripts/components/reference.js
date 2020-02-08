@@ -44,6 +44,7 @@ class ReferenceComponent {
           alt: 'Close'
         }),
         m('h2', 'App Reference'),
+        m('p.cta', 'Click any example to try it!'),
         ReferenceComponent.features.map((feature) => {
           return m('div.feature', [
             m('h3', feature.name),

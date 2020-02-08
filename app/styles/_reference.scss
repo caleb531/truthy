@@ -50,6 +50,12 @@ $reference-fade-easing: ease-in-out;
   h3 {
     font-size: 18px;
   }
+  p.cta {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(#fff, 0.75);
+    font-style: italic;
+  }
   // Close button in top-left corner
   img.reference-close-control {
     position: absolute;
