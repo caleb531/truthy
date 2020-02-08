@@ -39,7 +39,7 @@ class AppComponent {
         'by ', m('a[href=https://calebevans.me/]', 'Caleb Evans')
       ]),
       m('h1', 'Truthy'),
-      m(ReferenceComponent, { referenceIsOpen: this.referenceIsOpen }),
+      m(ReferenceComponent, { app: this.app, referenceIsOpen: this.referenceIsOpen }),
       m('h2', 'Variables'),
       m(VariableCollectionComponent, { app: this.app }),
       m('h2', 'Table'),
