@@ -37,7 +37,6 @@ class TableComponent {
       string: expression.string
     });
     this.app.save();
-    this.lastCreatedExpressionIndex = expressionIndex + 1;
   }
 
   removeExpression(clickEvent) {
@@ -60,9 +59,11 @@ class TableComponent {
     // There is no need for an 'else' case; we don't want cause unnecessary
     // behavior
     /* istanbul ignore else */
-    if (this.lastCreatedExpressionIndex === inputVnode.attrs['data-index']) {
+    if (this.app.expressions.lastInsertionIndex === inputVnode.attrs['data-index']) {
       inputVnode.dom.focus();
-      this.lastCreatedExpressionIndex = null;
+      // This is essential to ensure the last added input does not keep stealing
+      // focus away
+      this.app.expressions.lastInsertionIndex = null;
     }
   }
 

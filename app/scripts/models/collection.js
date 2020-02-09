@@ -16,11 +16,12 @@ class Collection {
   insert(itemIndex, item) {
     // This method will automatically convert the given property map into the
     // correct item type for the sub-collection instance
-    return this.items.splice(itemIndex, 0, new this.SubCollectionItem(item));
+    this.items.splice(itemIndex, 0, new this.SubCollectionItem(item));
+    this.lastInsertionIndex = itemIndex;
   }
 
   remove(itemIndex) {
-    return this.items.splice(itemIndex, 1);
+    this.items.splice(itemIndex, 1);
   }
 
   forEach(callback) {

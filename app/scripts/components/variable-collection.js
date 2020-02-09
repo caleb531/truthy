@@ -32,7 +32,6 @@ class VariableCollectionComponent {
       name: newVariableName
     });
     this.app.save();
-    this.lastCreatedVariableIndex = variableIndex + 1;
   }
 
   removeVariable(clickEvent) {
@@ -55,9 +54,11 @@ class VariableCollectionComponent {
     // There is no need for an 'else' case; we don't want cause unnecessary
     // behavior
     /* istanbul ignore else */
-    if (this.lastCreatedVariableIndex === inputVnode.attrs['data-index']) {
+    if (this.app.variables.lastInsertionIndex === inputVnode.attrs['data-index']) {
       inputVnode.dom.focus();
-      this.lastCreatedVariableIndex = null;
+      // This is essential to ensure the last added input does not keep stealing
+      // focus away
+      this.app.variables.lastInsertionIndex = null;
     }
   }
 
