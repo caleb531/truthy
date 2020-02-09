@@ -6,22 +6,27 @@ class ReferenceComponent {
 
   // Insert the clicked example into your expression table
   tryExample(clickEvent, app) {
+    const exampleVariableNames = ['p', 'q', 'r'];
     if (clickEvent.target.classList.contains('feature-example')) {
       let exampleExpressionString = clickEvent.target.innerText;
-      // If the user does not have enough variables defined, add one (none of
-      // the examples use any more than two variables)
-      if (exampleExpressionString.indexOf('q') !== -1 && app.variables.length < 2) {
-        let lastVariable = app.variables.get(app.variables.length - 1);
-        app.variables.insert(app.variables.length, {
-          name: app.variables.getNextVariableName(lastVariable)
-        });
-      }
-      // Replace example 'p' and 'q' variable names with the names of the user's
+      // If the user does not have enough variables defined, add the relevant
+      // variables
+      exampleVariableNames.forEach((exampleVariableName, i) => {
+        if (exampleExpressionString.indexOf(exampleVariableName) !== -1 && app.variables.length < (i + 1)) {
+          let lastVariable = app.variables.get(app.variables.length - 1);
+          app.variables.insert(app.variables.length, {
+            name: app.variables.getNextVariableName(lastVariable)
+          });
+        }
+      });
+      // Replace example variable names with the names of the user's
       // currently-defined variables
-      exampleExpressionString = exampleExpressionString.replace(/p/gi, app.variables.get(0).name);
-      if (app.variables.length > 1) {
-        exampleExpressionString = exampleExpressionString.replace(/q/gi, app.variables.get(1).name);
-      }
+      app.variables.forEach((variable, i) => {
+        exampleExpressionString = exampleExpressionString.replace(
+          new RegExp(`\\b${exampleVariableNames[i]}\\b`, 'gi'),
+          variable.name
+        );
+      });
       // Insert modified example into user's expression table
       app.expressions.insert(app.expressions.length, {
         string: exampleExpressionString
