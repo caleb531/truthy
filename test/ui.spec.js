@@ -153,7 +153,7 @@ describe('app UI', function () {
     expect(expression).to.have.value('p * q');
   });
 
-  it('should add variable if example requires it', function () {
+  it('should add second variable if example requires it', function () {
     let variables = document.querySelectorAll('div.variable');
     variables[1].querySelector('.control-remove').click();
     m.redraw.sync();
@@ -165,6 +165,17 @@ describe('app UI', function () {
     m.redraw.sync();
     secondVariable = document.querySelector('div.variable:nth-of-type(2) input');
     expect(secondVariable).to.have.value('q');
+  });
+
+  it('should add third variable if example requires it', function () {
+    let thirdVariable = document.querySelector('div.variable:nth-of-type(3) input');
+    expect(thirdVariable).to.be.null;
+    document.querySelector('a.reference-open-control').click();
+    m.redraw.sync();
+    document.querySelector('.feature:nth-of-type(4) .feature-example:nth-of-type(1)').click();
+    m.redraw.sync();
+    thirdVariable = document.querySelector('div.variable:nth-of-type(3) input');
+    expect(thirdVariable).to.have.value('r');
   });
 
   it('should modify unary example to use variable names defined by user', function () {
