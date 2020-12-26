@@ -3,7 +3,7 @@
 *Copyright 2016-2020, Caleb Evans*  
 *Released under the MIT License*
 
-[![Build Status](https://travis-ci.org/caleb531/truthy.svg?branch=master)](https://travis-ci.org/caleb531/truthy)
+[![Build Status](https://travis-ci.com/caleb531/truthy.svg?branch=master)](https://travis-ci.com/caleb531/truthy)
 [![Coverage Status](https://coveralls.io/repos/github/caleb531/truthy/badge.svg?branch=master)](https://coveralls.io/github/caleb531/truthy?branch=master)
 
 Truth tables have always been tedious and strenuous to create by hand; it's easy
