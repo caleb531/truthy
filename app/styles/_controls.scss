@@ -1,4 +1,5 @@
 // Add/remove controls for individual variables/expresisons
+@use 'sass:math';
 
 // Any arbitrary container to attach controls to
 .has-controls {
@@ -8,7 +9,7 @@
 .control {
   position: absolute;
   $control-size: 16px;
-  top: -$control-size / 2;
+  top: -(math.div($control-size, 2));
   z-index: 10;
   width: $control-size;
   height: $control-size;
@@ -18,7 +19,7 @@
   background-size: 10px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  $control-x: -$control-size / 2;
+  $control-x: -(math.div($control-size, 2));
   &-add {
     right: $control-x;
     background-image: url('../icons/add.svg');
