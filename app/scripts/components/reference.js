@@ -31,6 +31,7 @@ class ReferenceComponent {
       app.expressions.insert(app.expressions.length, {
         string: exampleExpressionString
       });
+      app.save();
     }
   }
 
