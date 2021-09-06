@@ -1,6 +1,6 @@
 # Truthy
 
-*Copyright 2016-2020, Caleb Evans*  
+*Copyright 2016-2021, Caleb Evans*  
 *Released under the MIT License*
 
 [![Build Status](https://app.travis-ci.com/caleb531/truthy.svg?branch=master)](https://app.travis-ci.com/caleb531/truthy)
