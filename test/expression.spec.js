@@ -406,4 +406,23 @@ describe('expression', function () {
     ]);
   });
 
+  describe('more than two variables', function () {
+
+    let testCases = [
+      { varValues: { p: false, q: false, r: false }, output: false },
+      { varValues: { p: false, q: false, r: true }, output: true },
+      { varValues: { p: false, q: true, r: false }, output: true },
+      { varValues: { p: false, q: true, r: true }, output: false },
+      { varValues: { p: true, q: false, r: false }, output: true },
+      { varValues: { p: true, q: false, r: true }, output: false },
+      { varValues: { p: true, q: true, r: false }, output: false },
+      { varValues: { p: true, q: true, r: true }, output: true }
+    ];
+
+    it('should evaluate named operator', function () {
+      expect('p xor q xor r').to.evaluateTo(testCases);
+    });
+
+  });
+
 });
