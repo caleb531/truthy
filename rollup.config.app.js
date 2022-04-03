@@ -2,7 +2,7 @@ const commonjs = require('@rollup/plugin-commonjs');
 const resolve = require('@rollup/plugin-node-resolve');
 const json = require('@rollup/plugin-json');
 const terser = require('rollup-plugin-terser').terser;
-const pegjs = require('rollup-plugin-pegjs');
+const peggy = require('rollup-plugin-peggy');
 const baseConfig = require('./rollup.config.base.js');
 
 module.exports = Object.assign({}, baseConfig, {
@@ -17,7 +17,7 @@ module.exports = Object.assign({}, baseConfig, {
     }),
     commonjs(),
     json(),
-    pegjs({ cache: true }),
+    peggy({ cache: true }),
     process.env.NODE_ENV === 'production' ? terser() : null
   ]
 });
