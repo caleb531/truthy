@@ -79,6 +79,14 @@ describe('app UI', function () {
     expect(document.querySelector('th.variable')).to.have.text('a');
   });
 
+  it('should indicate blank variable name in table', function () {
+    let variable = document.querySelector('div.variable input');
+    variable.value = '';
+    variable.dispatchEvent(new Event('input', { bubbles: true }));
+    m.redraw.sync();
+    expect(document.querySelector('th.variable')).to.have.text('?');
+  });
+
   it('should add new expression', function () {
     let expressions = document.querySelectorAll('th.expression');
     expect(expressions).to.have.length(3);
