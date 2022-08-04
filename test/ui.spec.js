@@ -105,6 +105,16 @@ describe('app UI', function () {
     expect(document.querySelector('th.expression input')).to.have.value('p and q');
   });
 
+  it('should not be able to remove only expression', function () {
+    let expressions = document.querySelectorAll('th.expression');
+    expect(expressions).to.have.length(3);
+    expressions[0].querySelector('.control-remove').click();
+    expressions[1].querySelector('.control-remove').click();
+    m.redraw.sync();
+    expect(document.querySelectorAll('th.expression')).to.have.length(1);
+    expect(document.querySelector('#truth-table .control-remove')).to.be.null;
+  });
+
   it('should update existing expression', function () {
     let expression = document.querySelector('th.expression input');
     expression.value = 'p xor q';
