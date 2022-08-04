@@ -3,8 +3,8 @@
 *Copyright 2016-2022, Caleb Evans*  
 *Released under the MIT License*
 
-[![Build Status](https://app.travis-ci.com/caleb531/truthy.svg?branch=master)](https://app.travis-ci.com/caleb531/truthy)
-[![Coverage Status](https://coveralls.io/repos/github/caleb531/truthy/badge.svg?branch=master)](https://coveralls.io/github/caleb531/truthy?branch=master)
+[![tests](https://github.com/caleb531/truthy/actions/workflows/tests.yml/badge.svg)](https://github.com/caleb531/truthy/actions/workflows/tests.yml)
+[![Coverage Status](https://coveralls.io/repos/github/caleb531/truthy/badge.svg?branch=main)](https://coveralls.io/github/caleb531/truthy?branch=main)
 
 Truth tables have always been tedious and strenuous to create by hand; it's easy
 for your mind to lose track and for your hand to fatigue. Truthy is a web app

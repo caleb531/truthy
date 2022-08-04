@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "Create truth tables without the pain",
   "scripts": {
+    "build": "gulp build",
     "lint": "eslint app/scripts/**/*.js test/*.js",
     "test": "karma start --single-run",
     "coverage": "COVERAGE=true npm test && npm run remap-coverage && npm run coverage-report",
