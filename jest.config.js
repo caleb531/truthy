@@ -5,5 +5,6 @@ export default {
   transform: {
     '\\.js$': ['rollup-jest'],
     '\\.pegjs$': ['pegjs-jest-transformer']
-  }
+  },
+  coveragePathIgnorePatterns: ['\\.pegjs']
 };
