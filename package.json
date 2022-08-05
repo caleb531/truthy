@@ -39,7 +39,6 @@
     "autoprefixer": "^10.4.8",
     "eslint": "^8.21.0",
     "eslint-plugin-jest": "^26.7.0",
-    "esm": "^3.2.25",
     "jest": "^27.5.1",
     "pegjs-jest-transformer": "^1.0.7",
     "rollup": "^2.77.2",
