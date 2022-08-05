@@ -1,5 +1,5 @@
-import ExpressionCollection from '../app/scripts/models/expression-collection.js';
-import Expression from '../app/scripts/models/expression.js';
+import ExpressionCollection from '../src/scripts/models/expression-collection.js';
+import Expression from '../src/scripts/models/expression.js';
 
 describe('expression collection', function () {
 

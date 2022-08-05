@@ -5,16 +5,19 @@ import { terser } from 'rollup-plugin-terser';
 import peggy from 'rollup-plugin-peggy';
 import copy from 'rollup-plugin-copy';
 import scss from 'rollup-plugin-scss';
+import serve from 'rollup-plugin-serve';
 
 export default {
-  input: 'app/scripts/index.js',
+  input: 'src/scripts/index.js',
   output: {
-    file: 'public/scripts/index.js'
+    file: 'dist/index.js',
+    sourcemap: true,
+    exports: 'auto'
   },
   plugins: [
     copy({
       targets: [
-        { src: 'app/assets/*', dest: 'public/' }
+        { src: 'public/*', dest: 'dist/' }
       ]
     }),
     resolve({
@@ -25,6 +28,7 @@ export default {
     commonjs(),
     json(),
     peggy({ cache: true }),
-    process.env.NODE_ENV === 'production' ? terser() : null
+    process.env.NODE_ENV === 'production' ? terser() : null,
+    process.env.SERVE_APP ? serve('dist') : null
   ]
 };

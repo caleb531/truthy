@@ -1,5 +1,5 @@
 import _ from 'underscore';
-import Expression from '../app/scripts/models/expression.js';
+import Expression from '../src/scripts/models/expression.js';
 
 describe('expression', function () {
 

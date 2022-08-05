@@ -5,8 +5,8 @@
 node_modules
 *.log
 
-# Brunch
-public/
+# Build directory
+dist/
 
 # Test coverage
 coverage/

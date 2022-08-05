@@ -1,4 +1,4 @@
-import Collection from '../app/scripts/models/collection.js';
+import Collection from '../src/scripts/models/collection.js';
 
 describe('collection', function () {
 

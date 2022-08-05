@@ -1,4 +1,4 @@
-import App from '../app/scripts/models/app.js';
+import App from '../src/scripts/models/app.js';
 
 describe('app', function () {
 
