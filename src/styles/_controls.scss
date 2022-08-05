@@ -22,10 +22,10 @@
   $control-x: -(math.div($control-size, 2));
   &-add {
     right: $control-x;
-    background-image: url('../icons/add.svg');
+    background-image: url('icons/add.svg');
   }
   &-remove {
     left: $control-x;
-    background-image: url('../icons/remove.svg');
+    background-image: url('icons/remove.svg');
   }
 }
