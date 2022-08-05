@@ -8,7 +8,7 @@ class ReferenceComponent {
   tryExample(clickEvent, app) {
     const exampleVariableNames = ['p', 'q', 'r'];
     if (clickEvent.target.classList.contains('feature-example')) {
-      let exampleExpressionString = clickEvent.target.innerText;
+      let exampleExpressionString = clickEvent.target.textContent;
       // If the user does not have enough variables defined, add the relevant
       // variables
       exampleVariableNames.forEach((exampleVariableName, i) => {

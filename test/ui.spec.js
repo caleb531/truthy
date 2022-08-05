@@ -1,5 +1,4 @@
-import chaiDom from 'chai-dom';
-chai.use(chaiDom);
+import '@testing-library/jest-dom';
 import m from 'mithril';
 import AppComponent from '../app/scripts/components/app.js';
 
@@ -18,57 +17,57 @@ describe('app UI', function () {
 
   it('should render default variables', function () {
     let variables = document.querySelectorAll('div.variable input');
-    expect(variables).to.have.length(2);
-    expect(variables[0]).to.have.value('p');
-    expect(variables[1]).to.have.value('q');
+    expect(variables).toHaveLength(2);
+    expect(variables[0]).toHaveValue('p');
+    expect(variables[1]).toHaveValue('q');
   });
 
   it('should render default expressions', function () {
     let expressions = document.querySelectorAll('th.expression input');
-    expect(expressions).to.have.length(3);
-    expect(expressions[0]).to.have.value('not p');
-    expect(expressions[1]).to.have.value('p and q');
-    expect(expressions[2]).to.have.value('p or q');
+    expect(expressions).toHaveLength(3);
+    expect(expressions[0]).toHaveValue('not p');
+    expect(expressions[1]).toHaveValue('p and q');
+    expect(expressions[2]).toHaveValue('p or q');
   });
 
   it('should construct table', function () {
     let table = document.querySelector('table');
-    expect(table.querySelectorAll('thead th')).to.have.length(5);
-    expect(table.querySelectorAll('tbody tr')).to.have.length(4);
+    expect(table.querySelectorAll('thead th')).toHaveLength(5);
+    expect(table.querySelectorAll('tbody tr')).toHaveLength(4);
   });
 
   it('should build variable permutations', function () {
     let table = document.querySelector('table');
     let variables = table.querySelectorAll('th.variable');
-    expect(variables[0]).to.have.text('p');
-    expect(variables[1]).to.have.text('q');
+    expect(variables[0]).toHaveTextContent('p');
+    expect(variables[1]).toHaveTextContent('q');
     let rows = table.querySelectorAll('tbody tr');
-    expect(rows[0].querySelectorAll('td')[0]).to.have.text('F');
-    expect(rows[0].querySelectorAll('td')[1]).to.have.text('F');
-    expect(rows[1].querySelectorAll('td')[0]).to.have.text('F');
-    expect(rows[1].querySelectorAll('td')[1]).to.have.text('T');
-    expect(rows[2].querySelectorAll('td')[0]).to.have.text('T');
-    expect(rows[2].querySelectorAll('td')[1]).to.have.text('F');
-    expect(rows[3].querySelectorAll('td')[0]).to.have.text('T');
-    expect(rows[3].querySelectorAll('td')[1]).to.have.text('T');
+    expect(rows[0].querySelectorAll('td')[0]).toHaveTextContent('F');
+    expect(rows[0].querySelectorAll('td')[1]).toHaveTextContent('F');
+    expect(rows[1].querySelectorAll('td')[0]).toHaveTextContent('F');
+    expect(rows[1].querySelectorAll('td')[1]).toHaveTextContent('T');
+    expect(rows[2].querySelectorAll('td')[0]).toHaveTextContent('T');
+    expect(rows[2].querySelectorAll('td')[1]).toHaveTextContent('F');
+    expect(rows[3].querySelectorAll('td')[0]).toHaveTextContent('T');
+    expect(rows[3].querySelectorAll('td')[1]).toHaveTextContent('T');
   });
 
   it('should add new variable', function () {
     let variables = document.querySelectorAll('div.variable');
-    expect(variables).to.have.length(2);
+    expect(variables).toHaveLength(2);
     variables[0].querySelector('.control-add').click();
     m.redraw.sync();
-    expect(document.querySelectorAll('div.variable')).to.have.length(3);
-    expect(document.querySelectorAll('div.variable input')[1]).to.have.value('r');
+    expect(document.querySelectorAll('div.variable')).toHaveLength(3);
+    expect(document.querySelectorAll('div.variable input')[1]).toHaveValue('r');
   });
 
   it('should remove existing variable', function () {
     let variables = document.querySelectorAll('div.variable');
-    expect(variables).to.have.length(2);
+    expect(variables).toHaveLength(2);
     variables[0].querySelector('.control-remove').click();
     m.redraw.sync();
-    expect(document.querySelectorAll('div.variable')).to.have.length(1);
-    expect(document.querySelector('div.variable input')).to.have.value('q');
+    expect(document.querySelectorAll('div.variable')).toHaveLength(1);
+    expect(document.querySelector('div.variable input')).toHaveValue('q');
   });
 
   it('should update existing variable', function () {
@@ -76,7 +75,7 @@ describe('app UI', function () {
     variable.value = 'a';
     variable.dispatchEvent(new Event('input', { bubbles: true }));
     m.redraw.sync();
-    expect(document.querySelector('th.variable')).to.have.text('a');
+    expect(document.querySelector('th.variable')).toHaveTextContent('a');
   });
 
   it('should indicate blank variable name in table', function () {
@@ -84,35 +83,35 @@ describe('app UI', function () {
     variable.value = '';
     variable.dispatchEvent(new Event('input', { bubbles: true }));
     m.redraw.sync();
-    expect(document.querySelector('th.variable')).to.have.text('?');
+    expect(document.querySelector('th.variable')).toHaveTextContent('?');
   });
 
   it('should add new expression', function () {
     let expressions = document.querySelectorAll('th.expression');
-    expect(expressions).to.have.length(3);
+    expect(expressions).toHaveLength(3);
     expressions[0].querySelector('.control-add').click();
     m.redraw.sync();
-    expect(document.querySelectorAll('th.expression')).to.have.length(4);
-    expect(document.querySelectorAll('th.expression input')[1]).to.have.value('not p');
+    expect(document.querySelectorAll('th.expression')).toHaveLength(4);
+    expect(document.querySelectorAll('th.expression input')[1]).toHaveValue('not p');
   });
 
   it('should remove existing expression', function () {
     let expressions = document.querySelectorAll('th.expression');
-    expect(expressions).to.have.length(3);
+    expect(expressions).toHaveLength(3);
     expressions[0].querySelector('.control-remove').click();
     m.redraw.sync();
-    expect(document.querySelectorAll('th.expression')).to.have.length(2);
-    expect(document.querySelector('th.expression input')).to.have.value('p and q');
+    expect(document.querySelectorAll('th.expression')).toHaveLength(2);
+    expect(document.querySelector('th.expression input')).toHaveValue('p and q');
   });
 
   it('should not be able to remove only expression', function () {
     let expressions = document.querySelectorAll('th.expression');
-    expect(expressions).to.have.length(3);
+    expect(expressions).toHaveLength(3);
     expressions[0].querySelector('.control-remove').click();
     expressions[1].querySelector('.control-remove').click();
     m.redraw.sync();
-    expect(document.querySelectorAll('th.expression')).to.have.length(1);
-    expect(document.querySelector('#truth-table .control-remove')).to.be.null;
+    expect(document.querySelectorAll('th.expression')).toHaveLength(1);
+    expect(document.querySelector('#truth-table .control-remove')).toBeNull();
   });
 
   it('should update existing expression', function () {
@@ -121,18 +120,18 @@ describe('app UI', function () {
     expression.dispatchEvent(new Event('input', { bubbles: true }));
     m.redraw.sync();
     let values = document.querySelectorAll('td:nth-child(3)');
-    expect(values[0]).to.have.text('F');
-    expect(values[1]).to.have.text('T');
-    expect(values[2]).to.have.text('T');
-    expect(values[3]).to.have.text('F');
+    expect(values[0]).toHaveTextContent('F');
+    expect(values[1]).toHaveTextContent('T');
+    expect(values[2]).toHaveTextContent('T');
+    expect(values[3]).toHaveTextContent('F');
   });
 
   it('should open reference sidebar', function () {
     let reference = document.querySelector('#reference');
-    expect(reference).not.to.have.class('reference-is-open');
+    expect(reference).not.toHaveClass('reference-is-open');
     document.querySelector('a.reference-open-control').click();
     m.redraw.sync();
-    expect(reference).to.have.class('reference-is-open');
+    expect(reference).toHaveClass('reference-is-open');
   });
 
   it('should close reference sidebar via button', function () {
@@ -141,7 +140,7 @@ describe('app UI', function () {
     m.redraw.sync();
     document.querySelector('img.reference-close-control').click();
     m.redraw.sync();
-    expect(reference).not.to.have.class('reference-is-open');
+    expect(reference).not.toHaveClass('reference-is-open');
   });
 
   it('should close reference sidebar via overlay', function () {
@@ -150,7 +149,7 @@ describe('app UI', function () {
     m.redraw.sync();
     reference.click();
     m.redraw.sync();
-    expect(reference).not.to.have.class('reference-is-open');
+    expect(reference).not.toHaveClass('reference-is-open');
   });
 
   it('should add unary example to table when clicked', function () {
@@ -159,7 +158,7 @@ describe('app UI', function () {
     document.querySelector('.feature:nth-of-type(1) .feature-example:nth-of-type(2)').click();
     m.redraw.sync();
     let expression = document.querySelector('.expression:last-child input');
-    expect(expression).to.have.value('!p');
+    expect(expression).toHaveValue('!p');
   });
 
   it('should add binary example to table when clicked', function () {
@@ -168,7 +167,7 @@ describe('app UI', function () {
     document.querySelector('.feature:nth-of-type(2) .feature-example:nth-of-type(4)').click();
     m.redraw.sync();
     let expression = document.querySelector('.expression:last-child input');
-    expect(expression).to.have.value('p * q');
+    expect(expression).toHaveValue('p * q');
   });
 
   it('should add second variable if example requires it', function () {
@@ -176,24 +175,24 @@ describe('app UI', function () {
     variables[1].querySelector('.control-remove').click();
     m.redraw.sync();
     let secondVariable = document.querySelector('div.variable:nth-of-type(2) input');
-    expect(secondVariable).to.be.null;
+    expect(secondVariable).toBeNull();
     document.querySelector('a.reference-open-control').click();
     m.redraw.sync();
     document.querySelector('.feature:nth-of-type(2) .feature-example:nth-of-type(4)').click();
     m.redraw.sync();
     secondVariable = document.querySelector('div.variable:nth-of-type(2) input');
-    expect(secondVariable).to.have.value('q');
+    expect(secondVariable).toHaveValue('q');
   });
 
   it('should add third variable if example requires it', function () {
     let thirdVariable = document.querySelector('div.variable:nth-of-type(3) input');
-    expect(thirdVariable).to.be.null;
+    expect(thirdVariable).toBeNull();
     document.querySelector('a.reference-open-control').click();
     m.redraw.sync();
     document.querySelector('.feature:nth-of-type(4) .feature-example:nth-of-type(1)').click();
     m.redraw.sync();
     thirdVariable = document.querySelector('div.variable:nth-of-type(3) input');
-    expect(thirdVariable).to.have.value('r');
+    expect(thirdVariable).toHaveValue('r');
   });
 
   it('should modify unary example to use variable names defined by user', function () {
@@ -206,7 +205,7 @@ describe('app UI', function () {
     document.querySelector('.feature:nth-of-type(1) .feature-example:nth-of-type(2)').click();
     m.redraw.sync();
     let expression = document.querySelector('.expression:last-child input');
-    expect(expression).to.have.value('!a');
+    expect(expression).toHaveValue('!a');
   });
 
   it('should modify binary example to use variable names defined by user', function () {
@@ -221,7 +220,7 @@ describe('app UI', function () {
     document.querySelector('.feature:nth-of-type(5) .feature-example:nth-of-type(2)').click();
     m.redraw.sync();
     let expression = document.querySelector('.expression:last-child input');
-    expect(expression).to.have.value('a ^ b');
+    expect(expression).toHaveValue('a ^ b');
   });
 
 });

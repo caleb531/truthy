@@ -8,10 +8,10 @@ describe('variable collection', function () {
     let variables = new VariableCollection({
       items: [{ name: 'u' }, { name: 'v' }]
     });
-    expect(variables).to.have.property('items');
-    expect(variables.items).to.have.length(2);
+    expect(variables).toHaveProperty('items');
+    expect(variables.items).toHaveLength(2);
     variables.items.forEach(function (variable) {
-      expect(variable).to.be.an.instanceof(Variable);
+      expect(variable).toBeInstanceOf(Variable);
     });
   });
 
@@ -28,10 +28,10 @@ describe('variable collection', function () {
     let actualPermutations = variables.mapPermutations(function (varValues) {
       return _.extend({}, varValues);
     });
-    expect(actualPermutations[0]).to.deep.equal(expectedPermutations[0]);
-    expect(actualPermutations[1]).to.deep.equal(expectedPermutations[1]);
-    expect(actualPermutations[2]).to.deep.equal(expectedPermutations[2]);
-    expect(actualPermutations[3]).to.deep.equal(expectedPermutations[3]);
+    expect(actualPermutations[0]).toEqual(expectedPermutations[0]);
+    expect(actualPermutations[1]).toEqual(expectedPermutations[1]);
+    expect(actualPermutations[2]).toEqual(expectedPermutations[2]);
+    expect(actualPermutations[3]).toEqual(expectedPermutations[3]);
   });
 
   describe('getNextVariableName', function () {
@@ -41,13 +41,13 @@ describe('variable collection', function () {
     });
 
     it('should find names in-between existing variables', function () {
-      expect(variables.getNextVariableName(variables.items[0])).to.equal('r');
+      expect(variables.getNextVariableName(variables.items[0])).toEqual('r');
     });
     it('should find next available name without wrapping', function () {
-      expect(variables.getNextVariableName(variables.items[1])).to.equal('t');
+      expect(variables.getNextVariableName(variables.items[1])).toEqual('t');
     });
     it('should wrap around to next available name as needed', function () {
-      expect(variables.getNextVariableName(variables.items[2])).to.equal('b');
+      expect(variables.getNextVariableName(variables.items[2])).toEqual('b');
     });
 
   });

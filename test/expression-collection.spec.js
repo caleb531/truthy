@@ -7,10 +7,10 @@ describe('expression collection', function () {
     let expressions = new ExpressionCollection({
       items: [{ string: 'a xor b' }, { string: 's nand t' }]
     });
-    expect(expressions).to.have.property('items');
-    expect(expressions.items).to.have.length(2);
+    expect(expressions).toHaveProperty('items');
+    expect(expressions.items).toHaveLength(2);
     expressions.items.forEach(function (expression) {
-      expect(expression).to.be.an.instanceof(Expression);
+      expect(expression).toBeInstanceOf(Expression);
     });
   });
 

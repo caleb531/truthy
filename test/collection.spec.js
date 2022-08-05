@@ -14,10 +14,10 @@ describe('collection', function () {
       SubCollectionItem: DummyItem,
       items: [{ foo: 'abc' }, { foo: 'xyz' }]
     });
-    expect(collection).to.have.property('items');
-    expect(collection.items).to.have.length(2);
+    expect(collection).toHaveProperty('items');
+    expect(collection.items).toHaveLength(2);
     collection.items.forEach(function (item) {
-      expect(item).to.be.an.instanceof(DummyItem);
+      expect(item).toBeInstanceOf(DummyItem);
     });
   });
 
@@ -27,7 +27,7 @@ describe('collection', function () {
         SubCollectionItem: DummyItem,
         items: serializedCollection.items
     });
-    expect(collection.serialize()).to.deep.equal(serializedCollection);
+    expect(collection.serialize()).toEqual(serializedCollection);
   });
 
   it('should get item by its index', function () {
@@ -35,8 +35,8 @@ describe('collection', function () {
       SubCollectionItem: DummyItem,
       items: [{ foo: 'abc' }, { foo: 'xyz' }]
     });
-    expect(collection.get(0)).to.have.property('foo', 'abc');
-    expect(collection.get(1)).to.have.property('foo', 'xyz');
+    expect(collection.get(0)).toHaveProperty('foo', 'abc');
+    expect(collection.get(1)).toHaveProperty('foo', 'xyz');
   });
 
   it('should insert new item', function () {
@@ -45,9 +45,9 @@ describe('collection', function () {
       items: [{ foo: 'abc' }, { foo: 'xyz' }]
     });
     collection.insert(1, { foo: 'def' });
-    expect(collection.items).to.have.length(3);
-    expect(collection.items[1]).to.have.property('foo', 'def');
-    expect(collection.items[1]).to.be.an.instanceof(DummyItem);
+    expect(collection.items).toHaveLength(3);
+    expect(collection.items[1]).toHaveProperty('foo', 'def');
+    expect(collection.items[1]).toBeInstanceOf(DummyItem);
   });
 
   it('should remove existing item', function () {
@@ -56,9 +56,9 @@ describe('collection', function () {
       items: [{ foo: 'abc' }, { foo: 'xyz' }, { foo: 'def' }]
     });
     collection.remove(1);
-    expect(collection).to.have.length(2);
-    expect(collection.items[0]).to.have.property('foo', 'abc');
-    expect(collection.items[1]).to.have.property('foo', 'def');
+    expect(collection).toHaveLength(2);
+    expect(collection.items[0]).toHaveProperty('foo', 'abc');
+    expect(collection.items[1]).toHaveProperty('foo', 'def');
   });
 
   it('should iterate over items', function () {
@@ -70,7 +70,7 @@ describe('collection', function () {
     collection.forEach(function (item) {
       iteratedItems.push(item);
     });
-    expect(iteratedItems).to.deep.equal(collection.items);
+    expect(iteratedItems).toEqual(collection.items);
   });
 
   it('should filter items', function () {
@@ -81,9 +81,9 @@ describe('collection', function () {
     let itemsWithoutB = collection.filter(function (item) {
       return item.foo.indexOf('b') === -1;
     });
-    expect(itemsWithoutB).to.have.length(2);
-    expect(itemsWithoutB[0]).to.have.property('foo', 'xyz');
-    expect(itemsWithoutB[1]).to.have.property('foo', 'ghi');
+    expect(itemsWithoutB).toHaveLength(2);
+    expect(itemsWithoutB[0]).toHaveProperty('foo', 'xyz');
+    expect(itemsWithoutB[1]).toHaveProperty('foo', 'ghi');
   });
 
   it('should map items', function () {
@@ -94,7 +94,7 @@ describe('collection', function () {
     let iteratedItems = collection.map(function (item) {
       return item;
     });
-    expect(iteratedItems).to.deep.equal(collection.items);
+    expect(iteratedItems).toEqual(collection.items);
   });
 
   it('should get collection length', function () {
@@ -102,7 +102,7 @@ describe('collection', function () {
       SubCollectionItem: DummyItem,
       items: [{ foo: 'abc' }, { foo: 'xyz' }, { foo: 'def' }]
     });
-    expect(collection.length).to.equal(3);
+    expect(collection.length).toEqual(3);
   });
 
   it('should set collection length', function () {
@@ -111,8 +111,8 @@ describe('collection', function () {
       items: [{ foo: 'abc' }, { foo: 'xyz' }, { foo: 'def' }]
     });
     collection.length = 0;
-    expect(collection.length).to.equal(0);
-    expect(collection.items.length).to.equal(0);
+    expect(collection.length).toEqual(0);
+    expect(collection.items.length).toEqual(0);
   });
 
 });
