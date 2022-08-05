@@ -18,20 +18,6 @@ https://projects.calebevans.me/truthy/
 
 ## Run the project locally
 
-### 1. Install global dependencies
-
-The project requires Node.js and Brunch, so make sure you have both.
-
-```bash
-brew install node
-```
-
-```bash
-npm install -g gulp-cli
-```
-
-### 2. Install project dependencies
-
 From the cloned project directory, run:
 
 ```bash
@@ -43,7 +29,7 @@ npm install
 To serve the app locally, run:
 
 ```bash
-gulp serve
+npm run dev
 ```
 
-When run, the app will be accessible at `http://localhost:8080`.
+When run, the app will be accessible at `http://localhost:10001`.
