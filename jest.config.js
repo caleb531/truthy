@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   testEnvironment: 'jsdom',
   // Display coverage summary below file-by-file coverage breakdown
   coverageReporters: ['clover', 'json', 'lcov', 'html', 'text', 'text-summary'],

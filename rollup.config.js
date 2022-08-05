@@ -1,12 +1,12 @@
-const commonjs = require('@rollup/plugin-commonjs');
-const resolve = require('@rollup/plugin-node-resolve');
-const json = require('@rollup/plugin-json');
-const terser = require('rollup-plugin-terser').terser;
-const peggy = require('rollup-plugin-peggy');
-const copy = require('rollup-plugin-copy');
-const scss = require('rollup-plugin-scss');
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import json from '@rollup/plugin-json';
+import { terser } from 'rollup-plugin-terser';
+import peggy from 'rollup-plugin-peggy';
+import copy from 'rollup-plugin-copy';
+import scss from 'rollup-plugin-scss';
 
-module.exports = {
+export default {
   input: 'app/scripts/index.js',
   output: {
     file: 'public/scripts/index.js'
