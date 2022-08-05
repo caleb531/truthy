@@ -36,7 +36,6 @@
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@testing-library/jest-dom": "^5.16.5",
-    "autoprefixer": "^10.4.8",
     "eslint": "^8.21.0",
     "eslint-plugin-jest": "^26.7.0",
     "jest": "^27.5.1",
