@@ -29,6 +29,9 @@ export default {
     json(),
     peggy({ cache: true }),
     process.env.NODE_ENV === 'production' ? terser() : null,
-    process.env.SERVE_APP ? serve('dist') : null
+    process.env.SERVE_APP ? serve({
+      contentBase: 'dist',
+      port: 8080
+    }) : null
   ]
 };

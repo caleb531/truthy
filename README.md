@@ -32,4 +32,4 @@ To serve the app locally, run:
 npm run dev
 ```
 
-When run, the app will be accessible at `http://localhost:10001`.
+When run, the app will be accessible at http://localhost:8080.
