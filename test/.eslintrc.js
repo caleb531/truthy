@@ -6,7 +6,7 @@ module.exports = {
    * Allowed JavaScript environments
    */
 
-  "parserOptions": {
+  'parserOptions': {
 
     // enables ES7
     'ecmaVersion': 2017
