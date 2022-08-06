@@ -28,6 +28,7 @@ export default {
   output: {
     file: 'dist/index.js',
     sourcemap: true,
+    format: 'iife',
     exports: 'auto'
   },
   plugins: [
