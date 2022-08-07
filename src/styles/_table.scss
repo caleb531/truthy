@@ -31,10 +31,14 @@ $value-colors: (
 );
 @each $value-name, $value-color in $value-colors {
   td.#{$value-name} {
-    background-color: $value-color;
-    tr:nth-child(odd) &:nth-child(odd),
-    tr:nth-child(even) &:nth-child(even) {
-      background-color: darken($value-color, 4%);
-    }
+    --cell-background-color: #{$value-color};
+    --cell-background-color-alt: #{darken($value-color, 4%)};
   }
+}
+td {
+  background-color: var(--cell-background-color);
+}
+tr:nth-child(odd) td:nth-child(odd),
+tr:nth-child(even) td:nth-child(even) {
+  background-color: var(--cell-background-color-alt);
 }
