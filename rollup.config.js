@@ -27,7 +27,11 @@ export default {
       browser: true,
       preferBuiltins: true
     }),
-    scss({ sourceMap: true, output: 'dist/styles/index.css' }),
+    scss({
+      sourceMap: true,
+      output: 'dist/styles/index.css',
+      outputStyle: 'compressed'
+    }),
     commonjs(),
     json(),
     peggy({ cache: true }),
