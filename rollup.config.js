@@ -27,7 +27,7 @@ export default {
       browser: true,
       preferBuiltins: true
     }),
-    scss(),
+    scss({ sourceMap: true }),
     commonjs(),
     json(),
     peggy({ cache: true }),
