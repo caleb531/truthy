@@ -11,7 +11,7 @@ import serve from 'rollup-plugin-serve';
 export default {
   input: 'src/scripts/index.js',
   output: {
-    file: 'dist/index.js',
+    file: 'dist/scripts/index.js',
     sourcemap: true,
     format: 'iife',
     exports: 'auto'
@@ -27,7 +27,7 @@ export default {
       browser: true,
       preferBuiltins: true
     }),
-    scss({ sourceMap: true }),
+    scss({ sourceMap: true, output: 'dist/styles/index.css' }),
     commonjs(),
     json(),
     peggy({ cache: true }),
