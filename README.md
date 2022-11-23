@@ -18,18 +18,32 @@ https://projects.calebevans.me/truthy/
 
 ## Run the project locally
 
-From the cloned project directory, run:
+### 1. Clone project
+
+Clone the project down via HTTPS or SSH:
 
 ```bash
-npm install
+git clone https://github.com/caleb531/truthy.git
 ```
 
-### 3. Serve app locally
+### 2. Install packages
+
+This project uses [pnpm][pnpm] (instead of npm) for package
+installation and management.
+
+[pnpm]: https://pnpm.io/
+
+```bash
+npm install -g pnpm
+pnpm install
+```
+
+### 2. Serve app locally
 
 To serve the app locally, run:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 When run, the app will be accessible at http://localhost:8080.
