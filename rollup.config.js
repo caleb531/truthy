@@ -35,7 +35,9 @@ export default {
     commonjs(),
     json(),
     peggy({ cache: true }),
-    process.env.NODE_ENV === 'production' ? terser() : null,
+    // TODO: re-enable this after upgrading to @rollup/plugin-terser with fix
+    // for <https://github.com/rollup/plugins/issues/1366>
+    // process.env.NODE_ENV === 'production' ? terser() : null,
     process.env.SERVE_APP ? serve({
       contentBase: 'dist',
       port: 8080
