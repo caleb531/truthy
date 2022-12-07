@@ -1,7 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import watchGlobs from 'rollup-plugin-watch-globs';
 import peggy from 'rollup-plugin-peggy';
 import copy from 'rollup-plugin-copy';
