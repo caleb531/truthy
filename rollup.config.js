@@ -37,7 +37,7 @@ export default {
     peggy({ cache: true }),
     // TODO: re-enable this after upgrading to @rollup/plugin-terser with fix
     // for <https://github.com/rollup/plugins/issues/1366>
-    // process.env.NODE_ENV === 'production' ? terser() : null,
+    process.env.NODE_ENV === 'production' ? terser() : null,
     process.env.SERVE_APP ? serve({
       contentBase: 'dist',
       port: 8080

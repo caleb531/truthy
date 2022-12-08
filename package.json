@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/caleb531/truthy#readme",
   "dependencies": {
-    "@rollup/plugin-terser": "^0.2.0",
     "mithril": "^2.2.2",
     "underscore": "^1.13.6"
   },
@@ -34,6 +33,7 @@
     "@rollup/plugin-commonjs": "^23.0.3",
     "@rollup/plugin-json": "^5.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "0.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "eslint": "^8.29.0",
     "eslint-plugin-jest": "^27.1.6",
