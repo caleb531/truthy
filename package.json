@@ -4,9 +4,9 @@
   "description": "Create truth tables without the pain",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --open",
     "lint": "eslint scripts/**/*.js test/*.js",
     "test": "vitest run",
     "coverage": "vitest run --coverage"
