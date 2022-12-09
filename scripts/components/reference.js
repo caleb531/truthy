@@ -1,5 +1,6 @@
 import m from 'mithril';
 import classNames from '../classnames.js';
+import closeIconUrl from '../../icons/close.svg';
 
 // The application reference sidebar (listing supported syntax/operations)
 class ReferenceComponent {
@@ -44,7 +45,7 @@ class ReferenceComponent {
       onclick: (clickEvent) => this.tryExample(clickEvent, app)
     }, [
         m('img.reference-close-control', {
-          src: 'icons/close.svg',
+          src: closeIconUrl,
           alt: 'Close'
         }),
         m('h2', 'App Reference'),
