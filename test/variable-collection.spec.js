@@ -1,6 +1,6 @@
 import _ from 'underscore';
-import VariableCollection from '../src/scripts/models/variable-collection.js';
-import Variable from '../src/scripts/models/variable.js';
+import VariableCollection from '../scripts/models/variable-collection.js';
+import Variable from '../scripts/models/variable.js';
 
 describe('variable collection', function () {
 

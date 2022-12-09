@@ -1,4 +1,4 @@
-import Variable from '../src/scripts/models/variable.js';
+import Variable from '../scripts/models/variable.js';
 
 describe('variable', function () {
 
