@@ -46,4 +46,4 @@ To serve the app locally, run:
 pnpm dev
 ```
 
-When run, the app will be accessible at http://localhost:8080.
+When run, the app will be accessible at http://localhost:5173.
