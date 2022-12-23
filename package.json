@@ -3,7 +3,6 @@
   "version": "3.0.0",
   "description": "Create truth tables without the pain",
   "private": true,
-  "packageManager": "^pnpm@7.18.2",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
