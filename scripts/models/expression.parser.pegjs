@@ -93,7 +93,8 @@ SubExpression 'Sub-Expression'
   }
 
 VariableName 'Variable Name'
-  = name:[A-Za-z] {
+  = name:([A-Za-z_]+) {
+    name = Array.isArray(name)? name.join('') : name
     if (name in options.varValues) {
       return options.varValues[name];
     } else {

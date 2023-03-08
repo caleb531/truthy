@@ -73,7 +73,6 @@ class VariableCollectionComponent {
         m('input', {
           type: 'text',
           value: variable.name,
-          maxlength: 1,
           autocapitalize: 'off',
           autocomplete: 'off',
           autocorrect: 'off',
@@ -88,6 +87,6 @@ class VariableCollectionComponent {
 
 }
 
-VariableCollectionComponent.prototype.validNamePattern = /^[A-Za-z]$/;
+VariableCollectionComponent.prototype.validNamePattern = /^(?!and$|or|xnor|xor|not|AND|OR|XNOR|XOR|NOT|true|false|TRUE|FALSE$)[a-zA-Z_]+$/;
 
 export default VariableCollectionComponent;

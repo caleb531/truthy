@@ -12,7 +12,8 @@ class Expression {
   evaluate(varValues) {
     try {
       return ExpressionParser.parse(this.string, {
-        varValues: varValues
+        varValues: varValues,
+
       });
     } catch (error) {
       return null;
