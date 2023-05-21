@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/caleb531/truthy#readme",
   "dependencies": {
+    "@fontsource/oxygen-mono": "^5.0.0",
+    "@fontsource/ubuntu": "^5.0.0",
     "mithril": "^2.2.2",
     "underscore": "^1.13.6"
   },
