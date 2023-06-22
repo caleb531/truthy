@@ -38,8 +38,8 @@ devDependencies:
     specifier: ^3.0.2
     version: 3.0.2
   rollup-plugin-peggy:
-    specifier: 5.0.0-beta.2
-    version: 5.0.0-beta.2(peggy@3.0.2)(rollup@3.25.1)
+    specifier: 5.0.0-rc.1
+    version: 5.0.0-rc.1(peggy@3.0.2)(rollup@3.25.1)
   sass:
     specifier: ^1.62.0
     version: 1.62.0
@@ -1904,8 +1904,8 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /rollup-plugin-peggy@5.0.0-beta.2(peggy@3.0.2)(rollup@3.25.1):
-    resolution: {integrity: sha512-x8DYLPszPtQmv5xh+iM0FoRDJ9kd17rzWo1UTFKku0RZqE3zOo8X2MbyCzaDZq8THKteOAp0Ezwjw2zmuo4Mug==}
+  /rollup-plugin-peggy@5.0.0-rc.1(peggy@3.0.2)(rollup@3.25.1):
+    resolution: {integrity: sha512-TbwWcLekTYlm+rg/B7I4gRAJVIm2MDAmm0jqANJxgGrOT5etZlHqRc1yXYdOCq4hcpltpU4Onlyg7YR433SnsA==}
     peerDependencies:
       peggy: '>=1.2.0'
       rollup: '>=2.0.0'
