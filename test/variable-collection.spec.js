@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import VariableCollection from '../scripts/models/variable-collection.js';
 import Variable from '../scripts/models/variable.js';
 
@@ -26,7 +25,7 @@ describe('variable collection', () => {
       items: [{ name: 's' }, { name: 't' }]
     });
     let actualPermutations = variables.mapPermutations((varValues) => {
-      return _.extend({}, varValues);
+      return Object.assign({}, varValues);
     });
     expect(actualPermutations[0]).toEqual(expectedPermutations[0]);
     expect(actualPermutations[1]).toEqual(expectedPermutations[1]);

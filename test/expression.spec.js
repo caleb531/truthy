@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import Expression from '../scripts/models/expression.js';
 
 describe('expression', () => {
@@ -26,10 +25,10 @@ describe('expression', () => {
       const testResults = testCases.map((testCase) => {
         let actualOutput = expression.evaluate(testCase.varValues);
         // String of current variable values for display in fail message
-        let varValuesStr = _.map(testCase.varValues, (varValue, varName) => {
+        let varValuesStr = Object.entries(testCase.varValues).map(([varName, varValue]) => {
           return varName + ' is ' + varValue;
         }).join(' and ');
-        const message = () => `expected ${expressionStr} to evaluate to ${testCase.output} but got ${actualOutput} (when ${varValuesStr})`;
+        const message = () => `expected '${expressionStr}' to evaluate to ${testCase.output} but got ${actualOutput} (when ${varValuesStr})`;
         if (actualOutput === testCase.output) {
           return { message, pass: true };
         } else {

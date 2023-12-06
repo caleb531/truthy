@@ -29,8 +29,8 @@
   "dependencies": {
     "@fontsource/oxygen-mono": "^5.0.17",
     "@fontsource/ubuntu": "^5.0.8",
-    "mithril": "^2.2.2",
-    "underscore": "^1.13.6"
+    "lodash-es": "^4.17.21",
+    "mithril": "^2.2.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.4",
