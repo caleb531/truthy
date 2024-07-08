@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.10",
     "@vitest/coverage-v8": "^2.0.1",
     "eslint": "^8.57.0",
     "eslint-plugin-jest": "^28.6.0",
@@ -42,7 +42,7 @@
     "peggy": "^4.0.3",
     "rollup-plugin-peggy": "^6.0.0",
     "sass": "^1.77.6",
-    "vite": "^5.3.2",
+    "vite": "^5.3.3",
     "vitest": "^2.0.1"
   }
 }
