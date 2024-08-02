@@ -15,6 +15,11 @@ describe('app UI', () => {
     localStorage.clear();
   });
 
+  it('should render via entry point', async () => {
+    m.mount(document.querySelector('main'), null);
+    await import('../scripts/index.js');
+  });
+
   it('should render default variables', () => {
     let variables = document.querySelectorAll('div.variable input');
     expect(variables).toHaveLength(2);
