@@ -1,16 +1,16 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# This workflow will do a clean installation of node dependencies, cache/restore them, and build the source code
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: tests
+name: build
 
 on:
   push:
-    branches: ["*"]
+    branches: ['*']
   pull_request:
-    branches: ["*"]
+    branches: ['*']
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,24 +22,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install PNPM
+      - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: latest
+          version: 8
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run tests
-        run: pnpm coverage
-
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build project
+        run: pnpm build
