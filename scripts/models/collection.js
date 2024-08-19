@@ -53,7 +53,6 @@ Object.defineProperty(Collection.prototype, 'length', {
   },
   set: function (newLength) {
     this.items.length = newLength;
-    return newLength;
   }
 });
 
