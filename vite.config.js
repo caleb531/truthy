@@ -11,6 +11,11 @@ export default defineConfig({
   plugins: [
     peggy({ cache: true })
   ],
+  // Enable JSX processing
+  esbuild: {
+    jsxFactory: 'm',
+    jsxFragment: 'm.Fragment'
+  },
   test: {
     globals: true,
     environment: 'jsdom',

@@ -1,10 +1,12 @@
 import js from '@eslint/js';
 import globals from 'globals';
+import vitest from '@vitest/eslint-plugin';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   js.configs.recommended,
   {
+    files: ['**/*.js', '**/*.jsx'],
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -13,6 +15,17 @@ export default [
     },
     rules: {
       'no-unused-vars': 'off'
+    }
+  },
+  // Enable parsing of JSX syntax
+  {
+    files: ['**/*.jsx'],
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
     }
   },
   {

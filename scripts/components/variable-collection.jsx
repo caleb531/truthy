@@ -63,27 +63,21 @@ class VariableCollectionComponent {
   }
 
   view() {
-    return m('div#variables', {
-        onclick: (clickEvent) => this.handleControls(clickEvent),
-        oninput: (inputEvent) => this.updateVariableName(inputEvent)
-    }, this.app.variables.map((variable, v) => {
-      return m('div.variable', { 'data-index': v }, m('div.has-controls', [
-        m('div.control.control-add'),
-        this.app.variables.length > 1 ? m('div.control.control-remove') : null,
-        m('input', {
-          type: 'text',
-          value: variable.name,
-          maxlength: 1,
-          autocapitalize: 'off',
-          autocomplete: 'off',
-          autocorrect: 'off',
-          spellcheck: false,
-          oncreate: (vnode) => this.focusNewVariable(vnode),
-          onupdate: (vnode) => this.focusNewVariable(vnode),
-          'data-index': v
-        })
-      ]));
-    }));
+    return (
+      <div id="variables" onclick={(clickEvent) => this.handleControls(clickEvent)} oninput={(inputEvent) => this.updateVariableName(inputEvent)}>
+        {this.app.variables.map((variable, v) => {
+          return (
+            <div class="variable" data-index={v}>
+              <div class="has-controls">
+                <div class="control control-add"></div>
+                {this.app.variables.length > 1 ? <div class="control control-remove"></div> : null}
+                <input type="text" value={variable.name} maxlength={1} autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" oncreate={(vnode) => this.focusNewVariable(vnode)} onupdate={(vnode) => this.focusNewVariable(vnode)} data-index={v} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 
 }

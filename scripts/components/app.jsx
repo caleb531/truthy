@@ -29,26 +29,27 @@ class AppComponent {
   }
 
   view() {
-    return m('div#app', {
-      onclick: (clickEvent) => this.toggleReference(clickEvent)
-    }, [
-      m('span#reference-link.nav-link.nav-link-left',
-        m('a[href=#].reference-open-control', 'App Reference')
-      ),
-      m('span#personal-site-link.nav-link.nav-link-right', [
-        'by ', m('a[href=https://calebevans.me/]', 'Caleb Evans')
-      ]),
-      m('h1', 'Truthy'),
-      m(ReferenceComponent, { app: this.app, referenceIsOpen: this.referenceIsOpen }),
-      m('h2', 'Variables'),
-      m(VariableCollectionComponent, { app: this.app }),
-      m('h2', 'Table'),
-      m('div.scrollable-container', m(TableComponent, { app: this.app })),
-      m('p', [
-        'Like Truthy? ',
-        m('a[href=https://github.com/caleb531/truthy]', 'Check it out on GitHub!')
-      ])
-    ]);
+    return (
+      <div id="app" onclick={(clickEvent) => this.toggleReference(clickEvent)}>
+        <span id="reference-link" class="nav-link nav-link-left">
+          <a href="#" class="reference-open-control">App Reference</a>
+        </span>
+        <span id="personal-site-link" class="nav-link nav-link-right">
+          by <a href="https://calebevans.me/">Caleb Evans</a>
+        </span>
+        <h1>Truthy</h1>
+        <ReferenceComponent app={this.app} referenceIsOpen={this.referenceIsOpen} />
+        <h2>Variables</h2>
+        <VariableCollectionComponent app={this.app} />
+        <h2>Table</h2>
+        <div class="scrollable-container">
+          <TableComponent app={this.app} />
+        </div>
+        <p>
+          Like Truthy? <a href="https://github.com/caleb531/truthy">Check it out on GitHub!</a>
+        </p>
+      </div>
+    );
   }
 
 }

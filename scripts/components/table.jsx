@@ -68,58 +68,59 @@ class TableComponent {
   }
 
   view() {
-    return m('table#truth-table', [
-      m('thead', m('tr', {
-        onclick: (clickEvent) => this.handleControls(clickEvent),
-        oninput: (inputEvent) => this.updateExpressionString(inputEvent)
-      }, [
-        this.app.variables.map((variable) => {
-          return m('th.variable', variable.name ? variable.name : '?');
-        }),
-        this.app.expressions.map((expression, e) => {
-          return m('th.expression', { 'data-index': e }, m('div.has-controls', [
-            m('div.control.control-add'),
-            this.app.expressions.length > 1 ? m('div.control.control-remove') : null,
-            m('input', {
-              type: 'text',
-              size: Math.max(1, expression.string.length),
-              value: expression.string,
-              autocapitalize: 'off',
-              autocomplete: 'off',
-              autocorrect: 'off',
-              spellcheck: false,
-              oncreate: (vnode) => this.focusNewExpression(vnode),
-              onupdate: (vnode) => this.focusNewExpression(vnode),
-              'data-index': e
-            })
-          ]));
-        })
-      ])),
-      m('tbody', this.app.variables.mapPermutations((varValues) => {
-        return m('tr', [
-          this.app.variables.map((variable) => {
-            let varValue = varValues[variable.name];
-            return m('td', {
-              class: clsx({
-                true: varValue === true,
-                false: varValue === false
-              })
-            },
-            this.getBoolStr(varValue));
-          }),
-          this.app.expressions.map((expression) => {
-            let exprValue = expression.evaluate(varValues);
-            return m('td', {
-              class: clsx({
-                true: exprValue === true,
-                false: exprValue === false,
-                invalid: exprValue === null
-              })
-            }, this.getBoolStr(exprValue));
-          })
-        ]);
-      }))
-    ]);
+    return (
+      <table id="truth-table">
+        <thead>
+          <tr onclick={(clickEvent) => this.handleControls(clickEvent)} oninput={(inputEvent) => this.updateExpressionString(inputEvent)}>
+            {this.app.variables.map((variable) => {
+              return <th class="variable">{variable.name ? variable.name : '?'}</th>;
+            })}
+            {this.app.expressions.map((expression, e) => {
+              return (
+                <th class="expression" data-index={e}>
+                  <div class="has-controls">
+                    <div class="control control-add"></div>
+                    {this.app.expressions.length > 1 ? <div class="control control-remove"></div> : null}
+                    <input type="text" size={Math.max(1, expression.string.length)} value={expression.string} autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" oncreate={(vnode) => this.focusNewExpression(vnode)} onupdate={(vnode) => this.focusNewExpression(vnode)} data-index={e} />
+                  </div>
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {this.app.variables.mapPermutations((varValues) => {
+            return (
+              <tr>
+                {this.app.variables.map((variable) => {
+                  let varValue = varValues[variable.name];
+                  return (
+                    <td class={clsx({
+                      true: varValue === true,
+                      false: varValue === false
+                    })}>
+                      {this.getBoolStr(varValue)}
+                    </td>
+                  );
+                })}
+                {this.app.expressions.map((expression) => {
+                  let exprValue = expression.evaluate(varValues);
+                  return (
+                    <td class={clsx({
+                      true: exprValue === true,
+                      false: exprValue === false,
+                      invalid: exprValue === null
+                    })}>
+                      {this.getBoolStr(exprValue)}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
   }
 
 }

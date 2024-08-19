@@ -37,29 +37,27 @@ class ReferenceComponent {
   }
 
   view({ attrs: { app, referenceIsOpen } }) {
-    return m('div#reference', {
-      class: clsx(
+    return (
+      <div id="reference" class={clsx(
         'reference-close-control',
         { 'reference-is-open': referenceIsOpen }
-      )
-    }, m('#reference-sidebar.scrollable-container', {
-      onclick: (clickEvent) => this.tryExample(clickEvent, app)
-    }, [
-        m('img.reference-close-control', {
-          src: closeIconUrl,
-          alt: 'Close'
-        }),
-        m('h2', 'App Reference'),
-        m('p.cta', 'Click any example to try it!'),
-        ReferenceComponent.features.map((feature) => {
-          return m('div.feature', [
-            m('h3', feature.name),
-            feature.examples.map((example) => {
-              return m('pre.feature-example.reference-close-control', example);
-            })
-          ]);
-        })
-      ])
+      )}>
+        <div id="reference-sidebar" class="scrollable-container" onclick={(clickEvent) => this.tryExample(clickEvent, app)}>
+          <img class="reference-close-control" src={closeIconUrl} alt="Close" />
+          <h2>App Reference</h2>
+          <p class="cta">Click any example to try it!</p>
+          {ReferenceComponent.features.map((feature) => {
+            return (
+              <div class="feature">
+                <h3>{feature.name}</h3>
+                {feature.examples.map((example) => {
+                  return <pre class="feature-example reference-close-control">{example}</pre>;
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     );
   }
 
