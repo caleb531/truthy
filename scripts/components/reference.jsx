@@ -38,20 +38,20 @@ class ReferenceComponent {
 
   view({ attrs: { app, referenceIsOpen } }) {
     return (
-      <div id="reference" class={clsx(
+      <div id="reference" className={clsx(
         'reference-close-control',
         { 'reference-is-open': referenceIsOpen }
       )}>
-        <div id="reference-sidebar" class="scrollable-container" onclick={(clickEvent) => this.tryExample(clickEvent, app)}>
-          <img class="reference-close-control" src={closeIconUrl} alt="Close" />
+        <div id="reference-sidebar" className="scrollable-container" onclick={(clickEvent) => this.tryExample(clickEvent, app)}>
+          <img className="reference-close-control" src={closeIconUrl} alt="Close" />
           <h2>App Reference</h2>
-          <p class="cta">Click any example to try it!</p>
+          <p className="cta">Click any example to try it!</p>
           {ReferenceComponent.features.map((feature) => {
             return (
-              <div class="feature">
+              <div className="feature">
                 <h3>{feature.name}</h3>
                 {feature.examples.map((example) => {
-                  return <pre class="feature-example reference-close-control">{example}</pre>;
+                  return <pre className="feature-example reference-close-control">{example}</pre>;
                 })}
               </div>
             );

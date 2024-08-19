@@ -31,10 +31,10 @@ class AppComponent {
   view() {
     return (
       <div id="app" onclick={(clickEvent) => this.toggleReference(clickEvent)}>
-        <span id="reference-link" class="nav-link nav-link-left">
-          <a href="#" class="reference-open-control">App Reference</a>
+        <span id="reference-link" className="nav-link nav-link-left">
+          <a href="#" className="reference-open-control">App Reference</a>
         </span>
-        <span id="personal-site-link" class="nav-link nav-link-right">
+        <span id="personal-site-link" className="nav-link nav-link-right">
           by <a href="https://calebevans.me/">Caleb Evans</a>
         </span>
         <h1>Truthy</h1>
@@ -42,7 +42,7 @@ class AppComponent {
         <h2>Variables</h2>
         <VariableCollectionComponent app={this.app} />
         <h2>Table</h2>
-        <div class="scrollable-container">
+        <div className="scrollable-container">
           <TableComponent app={this.app} />
         </div>
         <p>

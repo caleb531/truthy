@@ -73,14 +73,14 @@ class TableComponent {
         <thead>
           <tr onclick={(clickEvent) => this.handleControls(clickEvent)} oninput={(inputEvent) => this.updateExpressionString(inputEvent)}>
             {this.app.variables.map((variable) => {
-              return <th class="variable">{variable.name ? variable.name : '?'}</th>;
+              return <th className="variable">{variable.name ? variable.name : '?'}</th>;
             })}
             {this.app.expressions.map((expression, e) => {
               return (
-                <th class="expression" data-index={e}>
-                  <div class="has-controls">
-                    <div class="control control-add"></div>
-                    {this.app.expressions.length > 1 ? <div class="control control-remove"></div> : null}
+                <th className="expression" data-index={e}>
+                  <div className="has-controls">
+                    <div className="control control-add"></div>
+                    {this.app.expressions.length > 1 ? <div className="control control-remove"></div> : null}
                     <input type="text" size={Math.max(1, expression.string.length)} value={expression.string} autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" oncreate={(vnode) => this.focusNewExpression(vnode)} onupdate={(vnode) => this.focusNewExpression(vnode)} data-index={e} />
                   </div>
                 </th>
@@ -95,7 +95,7 @@ class TableComponent {
                 {this.app.variables.map((variable) => {
                   let varValue = varValues[variable.name];
                   return (
-                    <td class={clsx({
+                    <td className={clsx({
                       true: varValue === true,
                       false: varValue === false
                     })}>
@@ -106,7 +106,7 @@ class TableComponent {
                 {this.app.expressions.map((expression) => {
                   let exprValue = expression.evaluate(varValues);
                   return (
-                    <td class={clsx({
+                    <td className={clsx({
                       true: exprValue === true,
                       false: exprValue === false,
                       invalid: exprValue === null
