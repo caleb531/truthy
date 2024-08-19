@@ -1,5 +1,5 @@
 import m from 'mithril';
-import classNames from '../classnames.js';
+import clsx from 'clsx';
 import closeIconUrl from '../../icons/close.svg';
 
 // The application reference sidebar (listing supported syntax/operations)
@@ -37,8 +37,9 @@ class ReferenceComponent {
   }
 
   view({ attrs: { app, referenceIsOpen } }) {
-    return m('div#reference.reference-close-control', {
-      class: classNames(
+    return m('div#reference', {
+      class: clsx(
+        'reference-close-control',
         { 'reference-is-open': referenceIsOpen }
       )
     }, m('#reference-sidebar.scrollable-container', {

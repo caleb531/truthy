@@ -1,5 +1,5 @@
 import m from 'mithril';
-import classNames from '../classnames.js';
+import clsx from 'clsx';
 
 // The truth table UI, including all created expressions and their table values
 class TableComponent {
@@ -100,7 +100,7 @@ class TableComponent {
           this.app.variables.map((variable) => {
             let varValue = varValues[variable.name];
             return m('td', {
-              class: classNames({
+              class: clsx({
                 true: varValue === true,
                 false: varValue === false
               })
@@ -110,7 +110,7 @@ class TableComponent {
           this.app.expressions.map((expression) => {
             let exprValue = expression.evaluate(varValues);
             return m('td', {
-              class: classNames({
+              class: clsx({
                 true: exprValue === true,
                 false: exprValue === false,
                 invalid: exprValue === null

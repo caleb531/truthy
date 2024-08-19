@@ -29,6 +29,7 @@
   "dependencies": {
     "@fontsource/oxygen-mono": "^5.0.20",
     "@fontsource/ubuntu": "^5.0.13",
+    "clsx": "^2.1.1",
     "lodash-es": "^4.17.21",
     "mithril": "^2.2.2"
   },
