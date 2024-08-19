@@ -25,6 +25,9 @@ devDependencies:
   '@testing-library/jest-dom':
     specifier: ^6.4.6
     version: 6.4.6(vitest@2.0.1)
+  '@types/mithril':
+    specifier: ^2.2.7
+    version: 2.2.7
   '@types/node':
     specifier: ^20.14.10
     version: 20.14.10
@@ -790,6 +793,10 @@ packages:
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+    dev: true
+
+  /@types/mithril@2.2.7:
+    resolution: {integrity: sha512-uetxoYizBMHPELl6DSZUfO6Q/aOm+h0NUCv9bVAX2iAxfrdBSOvU9KKFl+McTtxR13F+BReYLY814pJsZvnSxg==}
     dev: true
 
   /@types/node@20.14.10:
