@@ -1,4 +1,4 @@
-import { times, fromPairs } from 'lodash-es';
+import { fromPairs, times } from 'lodash-es';
 import Collection from './collection.js';
 import Variable from './variable.js';
 

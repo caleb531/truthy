@@ -1,4 +1,3 @@
-import m from 'mithril';
 import clsx from 'clsx';
 import closeIconUrl from '../../icons/close.svg';
 

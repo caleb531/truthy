@@ -1,5 +1,5 @@
-import VariableCollection from './variable-collection.js';
 import ExpressionCollection from './expression-collection.js';
+import VariableCollection from './variable-collection.js';
 
 // A singleton representing the core state of the application, including
 // variables and expressions

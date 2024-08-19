@@ -1,7 +1,7 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript][typescript]": {
+  "[javascript][javascriptreact]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit"
     }

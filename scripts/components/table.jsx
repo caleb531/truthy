@@ -1,4 +1,3 @@
-import m from 'mithril';
 import clsx from 'clsx';
 
 // The truth table UI, including all created expressions and their table values
