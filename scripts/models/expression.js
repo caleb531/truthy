@@ -2,7 +2,6 @@ import ExpressionParser from './expression.parser.pegjs';
 
 // A boolean expression to display in the truth table
 class Expression {
-
   constructor({ string }) {
     // The string expression to display in the truth table
     this.string = string;
@@ -24,7 +23,6 @@ class Expression {
       string: this.string
     };
   }
-
 }
 
 export default Expression;

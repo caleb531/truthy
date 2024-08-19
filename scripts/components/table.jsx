@@ -3,7 +3,6 @@ import clsx from 'clsx';
 
 // The truth table UI, including all created expressions and their table values
 class TableComponent {
-
   oninit(vnode) {
     this.app = vnode.attrs.app;
   }
@@ -71,7 +70,10 @@ class TableComponent {
     return (
       <table id="truth-table">
         <thead>
-          <tr onclick={(clickEvent) => this.handleControls(clickEvent)} oninput={(inputEvent) => this.updateExpressionString(inputEvent)}>
+          <tr
+            onclick={(clickEvent) => this.handleControls(clickEvent)}
+            oninput={(inputEvent) => this.updateExpressionString(inputEvent)}
+          >
             {this.app.variables.map((variable) => {
               return <th className="variable">{variable.name ? variable.name : '?'}</th>;
             })}
@@ -80,8 +82,21 @@ class TableComponent {
                 <th className="expression" data-index={e}>
                   <div className="has-controls">
                     <div className="control control-add"></div>
-                    {this.app.expressions.length > 1 ? <div className="control control-remove"></div> : null}
-                    <input type="text" size={Math.max(1, expression.string.length)} value={expression.string} autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" oncreate={(vnode) => this.focusNewExpression(vnode)} onupdate={(vnode) => this.focusNewExpression(vnode)} data-index={e} />
+                    {this.app.expressions.length > 1 ? (
+                      <div className="control control-remove"></div>
+                    ) : null}
+                    <input
+                      type="text"
+                      size={Math.max(1, expression.string.length)}
+                      value={expression.string}
+                      autocapitalize="off"
+                      autocomplete="off"
+                      autocorrect="off"
+                      spellcheck="false"
+                      oncreate={(vnode) => this.focusNewExpression(vnode)}
+                      onupdate={(vnode) => this.focusNewExpression(vnode)}
+                      data-index={e}
+                    />
                   </div>
                 </th>
               );
@@ -95,10 +110,12 @@ class TableComponent {
                 {this.app.variables.map((variable) => {
                   let varValue = varValues[variable.name];
                   return (
-                    <td className={clsx({
-                      true: varValue === true,
-                      false: varValue === false
-                    })}>
+                    <td
+                      className={clsx({
+                        true: varValue === true,
+                        false: varValue === false
+                      })}
+                    >
                       {this.getBoolStr(varValue)}
                     </td>
                   );
@@ -106,11 +123,13 @@ class TableComponent {
                 {this.app.expressions.map((expression) => {
                   let exprValue = expression.evaluate(varValues);
                   return (
-                    <td className={clsx({
-                      true: exprValue === true,
-                      false: exprValue === false,
-                      invalid: exprValue === null
-                    })}>
+                    <td
+                      className={clsx({
+                        true: exprValue === true,
+                        false: exprValue === false,
+                        invalid: exprValue === null
+                      })}
+                    >
                       {this.getBoolStr(exprValue)}
                     </td>
                   );
@@ -122,7 +141,6 @@ class TableComponent {
       </table>
     );
   }
-
 }
 
 export default TableComponent;

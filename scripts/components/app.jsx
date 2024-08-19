@@ -6,7 +6,6 @@ import TableComponent from './table.jsx';
 
 // The entire application UI, including static and dynamic app elements
 class AppComponent {
-
   oninit() {
     this.app = App.restore();
     this.referenceIsOpen = false;
@@ -18,7 +17,10 @@ class AppComponent {
     if (clickEvent.target.classList.contains('reference-open-control') && !this.referenceIsOpen) {
       this.referenceIsOpen = true;
       clickEvent.preventDefault();
-    } else if (clickEvent.target.classList.contains('reference-close-control') && this.referenceIsOpen) {
+    } else if (
+      clickEvent.target.classList.contains('reference-close-control') &&
+      this.referenceIsOpen
+    ) {
       this.referenceIsOpen = false;
       clickEvent.preventDefault();
     } else {
@@ -32,7 +34,9 @@ class AppComponent {
     return (
       <div id="app" onclick={(clickEvent) => this.toggleReference(clickEvent)}>
         <span id="reference-link" className="nav-link nav-link-left">
-          <a href="#" className="reference-open-control">App Reference</a>
+          <a href="#" className="reference-open-control">
+            App Reference
+          </a>
         </span>
         <span id="personal-site-link" className="nav-link nav-link-right">
           by <a href="https://calebevans.me/">Caleb Evans</a>
@@ -51,7 +55,6 @@ class AppComponent {
       </div>
     );
   }
-
 }
 
 export default AppComponent;

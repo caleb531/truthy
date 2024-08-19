@@ -40,6 +40,9 @@ devDependencies:
   eslint:
     specifier: ^9.9.0
     version: 9.9.0
+  eslint-config-prettier:
+    specifier: ^9.1.0
+    version: 9.1.0(eslint@9.9.0)
   eslint-plugin-jest:
     specifier: ^28.8.0
     version: 28.8.0(eslint@9.9.0)(typescript@5.5.4)
@@ -52,6 +55,9 @@ devDependencies:
   peggy:
     specifier: ^4.0.3
     version: 4.0.3
+  prettier:
+    specifier: ^3.3.3
+    version: 3.3.3
   rollup-plugin-peggy:
     specifier: ^6.0.0
     version: 6.0.0(peggy@4.0.3)(rollup@4.20.0)
@@ -1295,6 +1301,15 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /eslint-config-prettier@9.1.0(eslint@9.9.0):
+    resolution: {integrity: sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 9.9.0
+    dev: true
+
   /eslint-plugin-jest@28.8.0(eslint@9.9.0)(typescript@5.5.4):
     resolution: {integrity: sha512-Tubj1hooFxCl52G4qQu0edzV/+EZzPUeN8p2NnW5uu4fbDs+Yo7+qDVDc4/oG3FbCqEBmu/OC3LSsyiU22oghw==}
     engines: {node: ^16.10.0 || ^18.12.0 || >=20.0.0}
@@ -2137,6 +2152,12 @@ packages:
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /pretty-format@29.7.0:

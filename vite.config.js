@@ -8,9 +8,7 @@ export default defineConfig({
   // projects domain (e.g. https://projects.calebevans.me/truthy/), we must
   // specify . as the base directory to serve from
   base: './',
-  plugins: [
-    peggy({ cache: true })
-  ],
+  plugins: [peggy({ cache: true })],
   // Enable JSX processing
   esbuild: {
     jsxFactory: 'm',

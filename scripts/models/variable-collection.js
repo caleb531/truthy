@@ -5,7 +5,6 @@ import Variable from './variable.js';
 // An ordered sequence of variables; every variable collection inherits from the
 // base Collection model
 class VariableCollection extends Collection {
-
   constructor({ items }) {
     super({
       SubCollectionItem: Variable,
@@ -25,10 +24,12 @@ class VariableCollection extends Collection {
     let variables = this;
     // An object where each key is a variable name and each value is a boolean
     // representing the current value of that variable
-    let currentVarValues = fromPairs(variables.map((variable) => {
-      // Initialize all variable values to false
-      return [variable.name, false];
-    }));
+    let currentVarValues = fromPairs(
+      variables.map((variable) => {
+        // Initialize all variable values to false
+        return [variable.name, false];
+      })
+    );
     // If n corresponds to the number of variables, then there will always be 2^n
     // permutations to generate
     return times(Math.pow(2, variables.length), (rowIndex) => {
@@ -59,7 +60,6 @@ class VariableCollection extends Collection {
     } while (variableCharCodes.indexOf(nextVarCharCode) !== -1);
     return String.fromCharCode(nextVarCharCode);
   }
-
 }
 
 export default VariableCollection;

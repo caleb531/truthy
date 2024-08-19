@@ -1,6 +1,5 @@
 // An abstract base model for defining any type of ordered sequence
 class Collection {
-
   constructor({ SubCollectionItem, items }) {
     // A reference to the constructor for the sub-collection's item type
     this.SubCollectionItem = SubCollectionItem;
@@ -41,7 +40,6 @@ class Collection {
       items: this.items.map((item) => item.serialize())
     };
   }
-
 }
 
 // Define an array-like 'length' property on Collection instances

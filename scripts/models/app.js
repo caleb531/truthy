@@ -4,27 +4,19 @@ import ExpressionCollection from './expression-collection.js';
 // A singleton representing the core state of the application, including
 // variables and expressions
 class App {
-
   constructor({ variables, expressions } = {}) {
     if (variables) {
       this.variables = new VariableCollection(variables);
     } else {
       this.variables = new VariableCollection({
-        items: [
-          { name: 'p' },
-          { name: 'q' }
-        ]
+        items: [{ name: 'p' }, { name: 'q' }]
       });
     }
     if (expressions) {
       this.expressions = new ExpressionCollection(expressions);
     } else {
       this.expressions = new ExpressionCollection({
-        items: [
-          { string: 'not p' },
-          { string: 'p and q' },
-          { string: 'p or q' }
-        ]
+        items: [{ string: 'not p' }, { string: 'p and q' }, { string: 'p or q' }]
       });
     }
   }
@@ -39,7 +31,6 @@ class App {
   save() {
     localStorage.setItem(App.storageKey, JSON.stringify(this.serialize()));
   }
-
 }
 
 // The key to use for storing the app data in localStorage

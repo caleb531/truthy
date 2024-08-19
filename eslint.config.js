@@ -1,10 +1,12 @@
 import js from '@eslint/js';
-import globals from 'globals';
 import vitest from '@vitest/eslint-plugin';
+import prettier from 'eslint-config-prettier';
+import globals from 'globals';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   js.configs.recommended,
+  prettier,
   {
     files: ['**/*.js', '**/*.jsx'],
     languageOptions: {
@@ -29,7 +31,7 @@ export default [
     }
   },
   {
-    files: ["test/*.js"],
+    files: ['test/*.js'],
     languageOptions: {
       globals: {
         ...vitest.environments.env.globals

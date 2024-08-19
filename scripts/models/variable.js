@@ -1,6 +1,5 @@
 // A variable used in an expression string
 class Variable {
-
   constructor({ name }) {
     this.name = name;
   }
@@ -10,7 +9,6 @@ class Variable {
       name: this.name
     };
   }
-
 }
 
 export default Variable;
