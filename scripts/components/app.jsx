@@ -1,8 +1,8 @@
 import m from 'mithril';
 import App from '../models/app.js';
-import ReferenceComponent from './reference.js';
-import VariableCollectionComponent from './variable-collection.js';
-import TableComponent from './table.js';
+import ReferenceComponent from './reference.jsx';
+import VariableCollectionComponent from './variable-collection.jsx';
+import TableComponent from './table.jsx';
 
 // The entire application UI, including static and dynamic app elements
 class AppComponent {

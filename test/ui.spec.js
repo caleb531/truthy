@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import m from 'mithril';
-import AppComponent from '../scripts/components/app.js';
+import AppComponent from '../scripts/components/app.jsx';
 
 describe('app UI', () => {
 
