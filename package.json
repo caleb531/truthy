@@ -44,7 +44,7 @@
     "@vitest/eslint-plugin": "^1.0.3",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jest": "^28.8.0",
+    "eslint-plugin-jest": "^28.8.1",
     "globals": "^15.9.0",
     "jsdom": "^24.1.0",
     "peggy": "^4.0.3",
