@@ -1,7 +1,6 @@
 import App from '../scripts/models/app.js';
 
 describe('app', () => {
-
   it('should initialize with no arguments', () => {
     let app = new App();
     expect(app).toHaveProperty('variables');
@@ -58,5 +57,4 @@ describe('app', () => {
     expect(restoredApp).toBeTruthy();
     expect(restoredApp.serialize()).toEqual(serializedApp);
   });
-
 });

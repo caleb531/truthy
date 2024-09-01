@@ -2,7 +2,6 @@ import VariableCollection from '../scripts/models/variable-collection.js';
 import Variable from '../scripts/models/variable.js';
 
 describe('variable collection', () => {
-
   it('should initialize with list of variables', () => {
     let variables = new VariableCollection({
       items: [{ name: 'u' }, { name: 'v' }]
@@ -34,7 +33,6 @@ describe('variable collection', () => {
   });
 
   describe('getNextVariableName', () => {
-
     let variables = new VariableCollection({
       items: [{ name: 'q' }, { name: 's' }, { name: 'z' }, { name: 'a' }]
     });
@@ -48,7 +46,5 @@ describe('variable collection', () => {
     it('should wrap around to next available name as needed', () => {
       expect(variables.getNextVariableName(variables.items[2])).toEqual('b');
     });
-
   });
-
 });

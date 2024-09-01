@@ -1,7 +1,7 @@
 # Truthy
 
-*Copyright 2016-2023 Caleb Evans*  
-*Released under the MIT License*
+_Copyright 2016-2023 Caleb Evans_  
+_Released under the MIT License_
 
 [![tests](https://github.com/caleb531/truthy/actions/workflows/tests.yml/badge.svg)](https://github.com/caleb531/truthy/actions/workflows/tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/caleb531/truthy/badge.svg?branch=main)](https://coveralls.io/github/caleb531/truthy?branch=main)

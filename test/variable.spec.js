@@ -1,7 +1,6 @@
 import Variable from '../scripts/models/variable.js';
 
 describe('variable', () => {
-
   it('should initialize with unmodified name', () => {
     let variable = new Variable({
       name: 'g'
@@ -14,5 +13,4 @@ describe('variable', () => {
     let variable = new Variable(serializedVariable);
     expect(variable.serialize()).toEqual(serializedVariable);
   });
-
 });

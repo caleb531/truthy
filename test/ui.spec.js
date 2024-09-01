@@ -3,7 +3,6 @@ import m from 'mithril';
 import AppComponent from '../scripts/components/app.jsx';
 
 describe('app UI', () => {
-
   beforeEach(() => {
     localStorage.clear();
     document.body.appendChild(document.createElement('main'));
@@ -227,5 +226,4 @@ describe('app UI', () => {
     let expression = document.querySelector('.expression:last-child input');
     expect(expression).toHaveValue('a ^ b');
   });
-
 });

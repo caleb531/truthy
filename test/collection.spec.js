@@ -1,11 +1,9 @@
 import Collection from '../scripts/models/collection.js';
 
 describe('collection', () => {
-
   class DummyItem {
     constructor(args) {
       this.foo = args.foo;
-
     }
     serialize() {
       return { foo: this.foo };
@@ -27,8 +25,8 @@ describe('collection', () => {
   it('should serialize to a JSON object', () => {
     let serializedCollection = { items: [{ foo: 'abc' }, { foo: 'xyz' }] };
     let collection = new Collection({
-        SubCollectionItem: DummyItem,
-        items: serializedCollection.items
+      SubCollectionItem: DummyItem,
+      items: serializedCollection.items
     });
     expect(collection.serialize()).toEqual(serializedCollection);
   });
@@ -117,5 +115,4 @@ describe('collection', () => {
     expect(collection.length).toEqual(0);
     expect(collection.items.length).toEqual(0);
   });
-
 });

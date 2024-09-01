@@ -1,7 +1,6 @@
 import Expression from '../scripts/models/expression.js';
 
 describe('expression', () => {
-
   it('should initialize with unmodified input string', () => {
     let expression = new Expression({
       string: ' p and q '
@@ -25,10 +24,13 @@ describe('expression', () => {
       const testResults = testCases.map((testCase) => {
         let actualOutput = expression.evaluate(testCase.varValues);
         // String of current variable values for display in fail message
-        let varValuesStr = Object.entries(testCase.varValues).map(([varName, varValue]) => {
-          return varName + ' is ' + varValue;
-        }).join(' and ');
-        const message = () => `expected '${expressionStr}' to evaluate to ${testCase.output} but got ${actualOutput} (when ${varValuesStr})`;
+        let varValuesStr = Object.entries(testCase.varValues)
+          .map(([varName, varValue]) => {
+            return varName + ' is ' + varValue;
+          })
+          .join(' and ');
+        const message = () =>
+          `expected '${expressionStr}' to evaluate to ${testCase.output} but got ${actualOutput} (when ${varValuesStr})`;
         if (actualOutput === testCase.output) {
           return { message, pass: true };
         } else {
@@ -36,14 +38,15 @@ describe('expression', () => {
         }
       });
 
-      return testResults.find((result) => {
-        return !result.pass;
-      }) || testResults[testResults.length - 1];
+      return (
+        testResults.find((result) => {
+          return !result.pass;
+        }) || testResults[testResults.length - 1]
+      );
     }
   });
 
   describe('variable name', () => {
-
     it('should evaluate', () => {
       expect('p').toEvaluateTo([
         { varValues: { p: false }, output: false },
@@ -79,13 +82,10 @@ describe('expression', () => {
         { varValues: { p: true }, output: null }
       ]);
     });
-
   });
 
   describe('boolean value', () => {
-
     describe('false', () => {
-
       let testCases = [
         { varValues: { p: false }, output: false },
         { varValues: { p: true }, output: false }
@@ -98,11 +98,9 @@ describe('expression', () => {
       it('should be case-insensitive', () => {
         expect('FaLsE').toEvaluateTo(testCases);
       });
-
     });
 
     describe('true', () => {
-
       let testCases = [
         { varValues: { p: false }, output: true },
         { varValues: { p: true }, output: true }
@@ -115,13 +113,10 @@ describe('expression', () => {
       it('should be case-insensitive', () => {
         expect('tRuE').toEvaluateTo(testCases);
       });
-
     });
-
   });
 
   describe('NOT operation', () => {
-
     let testCases = [
       { varValues: { p: false }, output: true },
       { varValues: { p: true }, output: false }
@@ -153,11 +148,9 @@ describe('expression', () => {
         { varValues: { p: true }, output: null }
       ]);
     });
-
   });
 
   describe('AND operation', () => {
-
     let testCases = [
       { varValues: { p: false, q: false }, output: false },
       { varValues: { p: false, q: true }, output: false },
@@ -200,11 +193,9 @@ describe('expression', () => {
     it('should ignore whitespace around arithmetic operator', () => {
       expect('p  *  q').toEvaluateTo(testCases);
     });
-
   });
 
   describe('NAND operation', () => {
-
     let testCases = [
       { varValues: { p: false, q: false }, output: true },
       { varValues: { p: false, q: true }, output: true },
@@ -223,11 +214,9 @@ describe('expression', () => {
     it('should ignore operator case', () => {
       expect('p NanD q').toEvaluateTo(testCases);
     });
-
   });
 
   describe('OR operation', () => {
-
     let testCases = [
       { varValues: { p: false, q: false }, output: false },
       { varValues: { p: false, q: true }, output: true },
@@ -270,11 +259,9 @@ describe('expression', () => {
     it('should ignore whitespace around arithmetic operator', () => {
       expect('p  +  q').toEvaluateTo(testCases);
     });
-
   });
 
   describe('NOR operation', () => {
-
     let testCases = [
       { varValues: { p: false, q: false }, output: true },
       { varValues: { p: false, q: true }, output: false },
@@ -293,11 +280,9 @@ describe('expression', () => {
     it('should ignore operator case', () => {
       expect('p NoR q').toEvaluateTo(testCases);
     });
-
   });
 
   describe('XOR operation', () => {
-
     let testCases = [
       { varValues: { p: false, q: false }, output: false },
       { varValues: { p: false, q: true }, output: true },
@@ -324,11 +309,9 @@ describe('expression', () => {
     it('should ignore whitespace around shorthand operator', () => {
       expect('p  ^  q').toEvaluateTo(testCases);
     });
-
   });
 
   describe('implication operation', () => {
-
     let testCases = [
       { varValues: { p: false, q: false }, output: true },
       { varValues: { p: false, q: true }, output: true },
@@ -343,11 +326,9 @@ describe('expression', () => {
     it('should ignore whitespace around operator', () => {
       expect('p  ->  q').toEvaluateTo(testCases);
     });
-
   });
 
   describe('double-implication (XNOR) operation', () => {
-
     let testCases = [
       { varValues: { p: false, q: false }, output: true },
       { varValues: { p: false, q: true }, output: false },
@@ -374,7 +355,6 @@ describe('expression', () => {
     it('should ignore named operator case', () => {
       expect('p xNoR q').toEvaluateTo(testCases);
     });
-
   });
 
   it('should respect parentheses', () => {
@@ -405,7 +385,6 @@ describe('expression', () => {
   });
 
   describe('more than two variables', () => {
-
     let testCases = [
       { varValues: { p: false, q: false, r: false }, output: false },
       { varValues: { p: false, q: false, r: true }, output: true },
@@ -420,7 +399,5 @@ describe('expression', () => {
     it('should evaluate named operator', () => {
       expect('p xor q xor r').toEvaluateTo(testCases);
     });
-
   });
-
 });
