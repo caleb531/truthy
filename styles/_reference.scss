@@ -1,9 +1,8 @@
 // The reference for app features and operations
 
-$reference-fade-duration: 300ms;
-$reference-fade-easing: ease-in-out;
-
 #reference {
+  --reference-fade-duration: 300ms;
+  --reference-fade-easing: ease-in-out;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,8 +13,8 @@ $reference-fade-easing: ease-in-out;
   // Transition z-index when closing drawer so z-index only changes once face
   // transition has finished
   transition-property: z-index, background-color;
-  transition-duration: $reference-fade-duration;
-  transition-timing-function: $reference-fade-easing;
+  transition-duration: var(--reference-fade-duration);
+  transition-timing-function: var(--reference-fade-easing);
   &.reference-is-open {
     z-index: 100;
     // Change z-index instantly when opening the drawer
@@ -40,7 +39,7 @@ $reference-fade-easing: ease-in-out;
   text-align: left;
   overflow-y: auto;
   transform: translateX(-100%);
-  transition: transform $reference-fade-duration $reference-fade-easing;
+  transition: transform var(--reference-fade-duration) var(--reference-fade-easing);
   .reference-is-open & {
     transform: translateX(0);
   }
@@ -59,12 +58,12 @@ $reference-fade-easing: ease-in-out;
   // Close button in top-left corner
   img.reference-close-control {
     position: absolute;
-    $link-position: 16px;
-    top: $link-position;
-    left: $link-position;
-    $link-size: 16px;
-    width: $link-size;
-    width: $link-size;
+    --link-position: 16px;
+    top: var(--link-position);
+    left: var(--link-position);
+    --link-size: 16px;
+    width: var(--link-size);
+    width: var(--link-size);
   }
 }
 
@@ -76,6 +75,6 @@ pre.feature-example {
   border-radius: 3px;
   padding: 4px 8px;
   background-color: #111;
-  font-family: $monospace;
+  font-family: var(--monospace);
   cursor: pointer;
 }

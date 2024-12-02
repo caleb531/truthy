@@ -15,7 +15,7 @@ td {
 }
 // Set darker background for table head cells
 th {
-  background-color: lighten(#111, 5%);
+  background-color: #222;
   font-weight: 400;
   &.expression {
     input[type='text'] {
@@ -33,7 +33,7 @@ $value-colors: (
 @each $value-name, $value-color in $value-colors {
   td.#{$value-name} {
     --cell-background-color: #{$value-color};
-    --cell-background-color-alt: #{darken($value-color, 4%)};
+    --cell-background-color-alt: #{color-mix(in hsl, $value-color, #000 10%)};
   }
 }
 td {

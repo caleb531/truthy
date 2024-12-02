@@ -1,8 +1,7 @@
 // Main front-end stylesheet
 
-@import 'sass-variables';
-@import 'general';
-@import 'variables';
-@import 'table';
-@import 'controls';
-@import 'reference';
+@use 'general';
+@use 'variables';
+@use 'table';
+@use 'controls';
+@use 'reference';

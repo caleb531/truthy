@@ -8,24 +8,24 @@
 
 .control {
   position: absolute;
-  $control-size: 16px;
-  top: -(math.div($control-size, 2));
+  --control-size: 16px;
+  top: calc(-1 * var(--control-size) / 2);
   z-index: 10;
-  width: $control-size;
-  height: $control-size;
-  border: solid 1px lighten(#000, 30%);
+  width: var(--control-size);
+  height: var(--control-size);
+  border: solid 1px #444;
   border-radius: 50%;
   background-color: #000;
   background-size: 10px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  $control-x: -(math.div($control-size, 2));
+  --control-x: calc(-1 * var(--control-size) / 2);
   &-add {
-    right: $control-x;
+    right: var(--control-x);
     background-image: url('../icons/add.svg');
   }
   &-remove {
-    left: $control-x;
+    left: var(--control-x);
     background-image: url('../icons/remove.svg');
   }
 }

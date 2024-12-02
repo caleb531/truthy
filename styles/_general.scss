@@ -1,11 +1,13 @@
 body {
+  --sans-serif: 'Ubuntu', sans-serif;
+  --monospace: 'Oxygen Mono', 'Monaco', monospace;
   margin: 0;
   padding: 0;
   background-color: #111;
   background-size: 11px;
   background-attachment: fixed;
   text-align: center;
-  font-family: $sans-serif;
+  font-family: var(--sans-serif);
   font-weight: 300;
   color: #fff;
   // Eliminate gray tap highlight on iOS
@@ -30,19 +32,19 @@ a {
 }
 .nav-link {
   position: absolute;
-  $position-y: 12px;
-  $position-x: 16px;
+  --position-y: 12px;
+  --position-x: 16px;
   font-size: 14px;
   &-left {
     top: 0;
     left: 0;
     a {
-      padding: $position-y $position-x;
+      padding: var(--position-y) var(--position-x);
     }
   }
   &-right {
-    top: $position-y;
-    right: $position-x;
+    top: var(--position-y);
+    right: var(--position-x);
   }
   a {
     display: inline-block;
@@ -56,18 +58,18 @@ input[type='text'] {
   padding: 4px 8px;
   background-clip: padding-box;
   text-align: center;
-  font-family: $monospace;
+  font-family: var(--monospace);
   font-size: 16px;
   font-display: swap;
-  $input-box-shadow: 0 1px 3px 1px #000;
-  box-shadow: $input-box-shadow;
+  --input-box-shadow: 0 1px 3px 1px #000;
+  box-shadow: var(--input-box-shadow);
   &:focus {
     outline-width: 0;
     border-color: #f63;
     background-color: #ffe;
     box-shadow:
       0 0 5px 1px #f96,
-      $input-box-shadow;
+      var(--input-box-shadow);
   }
 }
 
