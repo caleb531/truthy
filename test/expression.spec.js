@@ -29,12 +29,18 @@ describe('expression', () => {
             return varName + ' is ' + varValue;
           })
           .join(' and ');
-        const message = () =>
-          `expected '${expressionStr}' to evaluate to ${testCase.output} but got ${actualOutput} (when ${varValuesStr})`;
         if (actualOutput === testCase.output) {
-          return { message, pass: true };
+          return {
+            message: () =>
+              `expected '${expressionStr}' not to evaluate to ${testCase.output} but got ${actualOutput} (when ${varValuesStr})`,
+            pass: true
+          };
         } else {
-          return { message, pass: false };
+          return {
+            message: () =>
+              `expected '${expressionStr}' to evaluate to ${testCase.output} but got ${actualOutput} (when ${varValuesStr})`,
+            pass: false
+          };
         }
       });
 
