@@ -45,7 +45,6 @@ class TableComponent {
   handleControls(clickEvent) {
     // There is no need for an 'else' case, because we are only using event
     // delegation to capture clicks on the UI controls
-    /* istanbul ignore else */
     if (clickEvent.target.classList.contains('control-add')) {
       this.addExpression(clickEvent);
     } else if (clickEvent.target.classList.contains('control-remove')) {
@@ -56,7 +55,6 @@ class TableComponent {
   focusNewExpression(inputVnode) {
     // There is no need for an 'else' case; we don't want cause unnecessary
     // behavior
-    /* istanbul ignore else */
     if (this.app.expressions.lastInsertionIndex === inputVnode.attrs['data-index']) {
       inputVnode.dom.focus();
       // This is essential to ensure the last added input does not keep stealing
