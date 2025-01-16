@@ -6,7 +6,7 @@ class VariableCollectionComponent {
   }
 
   getVariableIndex(buttonElem) {
-    let variableElem = buttonElem.parentNode.parentNode;
+    const variableElem = buttonElem.parentNode.parentNode;
     return Number(variableElem.getAttribute('data-index'));
   }
 
@@ -18,16 +18,16 @@ class VariableCollectionComponent {
       (this.validNamePattern.test(inputEvent.target.value) &&
         this.app.variables.checkNameAvailability(inputEvent.target.value))
     ) {
-      let variable = this.app.variables.get(this.getVariableIndex(inputEvent.target));
+      const variable = this.app.variables.get(this.getVariableIndex(inputEvent.target));
       variable.name = inputEvent.target.value;
       this.app.save();
     }
   }
 
   addVariable(clickEvent) {
-    let variableIndex = this.getVariableIndex(clickEvent.target);
-    let variable = this.app.variables.get(variableIndex);
-    let newVariableName = this.app.variables.getNextVariableName(variable);
+    const variableIndex = this.getVariableIndex(clickEvent.target);
+    const variable = this.app.variables.get(variableIndex);
+    const newVariableName = this.app.variables.getNextVariableName(variable);
     this.app.variables.insert(variableIndex + 1, {
       name: newVariableName
     });

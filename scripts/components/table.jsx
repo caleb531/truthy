@@ -18,19 +18,19 @@ class TableComponent {
   }
 
   getExpressionIndex(buttonElem) {
-    let expressionElem = buttonElem.parentNode.parentNode;
+    const expressionElem = buttonElem.parentNode.parentNode;
     return Number(expressionElem.getAttribute('data-index'));
   }
 
   updateExpressionString(clickEvent) {
-    let expression = this.app.expressions.get(this.getExpressionIndex(clickEvent.target));
+    const expression = this.app.expressions.get(this.getExpressionIndex(clickEvent.target));
     expression.string = clickEvent.target.value;
     this.app.save();
   }
 
   addExpression(clickEvent) {
-    let expressionIndex = this.getExpressionIndex(clickEvent.target);
-    let expression = this.app.expressions.get(expressionIndex);
+    const expressionIndex = this.getExpressionIndex(clickEvent.target);
+    const expression = this.app.expressions.get(expressionIndex);
     this.app.expressions.insert(expressionIndex + 1, {
       string: expression.string
     });
@@ -105,7 +105,7 @@ class TableComponent {
             return (
               <tr>
                 {this.app.variables.map((variable) => {
-                  let varValue = varValues[variable.name];
+                  const varValue = varValues[variable.name];
                   return (
                     <td
                       className={clsx({
@@ -118,7 +118,7 @@ class TableComponent {
                   );
                 })}
                 {this.app.expressions.map((expression) => {
-                  let exprValue = expression.evaluate(varValues);
+                  const exprValue = expression.evaluate(varValues);
                   return (
                     <td
                       className={clsx({

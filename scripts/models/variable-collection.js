@@ -21,10 +21,10 @@ class VariableCollection extends Collection {
   // Transform all possible permutations of true/false values for this collection
   // of variables using the provided callback
   mapPermutations(callback) {
-    let variables = this;
+    const variables = this;
     // An object where each key is a variable name and each value is a boolean
     // representing the current value of that variable
-    let currentVarValues = fromPairs(
+    const currentVarValues = fromPairs(
       variables.map((variable) => {
         // Initialize all variable values to false
         return [variable.name, false];
@@ -47,7 +47,7 @@ class VariableCollection extends Collection {
   // the given base variable)
   getNextVariableName(baseVariable) {
     // Create a list of variable names already in use
-    let variableCharCodes = this.map((variable) => variable.name.charCodeAt(0));
+    const variableCharCodes = this.map((variable) => variable.name.charCodeAt(0));
     // Look for the next letter that isn't already in use
     let nextVarCharCode = baseVariable.name.charCodeAt(0);
     do {

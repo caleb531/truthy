@@ -2,15 +2,15 @@ import Expression from '../scripts/models/expression.js';
 
 describe('expression', () => {
   it('should initialize with unmodified input string', () => {
-    let expression = new Expression({
+    const expression = new Expression({
       string: ' p and q '
     });
     expect(expression).toHaveProperty('string', ' p and q ');
   });
 
   it('should serialize to a JSON object', () => {
-    let serializedExpression = { string: 'p xor q' };
-    let expression = new Expression(serializedExpression);
+    const serializedExpression = { string: 'p xor q' };
+    const expression = new Expression(serializedExpression);
     expect(expression.serialize()).toEqual(serializedExpression);
   });
 
@@ -18,13 +18,13 @@ describe('expression', () => {
   // set of inputs
   expect.extend({
     toEvaluateTo: (expressionStr, testCases) => {
-      let expression = new Expression({ string: expressionStr });
+      const expression = new Expression({ string: expressionStr });
       // Test each expression against the given permutations of variable values
       // and the expected outputs
       const testResults = testCases.map((testCase) => {
-        let actualOutput = expression.evaluate(testCase.varValues);
+        const actualOutput = expression.evaluate(testCase.varValues);
         // String of current variable values for display in fail message
-        let varValuesStr = Object.entries(testCase.varValues)
+        const varValuesStr = Object.entries(testCase.varValues)
           .map(([varName, varValue]) => {
             return varName + ' is ' + varValue;
           })
@@ -92,7 +92,7 @@ describe('expression', () => {
 
   describe('boolean value', () => {
     describe('false', () => {
-      let testCases = [
+      const testCases = [
         { varValues: { p: false }, output: false },
         { varValues: { p: true }, output: false }
       ];
@@ -107,7 +107,7 @@ describe('expression', () => {
     });
 
     describe('true', () => {
-      let testCases = [
+      const testCases = [
         { varValues: { p: false }, output: true },
         { varValues: { p: true }, output: true }
       ];
@@ -123,7 +123,7 @@ describe('expression', () => {
   });
 
   describe('NOT operation', () => {
-    let testCases = [
+    const testCases = [
       { varValues: { p: false }, output: true },
       { varValues: { p: true }, output: false }
     ];
@@ -157,7 +157,7 @@ describe('expression', () => {
   });
 
   describe('AND operation', () => {
-    let testCases = [
+    const testCases = [
       { varValues: { p: false, q: false }, output: false },
       { varValues: { p: false, q: true }, output: false },
       { varValues: { p: true, q: false }, output: false },
@@ -202,7 +202,7 @@ describe('expression', () => {
   });
 
   describe('NAND operation', () => {
-    let testCases = [
+    const testCases = [
       { varValues: { p: false, q: false }, output: true },
       { varValues: { p: false, q: true }, output: true },
       { varValues: { p: true, q: false }, output: true },
@@ -223,7 +223,7 @@ describe('expression', () => {
   });
 
   describe('OR operation', () => {
-    let testCases = [
+    const testCases = [
       { varValues: { p: false, q: false }, output: false },
       { varValues: { p: false, q: true }, output: true },
       { varValues: { p: true, q: false }, output: true },
@@ -268,7 +268,7 @@ describe('expression', () => {
   });
 
   describe('NOR operation', () => {
-    let testCases = [
+    const testCases = [
       { varValues: { p: false, q: false }, output: true },
       { varValues: { p: false, q: true }, output: false },
       { varValues: { p: true, q: false }, output: false },
@@ -289,7 +289,7 @@ describe('expression', () => {
   });
 
   describe('XOR operation', () => {
-    let testCases = [
+    const testCases = [
       { varValues: { p: false, q: false }, output: false },
       { varValues: { p: false, q: true }, output: true },
       { varValues: { p: true, q: false }, output: true },
@@ -318,7 +318,7 @@ describe('expression', () => {
   });
 
   describe('implication operation', () => {
-    let testCases = [
+    const testCases = [
       { varValues: { p: false, q: false }, output: true },
       { varValues: { p: false, q: true }, output: true },
       { varValues: { p: true, q: false }, output: false },
@@ -335,7 +335,7 @@ describe('expression', () => {
   });
 
   describe('double-implication (XNOR) operation', () => {
-    let testCases = [
+    const testCases = [
       { varValues: { p: false, q: false }, output: true },
       { varValues: { p: false, q: true }, output: false },
       { varValues: { p: true, q: false }, output: false },
@@ -391,7 +391,7 @@ describe('expression', () => {
   });
 
   describe('more than two variables', () => {
-    let testCases = [
+    const testCases = [
       { varValues: { p: false, q: false, r: false }, output: false },
       { varValues: { p: false, q: false, r: true }, output: true },
       { varValues: { p: false, q: true, r: false }, output: true },

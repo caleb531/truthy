@@ -3,7 +3,7 @@ import Expression from '../scripts/models/expression.js';
 
 describe('expression collection', () => {
   it('should initialize with list of expressions', () => {
-    let expressions = new ExpressionCollection({
+    const expressions = new ExpressionCollection({
       items: [{ string: 'a xor b' }, { string: 's nand t' }]
     });
     expect(expressions).toHaveProperty('items');

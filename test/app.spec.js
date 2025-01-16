@@ -2,7 +2,7 @@ import App from '../scripts/models/app.js';
 
 describe('app', () => {
   it('should initialize with no arguments', () => {
-    let app = new App();
+    const app = new App();
     expect(app).toHaveProperty('variables');
     expect(app.variables).toHaveLength(2);
     expect(app).toHaveProperty('expressions');
@@ -10,7 +10,7 @@ describe('app', () => {
   });
 
   it('should initialize with arguments', () => {
-    let app = new App({
+    const app = new App({
       variables: { items: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
       expressions: { items: [{ string: 'a xor b' }, { string: 'a nand b' }] }
     });
@@ -26,34 +26,34 @@ describe('app', () => {
   });
 
   it('should serialize to JSON object', () => {
-    let serializedApp = {
+    const serializedApp = {
       variables: { items: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
       expressions: { items: [{ string: 'a xor b' }, { string: 'a nand b' }] }
     };
-    let app = new App(serializedApp);
+    const app = new App(serializedApp);
     expect(app.serialize()).toEqual(serializedApp);
   });
 
   it('should save serialized app to disk', () => {
-    let serializedApp = {
+    const serializedApp = {
       variables: { items: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
       expressions: { items: [{ string: 'a xor b' }, { string: 'a nand b' }] }
     };
-    let app = new App(serializedApp);
+    const app = new App(serializedApp);
     app.save();
-    let restoredAppStr = localStorage.getItem('truthy-v3');
+    const restoredAppStr = localStorage.getItem('truthy-v3');
     expect(restoredAppStr).toEqual(JSON.stringify(serializedApp));
     localStorage.removeItem('truthy-v3');
   });
 
   it('should restore serialized app to disk', () => {
-    let serializedApp = {
+    const serializedApp = {
       variables: { items: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
       expressions: { items: [{ string: 'a xor b' }, { string: 'a nand b' }] }
     };
-    let app = new App(serializedApp);
+    const app = new App(serializedApp);
     app.save();
-    let restoredApp = App.restore();
+    const restoredApp = App.restore();
     expect(restoredApp).toBeTruthy();
     expect(restoredApp.serialize()).toEqual(serializedApp);
   });

@@ -37,7 +37,7 @@ class App {
 App.storageKey = 'truthy-v3';
 
 App.restore = function () {
-  let appStr = localStorage.getItem(App.storageKey);
+  const appStr = localStorage.getItem(App.storageKey);
   if (appStr !== null) {
     return new App(JSON.parse(appStr));
   } else {

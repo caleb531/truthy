@@ -15,7 +15,7 @@ class ReferenceComponent {
           exampleExpressionString.indexOf(exampleVariableName) !== -1 &&
           app.variables.length < i + 1
         ) {
-          let lastVariable = app.variables.get(app.variables.length - 1);
+          const lastVariable = app.variables.get(app.variables.length - 1);
           app.variables.insert(app.variables.length, {
             name: app.variables.getNextVariableName(lastVariable)
           });
