@@ -1,6 +1,6 @@
 # Truthy
 
-_Copyright 2016-2023 Caleb Evans_  
+_Copyright 2016-2025 Caleb Evans_  
 _Released under the MIT License_
 
 [![tests](https://github.com/caleb531/truthy/actions/workflows/tests.yml/badge.svg)](https://github.com/caleb531/truthy/actions/workflows/tests.yml)
