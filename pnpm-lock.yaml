@@ -67,8 +67,8 @@ importers:
         specifier: ^3.7.1
         version: 3.7.1
       rollup-plugin-peggy:
-        specifier: 6.1.0-rc.1
-        version: 6.1.0-rc.1(peggy@5.0.6)(rollup@4.53.3)
+        specifier: 6.1.0
+        version: 6.1.0(peggy@5.0.6)(rollup@4.53.3)
       sass:
         specifier: ^1.94.2
         version: 1.94.2
@@ -1217,8 +1217,8 @@ packages:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
 
-  rollup-plugin-peggy@6.1.0-rc.1:
-    resolution: {integrity: sha512-DQg4Q8FhiG1QlvhZ83/jWntg8eVyq6A283FRAdTDQ6Bzzc+RNvN81zVFYKaveaKE6r5GiAn5JEfznHSrgua0nA==}
+  rollup-plugin-peggy@6.1.0:
+    resolution: {integrity: sha512-Kfj3y/9N3uwZHERLXybE++VYl4ajbjrv9e8XYAw5LSG2+hdqKF6hqB1zIUb4J1OJn/9nJpLlHCv/o8KLtLfpqQ==}
     peerDependencies:
       peggy: '>=1.2.0'
       rollup: '>=2.0.0'
@@ -2494,7 +2494,7 @@ snapshots:
 
   resolve-from@4.0.0: {}
 
-  rollup-plugin-peggy@6.1.0-rc.1(peggy@5.0.6)(rollup@4.53.3):
+  rollup-plugin-peggy@6.1.0(peggy@5.0.6)(rollup@4.53.3):
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.53.3)
       peggy: 5.0.6
