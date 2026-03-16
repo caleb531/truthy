@@ -30,9 +30,6 @@ importers:
       '@types/eslint-config-prettier':
         specifier: ^6.11.3
         version: 6.11.3
-      '@types/eslint__js':
-        specifier: ^9.14.0
-        version: 9.14.0(eslint@10.0.3)
       '@types/mithril':
         specifier: ^2.2.8
         version: 2.2.8
@@ -186,15 +183,6 @@ packages:
   '@eslint/core@1.1.1':
     resolution: {integrity: sha512-QUPblTtE51/7/Zhfv8BDwO0qkkzQL7P/aWWbqcf4xWLEYn1oKjdO0gglQBB4GAsu7u6wjijbCmzsUTy6mnk6oQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
-
-  '@eslint/js@10.0.1':
-    resolution: {integrity: sha512-zeR9k5pd4gxjZ0abRoIaxdc7I3nDktoXZk2qOv9gCNWx3mVwEn32VRhyLaRsDiJjTs0xq/T8mfPtyuXu7GWBcA==}
-    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
-    peerDependencies:
-      eslint: ^10.0.0
-    peerDependenciesMeta:
-      eslint:
-        optional: true
 
   '@eslint/object-schema@3.0.3':
     resolution: {integrity: sha512-iM869Pugn9Nsxbh/YHRqYiqd23AmIbxJOcpUMOuWCVNdoQJ5ZtwL6h3t0bcZzJUlC3Dq9jCFCESBZnX0GTv7iQ==}
@@ -610,10 +598,6 @@ packages:
 
   '@types/eslint-config-prettier@6.11.3':
     resolution: {integrity: sha512-3wXCiM8croUnhg9LdtZUJQwNcQYGWxxdOWDjPe1ykCqJFPVpzAKfs/2dgSoCtAvdPeaponcWPI7mPcGGp9dkKQ==}
-
-  '@types/eslint__js@9.14.0':
-    resolution: {integrity: sha512-s0jepCjOJWB/GKcuba4jISaVpBudw3ClXJ3fUK4tugChUMQsp6kSwuA8Dcx6wFd/JsJqcY8n4rEpa5RTHs5ypA==}
-    deprecated: This is a stub types definition. @eslint/js provides its own type definitions, so you do not need this installed.
 
   '@types/esrecurse@4.3.1':
     resolution: {integrity: sha512-xJBAbDifo5hpffDBuHl0Y8ywswbiAp/Wi7Y/GtAgSlZyIABppyurxVueOPE8LUQOxdlgi6Zqce7uoEpqNTeiUw==}
@@ -1560,10 +1544,6 @@ snapshots:
     dependencies:
       '@types/json-schema': 7.0.15
 
-  '@eslint/js@10.0.1(eslint@10.0.3)':
-    optionalDependencies:
-      eslint: 10.0.3
-
   '@eslint/object-schema@3.0.3': {}
 
   '@eslint/plugin-kit@0.6.1':
@@ -1829,12 +1809,6 @@ snapshots:
   '@types/deep-eql@4.0.2': {}
 
   '@types/eslint-config-prettier@6.11.3': {}
-
-  '@types/eslint__js@9.14.0(eslint@10.0.3)':
-    dependencies:
-      '@eslint/js': 10.0.1(eslint@10.0.3)
-    transitivePeerDependencies:
-      - eslint
 
   '@types/esrecurse@4.3.1': {}
 
